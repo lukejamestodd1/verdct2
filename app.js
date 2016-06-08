@@ -17,6 +17,8 @@ var dress = require('./models/dress');
 //controllers
 var mainController = require('./routes/mainController');
 var usersController = require('./routes/api/usersController');
+var eventsController = require('./routes/api/eventsController');
+var dressesController = require('./routes/api/dressesController');
 
 var app = express();
 
@@ -47,7 +49,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routing
 app.use('/', mainController);
-app.use('/users', usersController);
+app.use('/api/users', usersController);
+app.use('/api/events', eventsController);
+app.use('/api/dresses', dressesController);
 
 
 

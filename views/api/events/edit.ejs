@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+
+    <form action="/api/events/<%= event.id %>/edit" method="post" name="updateevent" enctype="application/x-www-form-urlencoded" class="margined">
+      <div class="form-group">
+        <p>Name:
+          <input id="inputName" type="text" value="<%= event.name %>" name="name"/>
+        </p>
+        
+        <p>
+          <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">Save</button>
+        </p>
+      </div>
+    </form>
+
+    <form action="/api/events/<%= event.id %>/edit" method="post" enctype="application/x-www-form-urlencoded" class="margined">
+      <input type="hidden" value="DELETE" name="_method"/>
+      <button type="submit" class="btn-lg btn-primary btn-centre">Delete</button>
+    </form>
+
+</body>
+</html>

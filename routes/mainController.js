@@ -42,7 +42,13 @@ router.get('/logout', function(req, res) {
 
 router.get('/home', function(req, res, next) {
   if (req.user) {
-    res.render('home', { title: 'Hello!'});
+    res.render('home', {
+    	title: 'Home',
+    	user_id: req.user._id,
+    	email: req.user.email,
+    	username: req.user.username
+
+    });
   }
   else {
     res.redirect('/');
@@ -55,6 +61,20 @@ router.get('/about', function(req, res, next) {
 
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Contact' });
+});
+
+router.get('/api', function(req, res, next) {
+	if (req.user) {
+    res.render('api/index', {
+    	title: 'API',
+    	user_id: req.user._id,
+    	email: req.user.email,
+    	username: req.user.username
+    });
+  }
+  else {
+    res.redirect('/');
+  }
 });
 
 module.exports = router;
