@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+  	<div class="container">
+      <header>
+        <% include partials/navbar %>
+        <% include partials/header %>
+      </header>
+    <div class="jumbotron text-center">
+        <h1><span class="fa fa-lock"></span><%= title %></h1>
+    		<p>Welcome to <%= title %></p>
+    		<p>Login or Register with:</p>
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+        <a href="/register" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+    </div>
+
+</div>
+  </body>
+</html>
