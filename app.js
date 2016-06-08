@@ -15,16 +15,15 @@ var event = require('./models/event');
 var dress = require('./models/dress');
 
 //controllers
-var mainController = require('./routes/mainController');
 var usersController = require('./routes/api/usersController');
 var eventsController = require('./routes/api/eventsController');
 var dressesController = require('./routes/api/dressesController');
+var savedEventsController = require('./routes/api/savedEventsController');
+var mainController = require('./routes/mainController');
+
+
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -42,17 +41,21 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 //routing
-app.use('/', mainController);
 app.use('/api/users', usersController);
 app.use('/api/events', eventsController);
 app.use('/api/dresses', dressesController);
-
+app.use('/api/savedEvents', eventsController);
+app.use('/', mainController);
 
 
 

@@ -42,13 +42,18 @@ router.get('/logout', function(req, res) {
 
 router.get('/home', function(req, res, next) {
   if (req.user) {
-    res.render('home', {
-    	title: 'Home',
-    	user_id: req.user._id,
-    	email: req.user.email,
-    	username: req.user.username
-
-    });
+		mongoose.model('Event').find({}, function (err, events) {
+      mongoose.model('Dress').find({user_id : req.user._id}, function (err, dresses) {
+      		res.render('home', {
+  					title: 'Home',
+			    	user_id: req.user._id,
+			    	email: req.user.email,
+			    	username: req.user.username,
+			    	events : events,
+			    	dresses : dresses
+			    });   
+    	});
+		});
   }
   else {
     res.redirect('/');

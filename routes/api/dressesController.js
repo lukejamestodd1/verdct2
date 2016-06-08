@@ -11,7 +11,7 @@ router.use(methodOverride(function(req, res){
     delete req.body._method
     return method
   }
-}))
+}));
 
 router.route('/')
   //============================== GET ALL
@@ -21,7 +21,7 @@ router.route('/')
             return console.error(err);
         } else {
             res.format({
-                
+              
               //JSON response will show all dresses in JSON format
               json: function(){
                   res.json(dresses);
@@ -87,7 +87,7 @@ router.put('/:id/edit', function(req, res) {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
                       html: function(){
-                           res.redirect("/api/dresses/" + dress._id);
+                           res.redirect("/home");
                      },
                      //JSON responds showing the updated values
                     json: function(){
@@ -181,7 +181,7 @@ router.get('/:id/edit', function(req, res) {
     });
 });
 
-//DELETE dress by ID
+//=================== DELETE
 router.delete('/:id/edit', function (req, res){
     //find dress by ID
     mongoose.model('Dress').findById(req.id, function (err, dress) {
@@ -198,7 +198,7 @@ router.delete('/:id/edit', function (req, res){
                     res.format({
                         //HTML returns back to the main page
                           html: function(){
-                               res.redirect("/api/dresses");
+                               res.redirect("/home");
                          },
                          //JSON returns the item with the message that is has been deleted
                         json: function(){

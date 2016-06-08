@@ -17,17 +17,17 @@ router.use(methodOverride(function(req, res){
 router.route('/')
     //============================== GET ALL
     .get(function(req, res, next) {
-        //retrieve all events from Monogo
-        mongoose.model('Event').find({}, function (err, events) {
+        //retrieve all savedEvents from Monogo
+        mongoose.model('SavedEvent').find({}, function (err, savedEvents) {
               if (err) {
                   return console.error(err);
               } else {
                   
                   res.format({
                       
-                    //JSON response will show all events in JSON format
+                    //JSON response will show all savedEvents in JSON format
                     json: function(){
-                        res.json(events);
+                        res.json(savedEvents);
                     }
                 });
               }     
@@ -37,27 +37,31 @@ router.route('/')
     // ============================ POST NEW
     .post(function(req, res) {
         // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
-        var name = req.body.name;
         var user_id = req.user._id;
-        var owner = req.user.username;
+        var event_id = req.body.event_id;
+        var dress_id = req.body.dress_id;
+        var d_name = req.body.d_name;
+        var u_name = req.user.username;
         
         //call create function
-        mongoose.model('Event').create({
-            name : name,
+        mongoose.model('SavedEvent').create({
             user_id : user_id,
-            owner: owner
+            event_id : event_id,
+            dress_id : dress_id,
+            d_name :   d_name,
+            u_name :   u_name
 
-        }, function (err, event) {
+        }, function (err, savedEvent) {
               if (err) {
                   res.send("There was a problem adding the information to the database.");
               } else {
-                  //event has been created
-                  console.log('POST creating new event: ' + event);
+                  //savedEvent has been created
+                  console.log('POST creating new savedEvent: ' + savedEvent);
                   res.format({
                   	
-                    //JSON response will show the newly created event
+                    //JSON response will show the newly created savedEvent
                     json: function(){
-                        res.json(event);
+                        res.json(savedEvent);
                     }
                 });
               }
@@ -67,18 +71,22 @@ router.route('/')
 //======================== UPDATE ONE
 router.put('/:id/edit', function(req, res) {
     // Get our REST or form values. These rely on the "name" attributes
-      var name = req.body.name;
       var user_id = req.user._id;
-      var owner = req.user.username;
+      var event_id = req.body.event_id;
+      var dress_id = req.body.dress_id;
+      var d_name = req.body.d_name;
+      var u_name = req.user.username;
 
    //find the document by ID
-    mongoose.model('Event').findById(req.id, function (err, event) {
-        event.update({
-            name : name,
+    mongoose.model('SavedEvent').findById(req.id, function (err, savedEvent) {
+        savedEvent.update({
             user_id : user_id,
-            owner: owner
-            
-        }, function (err, eventID) {
+            event_id : event_id,
+            dress_id : dress_id,
+            d_name :   d_name,
+            u_name :   u_name
+                
+        }, function (err, savedEventID) {
           if (err) {
               res.send("There was a problem updating the information to the database: " + err);
           } 
@@ -86,11 +94,11 @@ router.put('/:id/edit', function(req, res) {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
                       html: function(){
-                           res.redirect("/home" + event._id);
+                           res.redirect("/api/savedEvents/" + savedEvent._id);
                      },
                      //JSON responds showing the updated values
                     json: function(){
-                           res.json(event);
+                           res.json(savedEvent);
                      }
                   });
            }
@@ -100,14 +108,14 @@ router.put('/:id/edit', function(req, res) {
 
 // ========================= CREATE NEW FORM
 router.get('/new', function(req, res) {
-    res.render('api/events/new', { title: 'Add New event' }); 
+    res.render('api/savedEvents/new', { title: 'Add New savedEvent' }); 
 });
 
 // route middleware to validate :id
 router.param('id', function(req, res, next, id) {
     //console.log('validating ' + id + ' exists');
     //find the ID in the Database
-    mongoose.model('Event').findById(id, function (err, event) {
+    mongoose.model('SavedEvent').findById(id, function (err, savedEvent) {
         //if not found, repond 404
         if (err) {
             console.log(id + ' was not found');
@@ -125,7 +133,7 @@ router.param('id', function(req, res, next, id) {
         //if it is found we continue on
         } else {
             
-            console.log(event);
+            console.log(savedEvent);
             // once validation is done save the new item in the req
             req.id = id;
             // go to the next thing
@@ -136,16 +144,16 @@ router.param('id', function(req, res, next, id) {
 // =================== SHOW ONE
 router.route('/:id')
   .get(function(req, res) {
-    mongoose.model('Event').findById(req.id, function (err, event) {
+    mongoose.model('SavedEvent').findById(req.id, function (err, savedEvent) {
       if (err) {
         console.log('GET Error: There was a problem retrieving: ' + err);
       } else {
-        console.log('GET Retrieving ID: ' + event._id);
+        console.log('GET Retrieving ID: ' + savedEvent._id);
         
         res.format({
           
           json: function(){
-              res.json(event);
+              res.json(savedEvent);
           }
         });
       }
@@ -154,79 +162,54 @@ router.route('/:id')
 
  //====================== SHOW EDIT FORM
 router.get('/:id/edit', function(req, res) {
-    //search for the event within Mongo
-    mongoose.model('Event').findById(req.id, function (err, event) {
+    //search for the savedEvent within Mongo
+    mongoose.model('SavedEvent').findById(req.id, function (err, savedEvent) {
         if (err) {
             console.log('GET Error: There was a problem retrieving: ' + err);
         } else {
-            //Return the event
-            // console.log('GET Retrieving ID: ' + event._id);
+            //Return the savedEvent
+            // console.log('GET Retrieving ID: ' + savedEvent._id);
   
             res.format({
                 //HTML response will render the 'edit.jade' template
                 html: function(){
-                       res.render('api/events/edit', {
-                          title: 'event' + event.name,
-                          "event" : event
+                       res.render('api/savedEvents/edit', {
+                          title: 'savedEvent' + savedEvent.name,
+                          "savedEvent" : savedEvent
                       });
                  },
                  //JSON response will return the JSON output
                 json: function(){
-                       res.json(event);
+                       res.json(savedEvent);
                  }
             });
         }
     });
-});
-
-router.get('/:id/dresses', function(req, res) {
-  //search for the event within Mongo
-  mongoose.model('Event').findById(req.id, function (err, event) {
-    mongoose.model('Dress').find({event_id : req.id}, function (err, dresses) {
-        if (err) {
-            console.log('GET Error: There was a problem retrieving: ' + err);
-        } else {
-            res.format({
-                // //HTML response will render the 'edit.jade' template
-                // html: function(){
-                //        res.render('api/events/edit', {
-                //           title: 'event' + event.name,
-                //           "event" : event
-                //       });
-                //  },
-                 //JSON response will return the JSON output
-                json: function(){
-                       res.json(dresses);
-                 }
-            });
-        }
-    });
-  });
 });
 
 //===================== DELETE
 router.delete('/:id/edit', function (req, res){
-    //find event by ID
-    mongoose.model('Event').findById(req.id, function (err, event) {
+    //find savedEvent by ID
+    mongoose.model('SavedEvent').findById(req.id, function (err, savedEvent) {
         if (err) {
             return console.error(err);
         } else {
             //remove it from Mongo
-            event.remove(function (err, event) {
+            savedEvent.remove(function (err, savedEvent) {
                 if (err) {
                     return console.error(err);
                 } else {
                     //Returning success messages saying it was deleted
-                    console.log('DELETE removing ID: ' + event._id);
+                    console.log('DELETE removing ID: ' + savedEvent._id);
                     res.format({
                         //HTML returns back to the main page
                           html: function(){
-                               res.redirect("/home");
+                               res.redirect("/api/savedEvents");
                          },
                          //JSON returns the item with the message that is has been deleted
                         json: function(){
                                res.json({message : 'deleted',
-                                   item : event
+                                   item : savedEvent
                                });
                          }
                       });

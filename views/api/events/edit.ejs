@@ -9,7 +9,7 @@
 
 
     <form action="/api/events/<%= event.id %>/edit" method="post" name="updateevent" enctype="application/x-www-form-urlencoded" class="margined">
-      <div class="form-group">
+      <div class="form-group">Edit this Event
         <p>Name:
           <input id="inputName" type="text" value="<%= event.name %>" name="name"/>
         </p>
@@ -22,7 +22,21 @@
 
     <form action="/api/events/<%= event.id %>/edit" method="post" enctype="application/x-www-form-urlencoded" class="margined">
       <input type="hidden" value="DELETE" name="_method"/>
-      <button type="submit" class="btn-lg btn-primary btn-centre">Delete</button>
+      <button type="submit" class="btn-lg btn-primary btn-centre">Delete this Event</button>
+    </form>
+
+
+    <form id="formAddDress" name="addDress" method="post" action="/api/dresses" class="margined">
+      <div class="form-group">Add a Dress to this event
+        <p>Name:
+          <input id="inputName" type="text" placeholder="Enter Dress Name" name="name"/>
+          <input id="eventID" type="hidden" value="<%= event.id %>" name="event_id"/>
+        </p>
+        
+        <p>
+          <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">Save</button>
+        </p>
+      </div>
     </form>
 
 </body>
