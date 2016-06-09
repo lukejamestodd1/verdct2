@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../partials/head %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <% include ../../partials/navbar %>
+        <% include ../../partials/header %>
+      </header>
+    </div>
+
+      <div class="container">
+        <h1><%= event.name %></h1>
+         <a href="/api/events/<%= event.id %>/edit" class="margined">Edit This Event</a>
+      </div>
+
+<div class="container">
+        <h1>Dresses on my shortlist for this event:</h1>
+        <% for(var i = 0; i < dresses.length; i++){ %>
+          <p><a href="/api/dresses/<%= dresses[i]._id %>"><%= dresses[i].name %></a>
+          </p>
+            <% if(savedEvent){ %>
+              <form id="formEditSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/<%= savedEvent[0].id %>/edit" class="margined">
+            <div class="form-group">
+              <p>
+                <input id="event_id"type="hidden" value="<%= event.id %>" name="event_id"/>
+                <input id="e_name"  type="hidden" value="<%= event.name %>" name="e_name"/>
+                <input id="e_img"   type="hidden" value="<%= event.img_url %>" name="e_img"/>
+                <input id="dress_id"type="hidden" value="<%= dresses[i]._id %>" name="dress_id"/>
+                <input id="d_name"  type="hidden" value="<%= dresses[i].name %>" name="d_name"/>
+                <input id="d_img"   type="hidden" value="<%= dresses[i].img_url %>" name="d_img"/>
+                <input id="brand"   type="hidden" value="<%= dresses[i].brand %>" name="brand"/>
+                <input id="cost"    type="hidden" value="<%= dresses[i].cost %>" name="cost"/>
+                <input id="sTop"    type="hidden" value="<%= dresses[i].sTop %>" name="sTop"/>
+                <input id="sBot"    type="hidden" value="<%= dresses[i].sBot %>" name="sBot"/>
+                <input id="colour"  type="hidden" value="<%= dresses[i].colour %>" name="colour"/>
+              </p>
+              <p>
+                <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">This is the one!</button>
+              </p>
+            </div>
+          </form>
+            <% } else { %>
+
+          <form id="formAddSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents" class="margined">
+            <div class="form-group">
+              <p>
+                <input id="event_id"type="hidden" value="<%= event.id %>" name="event_id"/>
+                <input id="e_name"  type="hidden" value="<%= event.name %>" name="e_name"/>
+                <input id="e_img"   type="hidden" value="<%= event.img_url %>" name="e_img"/>
+                <input id="dress_id"type="hidden" value="<%= dresses[i]._id %>" name="dress_id"/>
+                <input id="d_name"  type="hidden" value="<%= dresses[i].name %>" name="d_name"/>
+                <input id="d_img"   type="hidden" value="<%= dresses[i].img_url %>" name="d_img"/>
+                <input id="brand"   type="hidden" value="<%= dresses[i].brand %>" name="brand"/>
+                <input id="cost"    type="hidden" value="<%= dresses[i].cost %>" name="cost"/>
+                <input id="sTop"    type="hidden" value="<%= dresses[i].sTop %>" name="sTop"/>
+                <input id="sBot"    type="hidden" value="<%= dresses[i].sBot %>" name="sBot"/>
+                <input id="colour"  type="hidden" value="<%= dresses[i].colour %>" name="colour"/>
+              </p>
+              <p>
+                <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">This is the one!</button>
+              </p>
+            </div>
+          </form>
+          <% } %>
+        <% } %>
+      </div>
+
+      <form id="formAddDress" name="addDress" method="post" action="/api/dresses" class="margined">
+        <div class="form-group">Add a New Dress to my shortlist for this event
+          <p>Dress Name:
+            <input id="inputName" type="text" placeholder="Enter Dress Name" name="name"/>
+            <input id="eventID" type="hidden" value="<%= event.id %>" name="event_id"/>
+          </p>
+          <p>Brand:
+            <input id="inputBrand" type="text" placeholder="Enter Dress Brand" name="brand"/>
+          </p>
+          <p>Cost:
+            <input id="inputCost" type="text" placeholder="Enter Dress Cost" name="cost"/>
+          </p>
+          <p>Top Style:
+            <input id="inputSTop" type="text" placeholder="Enter Dress Top Style" name="sTop"/>
+          </p>
+          <p>Bottom Style:
+            <input id="inputSBot" type="text" placeholder="Enter Dress Bottom Style" name="sBot"/>
+          </p>
+          <p>Colour:
+            <input id="inputColour" type="text" placeholder="Enter Dress Colour" name="colour"/>
+          </p>
+          <p>Image URL:
+            <input id="inputImgUrl" type="text" placeholder="Enter Dress Image URL" name="img_url"/>
+          </p>
+          <p>
+            <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">Save</button>
+          </p>
+        </div>
+      </form>
+
+
+</body>
+</html>

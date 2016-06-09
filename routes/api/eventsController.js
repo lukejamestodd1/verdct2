@@ -182,22 +182,30 @@ router.param('id', function(req, res, next, id) {
         } 
     });
 });
-// =================== SHOW ONE
+// =================== SHOW ONE EVENT
 router.route('/:id')
   .get(function(req, res) {
     mongoose.model('Event').findById(req.id, function (err, event) {
-      if (err) {
-        console.log('GET Error: There was a problem retrieving: ' + err);
-      } else {
-        console.log('GET Retrieving ID: ' + event._id);
-        
-        res.format({
-          
-          json: function(){
-              res.json(event);
+        mongoose.model('SavedEvent').find({event_id : req.id}, function (err, savedEvents) {
+          if (err) {
+            console.log('GET Error: There was a problem retrieving: ' + err);
+          } else {
+            console.log('GET Retrieving ID: ' + event._id);
+            
+            res.format({
+              html: function(){
+                 res.render('api/events/show', {
+                    title: 'event',
+                    "event" : event,
+                    "savedEvents" : savedEvents
+                });
+              }
+              // json: function(){
+              //     res.json(event);
+              // }
+            });
           }
-        });
-      }
+        }); 
     });
   });
 
@@ -228,28 +236,32 @@ router.get('/:id/edit', function(req, res) {
     });
 });
 
-//============= SHOW ALL DRESSES FOR ONE EVENT
-router.get('/:id/dresses', function(req, res) {
+//============= SHOW ALL USER'S DRESSES FOR ONE EVENT
+router.get('/:id/shortlist', function(req, res) {
   //search for the event within Mongo
   mongoose.model('Event').findById(req.id, function (err, event) {
-    mongoose.model('Dress').find({event_id : req.id}, function (err, dresses) {
+    mongoose.model('Dress').find({event_id : req.id, user_id: req.user._id}, function (err, dresses) {
+      mongoose.model('SavedEvent').find({event_id : req.id, user_id: req.user._id}, function (err, savedEvent) {
         if (err) {
             console.log('GET Error: There was a problem retrieving: ' + err);
         } else {
             res.format({
-                // //HTML response will render the 'edit.jade' template
-                // html: function(){
-                //        res.render('api/events/edit', {
-                //           title: 'event' + event.name,
-                //           "event" : event
-                //       });
-                //  },
+                //HTML response will render the 'edit.jade' template
+                html: function(){
+                       res.render('api/events/shortlist', {
+                          title: 'event',
+                          "event" : event,
+                          "dresses" : dresses,
+                          "savedEvent" : savedEvent
+                      });
+                 },
                  //JSON response will return the JSON output
                 json: function(){
                        res.json(dresses);
                  }
             });
         }
+      });
     });
   });
 });

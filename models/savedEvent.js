@@ -2,15 +2,17 @@ var mongoose = require('mongoose');
 
 var savedEventSchema = new mongoose.Schema({  
   user_id: String,
+  u_name: String,
   event_id: String,
+  e_name : String,
+  e_img : String,
   dress_id: String,
-  owner: String,
-  name: String,
+  d_name: String,
+  d_img: String,
   brand: String,
   cost: Number,
-  img_url: String,
-  styleTop: String,
-  styleBottom: String,
+  sTop: String,
+  sBot: String,
   colour: String
   
 });

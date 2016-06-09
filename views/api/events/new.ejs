@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include partials/head %>
   </head>
   <body>
-    <h1><%= title %></h1>
+    <div class="container">
+      <header>
+        <% include partials/navbar %>
+        <% include partials/header %>
+      </header>
+    </div>
 
 
     <form id="formAddEvent" name="addevent" method="post" action="/api/events" class="margined">

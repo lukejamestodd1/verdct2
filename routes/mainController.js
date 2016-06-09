@@ -43,14 +43,14 @@ router.get('/logout', function(req, res) {
 router.get('/home', function(req, res, next) {
   if (req.user) {
 		mongoose.model('Event').find({}, function (err, events) {
-      mongoose.model('Dress').find({user_id : req.user._id}, function (err, dresses) {
+      mongoose.model('SavedEvent').find({user_id : req.user._id}, function (err, savedEvents) {
       		res.render('home', {
   					title: 'Home',
 			    	user_id: req.user._id,
 			    	email: req.user.email,
 			    	username: req.user.username,
 			    	events : events,
-			    	dresses : dresses
+			    	savedEvents : savedEvents
 			    });   
     	});
 		});

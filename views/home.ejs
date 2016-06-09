@@ -9,7 +9,7 @@
         <% include partials/navbar %>
         <% include partials/header %>
       </header>
-   </div>
+   	</div>
 
 			<p>This is your user ID <%= user_id %> </p>
 			<p>This is your username <%= username %> </p>
@@ -17,12 +17,12 @@
 		
 		<h1>Showing all events:</h1>
 		<% for(var i = 0; i < events.length; i++){ %>
-    	<p><a href="api/events/<%= events[i]._id %>/edit"><%= events[i].name %></a></p>
+    	<p><a href="api/events/<%= events[i]._id %>"><%= events[i].name %></a></p>
     <% } %>
 
-    <h1>Dresses I've added:</h1>
-		<% for(var i = 0; i < dresses.length; i++){ %>
-    	<p><a href="api/dresses/<%= dresses[i]._id %>/edit"><%= dresses[i].name %></a></p>
+    <h1>Events I've Saved:</h1>
+		<% for(var i = 0; i < savedEvents.length; i++){ %>
+    	<p><a href="api/events/<%= savedEvents[i].event_id %>"><%= savedEvents[i].e_name %></a></p>
     <% } %>
 
   </body>

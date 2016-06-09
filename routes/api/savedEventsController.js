@@ -38,18 +38,33 @@ router.route('/')
     .post(function(req, res) {
         // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
         var user_id = req.user._id;
+        var u_name = req.user.username;
         var event_id = req.body.event_id;
+        var e_name = req.body.e_name;
+        var e_img = req.body.e_img;
         var dress_id = req.body.dress_id;
         var d_name = req.body.d_name;
-        var u_name = req.user.username;
-        
+        var d_img = req.body.d_img;
+        var brand = req.body.brand;
+        var cost = req.body.cost;
+        var sTop = req.body.sTop;
+        var sBot = req.body.sBot;
+        var colour = req.body.colour;
+
         //call create function
         mongoose.model('SavedEvent').create({
             user_id : user_id,
+            u_name : u_name,
             event_id : event_id,
+            e_name : e_name,
             dress_id : dress_id,
-            d_name :   d_name,
-            u_name :   u_name
+            d_name : d_name,
+            d_img : d_img,
+            brand : brand,
+            cost : cost,
+            sTop : sTop,
+            sBot : sBot,
+            colour : colour
 
         }, function (err, savedEvent) {
               if (err) {
@@ -58,33 +73,46 @@ router.route('/')
                   //savedEvent has been created
                   console.log('POST creating new savedEvent: ' + savedEvent);
                   res.format({
-                  	
-                    //JSON response will show the newly created savedEvent
                     json: function(){
                         res.json(savedEvent);
                     }
-                });
+                  });
               }
         })
     });
 
 //======================== UPDATE ONE
-router.put('/:id/edit', function(req, res) {
+router.post('/:id/edit', function(req, res) {
     // Get our REST or form values. These rely on the "name" attributes
       var user_id = req.user._id;
+      var u_name = req.user.username;
       var event_id = req.body.event_id;
+      var e_name = req.body.e_name;
+      var e_img = req.body.e_img;
       var dress_id = req.body.dress_id;
       var d_name = req.body.d_name;
-      var u_name = req.user.username;
+      var d_img = req.body.d_img;
+      var brand = req.body.brand;
+      var cost = req.body.cost;
+      var sTop = req.body.sTop;
+      var sBot = req.body.sBot;
+      var colour = req.body.colour;
 
    //find the document by ID
     mongoose.model('SavedEvent').findById(req.id, function (err, savedEvent) {
         savedEvent.update({
             user_id : user_id,
+            u_name : u_name,
             event_id : event_id,
+            e_name : e_name,
             dress_id : dress_id,
-            d_name :   d_name,
-            u_name :   u_name
+            d_name : d_name,
+            d_img : d_img,
+            brand : brand,
+            cost : cost,
+            sTop : sTop,
+            sBot : sBot,
+            colour : colour
                 
         }, function (err, savedEventID) {
           if (err) {
@@ -94,11 +122,7 @@ router.put('/:id/edit', function(req, res) {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
                       html: function(){
-                           res.redirect("/api/savedEvents/" + savedEvent._id);
-                     },
-                     //JSON responds showing the updated values
-                    json: function(){
-                           res.json(savedEvent);
+                           res.redirect("/home");
                      }
                   });
            }
@@ -171,14 +195,6 @@ router.get('/:id/edit', function(req, res) {
             // console.log('GET Retrieving ID: ' + savedEvent._id);
   
             res.format({
-                //HTML response will render the 'edit.jade' template
-                html: function(){
-                       res.render('api/savedEvents/edit', {
-                          title: 'savedEvent' + savedEvent.name,
-                          "savedEvent" : savedEvent
-                      });
-                 },
-                 //JSON response will return the JSON output
                 json: function(){
                        res.json(savedEvent);
                  }
@@ -204,7 +220,7 @@ router.delete('/:id/edit', function (req, res){
                     res.format({
                         //HTML returns back to the main page
                           html: function(){
-                               res.redirect("/api/savedEvents");
+                               res.redirect("/home");
                          },
                          //JSON returns the item with the message that is has been deleted
                         json: function(){

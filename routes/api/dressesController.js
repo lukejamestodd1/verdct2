@@ -113,10 +113,6 @@ router.post('/:id/edit', function(req, res) {
                   res.format({
                       html: function(){
                            res.redirect("/home");
-                     },
-                     //JSON responds showing the updated values
-                    json: function(){
-                           res.json(dress);
                      }
                   });
            }
