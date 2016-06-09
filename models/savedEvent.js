@@ -14,7 +14,6 @@ var savedEventSchema = new mongoose.Schema({
   sTop: String,
   sBot: String,
   colour: String
-  
 });
 
 mongoose.model('SavedEvent', savedEventSchema);

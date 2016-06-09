@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../partials/head %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <% include ../../partials/navbar %>
+        <% include ../../partials/header %>
+      </header>
+    </div>
+
+<h1>Edit saved event object:</h1>
+      
+      <form action="/api/savedEvent/<%= savedEvent.id %>/edit" method="post" name="updatesavedEvent" enctype="application/x-www-form-urlencoded" class="margined">
+      <div class="form-group">
+        <p>u_name:
+          <input id="inputName" type="text" value="<%= savedEvent.u_name %>" name="u_name"/>
+        </p>
+        <p>user_id:
+          <input id="inputName" type="text" value="<%= savedEvent.user_id %>" name="user_id"/>
+        </p>
+        <p>d_name:
+          <input id="inputName" type="text" value="<%= savedEvent.d_name %>" name="d_name"/>
+        </p>
+        <p>dress_id:
+          <input id="inputName" type="text" value="<%= savedEvent.dress_id %>" name="dress_id"/>
+        </p>
+        <p>Brand:
+          <input id="inputBrand" type="text" value="<%= savedEvent.brand %>" name="brand"/>
+        </p>
+        <p>Cost:
+          <input id="inputCost" type="text" value="<%= savedEvent.cost %>" name="cost"/>
+        </p>
+        <p>Style - Top:
+          <input id="inputSTop" type="text" value="<%= savedEvent.sTop %>" name="sTop"/>
+        </p>
+        <p>Style - Bottom:
+          <input id="inputSBot" type="text" value="<%= savedEvent.sBot %>" name="sBot"/>
+        </p>
+        <p>Colour:
+          <input id="inputColour" type="text" value="<%= savedEvent.colour %>" name="colour"/>
+        </p>
+        <p>D URL:
+          <input id="inputImgUrl" type="text" value="<%= savedEvent.d_url %>" name="d_url"/>
+        </p>
+        <p>
+          <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">Save</button>
+        </p>
+      </div>
+    </form>
+      
+
+
+</body>
+</html>

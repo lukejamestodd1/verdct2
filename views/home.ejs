@@ -15,15 +15,20 @@
 			<p>This is your username <%= username %> </p>
 			<p>This is your user ID <%= email %> </p>
 		
-		<h1>Showing all events:</h1>
+		<h1>List of all events:</h1>
 		<% for(var i = 0; i < events.length; i++){ %>
     	<p><a href="api/events/<%= events[i]._id %>"><%= events[i].name %></a></p>
     <% } %>
 
-    <h1>Events I've Saved:</h1>
-		<% for(var i = 0; i < savedEvents.length; i++){ %>
-    	<p><a href="api/events/<%= savedEvents[i].event_id %>"><%= savedEvents[i].e_name %></a></p>
-    <% } %>
-
+      <h1>Events I've Saved a Dress to:</h1>
+		<% for(var i = 0; i < savedEvents.length; i++){ 
+          if (savedEvents[i].dress_id != undefined ) { %>
+    	       <p><a href="api/events/<%= savedEvents[i].event_id %>"><%= savedEvents[i].e_name %></a>Dress Name: <%= savedEvents[i].d_name %></p>
+      <% }} %>
+    <h1>Events I'm Interested in:</h1>
+      <% for(var i = 0; i < savedEvents.length; i++){ 
+          if (savedEvents[i].dress_id == undefined ) { %>
+             <p><a href="api/events/<%= savedEvents[i].event_id %>"><%= savedEvents[i].e_name %></a></p>
+      <% }} %>
   </body>
 </html>

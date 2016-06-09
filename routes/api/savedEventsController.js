@@ -200,6 +200,12 @@ router.get('/:id/edit', function(req, res) {
             // console.log('GET Retrieving ID: ' + savedEvent._id);
   
             res.format({
+                html: function(){
+                       res.render("api/savedEvents/edit",{
+                          title: "edit saved event",
+                          "savedEvent" : savedEvent
+                      });
+                 },
                 json: function(){
                        res.json(savedEvent);
                  }

@@ -186,7 +186,7 @@ router.param('id', function(req, res, next, id) {
 router.route('/:id')
   .get(function(req, res) {
     mongoose.model('Event').findById(req.id, function (err, event) {
-        mongoose.model('SavedEvent').find({event_id : req.id}, function (err, savedEvents) {
+        mongoose.model('SavedEvent').find({event_id : req.id, confirmed: true}, function (err, savedEvents) {
           if (err) {
             console.log('GET Error: There was a problem retrieving: ' + err);
           } else {
@@ -238,32 +238,36 @@ router.get('/:id/edit', function(req, res) {
 
 //============= SHOW ALL USER'S DRESSES FOR ONE EVENT
 router.get('/:id/shortlist', function(req, res) {
-  //search for the event within Mongo
-  mongoose.model('Event').findById(req.id, function (err, event) {
-    mongoose.model('Dress').find({event_id : req.id, user_id: req.user._id}, function (err, dresses) {
-      mongoose.model('SavedEvent').find({event_id : req.id, user_id: req.user._id}, function (err, savedEvents) {
-        if (err) {
-            console.log('GET Error: There was a problem retrieving: ' + err);
-        } else {
-            res.format({
-                //HTML response will render the 'edit.jade' template
-                html: function(){
-                       res.render('api/events/shortlist', {
-                          title: 'event',
-                          "event" : event,
-                          "dresses" : dresses,
-                          "savedEvents" : savedEvents
-                      });
-                 },
-                 //JSON response will return the JSON output
-                json: function(){
-                       res.json(dresses);
-                 }
-            });
-        }
+  if (req.user){
+    //search for the event within Mongo
+    mongoose.model('Event').findById(req.id, function (err, event) {
+      mongoose.model('Dress').find({event_id : req.id, user_id: req.user._id}, function (err, dresses) {
+        mongoose.model('SavedEvent').find({event_id : req.id, user_id: req.user._id}, function (err, savedEvents) {
+          if (err) {
+              console.log('GET Error: There was a problem retrieving: ' + err);
+          } else {
+              res.format({
+                  //HTML response will render the 'edit.jade' template
+                  html: function(){
+                         res.render('api/events/shortlist', {
+                            title: 'event',
+                            "event" : event,
+                            "dresses" : dresses,
+                            "savedEvents" : savedEvents
+                        });
+                   },
+                   //JSON response will return the JSON output
+                  json: function(){
+                         res.json(dresses);
+                   }
+              });
+          }
+        });
       });
     });
-  });
+  } else {
+    res.redirect("/");
+  }
 });
 
 //===================== DELETE
