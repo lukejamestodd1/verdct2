@@ -21,8 +21,8 @@
         <% for(var i = 0; i < dresses.length; i++){ %>
           <p><a href="/api/dresses/<%= dresses[i]._id %>"><%= dresses[i].name %></a>
           </p>
-            <% if(savedEvent){ %>
-              <form id="formEditSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/<%= savedEvent[0].id %>/edit" class="margined">
+            <% if(savedEvents.length > 0){ %>
+              <form id="formEditSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/<%= savedEvents[0].id %>/edit" class="margined">
             <div class="form-group">
               <p>
                 <input id="event_id"type="hidden" value="<%= event.id %>" name="event_id"/>

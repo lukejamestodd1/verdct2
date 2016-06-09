@@ -241,7 +241,7 @@ router.get('/:id/shortlist', function(req, res) {
   //search for the event within Mongo
   mongoose.model('Event').findById(req.id, function (err, event) {
     mongoose.model('Dress').find({event_id : req.id, user_id: req.user._id}, function (err, dresses) {
-      mongoose.model('SavedEvent').find({event_id : req.id, user_id: req.user._id}, function (err, savedEvent) {
+      mongoose.model('SavedEvent').find({event_id : req.id, user_id: req.user._id}, function (err, savedEvents) {
         if (err) {
             console.log('GET Error: There was a problem retrieving: ' + err);
         } else {
@@ -252,7 +252,7 @@ router.get('/:id/shortlist', function(req, res) {
                           title: 'event',
                           "event" : event,
                           "dresses" : dresses,
-                          "savedEvent" : savedEvent
+                          "savedEvents" : savedEvents
                       });
                  },
                  //JSON response will return the JSON output

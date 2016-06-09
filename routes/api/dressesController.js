@@ -65,10 +65,8 @@ router.route('/')
               //dress has been created
               console.log('POST creating new dress: ' + dress);
               res.format({
-              	
-                //JSON response will show the newly created dress
-                json: function(){
-                    res.json(dress);
+              	html: function(){
+                           res.redirect("/home");
                 }
             });
           }
