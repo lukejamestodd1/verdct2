@@ -4,8 +4,15 @@ var savedEventSchema = new mongoose.Schema({
   user_id: String,
   event_id: String,
   dress_id: String,
-  d_name: String,
-  u_name: String
+  owner: String,
+  name: String,
+  brand: String,
+  cost: Number,
+  img_url: String,
+  styleTop: String,
+  styleBottom: String,
+  colour: String
+  
 });
 
 mongoose.model('SavedEvent', savedEventSchema);

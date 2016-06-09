@@ -1,10 +1,10 @@
+//dependencies
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -13,24 +13,25 @@ var db = require('./models/db');
 // var user = require('./models/user');
 var event = require('./models/event');
 var dress = require('./models/dress');
+var savedEvent = require('./models/savedEvent');
 
 //controllers
+var mainController = require('./routes/mainController');
 var usersController = require('./routes/api/usersController');
 var eventsController = require('./routes/api/eventsController');
 var dressesController = require('./routes/api/dressesController');
 var savedEventsController = require('./routes/api/savedEventsController');
-var mainController = require('./routes/mainController');
 
-
-
+//app
 var app = express();
 
-// uncomment after placing your favicon in /public
+// uncomment after placing favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 // passport config
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
@@ -41,7 +42,6 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -51,23 +51,21 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //routing
+app.use('/', mainController);
 app.use('/api/users', usersController);
 app.use('/api/events', eventsController);
 app.use('/api/dresses', dressesController);
-app.use('/api/savedEvents', eventsController);
-app.use('/', mainController);
+app.use('/api/savedEvents', savedEventsController);
 
 
 
+//error handling
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-
-// error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -79,7 +77,6 @@ if (app.get('env') === 'development') {
     });
   });
 }
-
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {

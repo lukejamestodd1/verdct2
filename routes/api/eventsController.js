@@ -40,14 +40,39 @@ router.route('/')
         var name = req.body.name;
         var user_id = req.user._id;
         var owner = req.user.username;
-        
+        var venue = req.body.venue;
+        var address = req.body.address;
+        var suburb = req.body.suburb;
+        var city = req.body.city;
+        var state = req.body.state;
+        var type = req.body.type;
+        var date = req.body.date;
+        var time = req.body.time;
+        var img_url = req.body.img_url;
+        var login = req.body.login;
+        var password = req.body.password;
+        var admin = req.body.admin;
+  
         //call create function
         mongoose.model('Event').create({
-            name : name,
-            user_id : user_id,
-            owner: owner
+          name : name,
+          user_id : user_id,
+          owner : owner,
+          venue : venue,
+          address : address,
+          suburb : suburb,
+          city : city,
+          state : state,
+          type : type,
+          date : date,
+          time : time,
+          img_url : img_url,
+          login : login,
+          password : password,
+          admin :  []
 
-        }, function (err, event) {
+        },
+        function (err, event) {
               if (err) {
                   res.send("There was a problem adding the information to the database.");
               } else {
@@ -65,18 +90,42 @@ router.route('/')
     });
 
 //======================== UPDATE ONE
-router.put('/:id/edit', function(req, res) {
+router.post('/:id/edit', function(req, res) {
     // Get our REST or form values. These rely on the "name" attributes
       var name = req.body.name;
       var user_id = req.user._id;
       var owner = req.user.username;
-
+      var venue = req.body.venue;
+      var address = req.body.address;
+      var suburb = req.body.suburb;
+      var city = req.body.city;
+      var state = req.body.state;
+      var type = req.body.type;
+      var date = req.body.date;
+      var time = req.body.time;
+      var img_url = req.body.img_url;
+      var login = req.body.login;
+      var password = req.body.password;
+      var admin = req.body.admin;
+      
    //find the document by ID
     mongoose.model('Event').findById(req.id, function (err, event) {
         event.update({
-            name : name,
-            user_id : user_id,
-            owner: owner
+          name : name,
+          user_id : user_id,
+          owner : owner,
+          venue : venue,
+          address : address,
+          suburb : suburb,
+          city : city,
+          state : state,
+          type : type,
+          date : date,
+          time : time,
+          img_url : img_url,
+          login : login,
+          password : password,
+          admin :  []
             
         }, function (err, eventID) {
           if (err) {
@@ -86,7 +135,7 @@ router.put('/:id/edit', function(req, res) {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
                       html: function(){
-                           res.redirect("/home" + event._id);
+                           res.redirect("/home");
                      },
                      //JSON responds showing the updated values
                     json: function(){
@@ -166,7 +215,7 @@ router.get('/:id/edit', function(req, res) {
                 //HTML response will render the 'edit.jade' template
                 html: function(){
                        res.render('api/events/edit', {
-                          title: 'event' + event.name,
+                          title: 'event',
                           "event" : event
                       });
                  },
@@ -179,6 +228,7 @@ router.get('/:id/edit', function(req, res) {
     });
 });
 
+//============= SHOW ALL DRESSES FOR ONE EVENT
 router.get('/:id/dresses', function(req, res) {
   //search for the event within Mongo
   mongoose.model('Event').findById(req.id, function (err, event) {

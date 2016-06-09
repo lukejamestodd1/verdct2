@@ -64,7 +64,7 @@ router.route('/')
 });
 
 //======================== UPDATE ONE
-router.put('/:id/edit', function(req, res) {
+router.post('/:id/edit', function(req, res) {
     // Get our REST or form values. These rely on the "name" attributes
     var name = req.body.name;
     var user_id = req.user._id;
@@ -168,7 +168,7 @@ router.get('/:id/edit', function(req, res) {
                 //HTML response will render the 'edit.jade' template
                 html: function(){
                        res.render('api/dresses/edit', {
-                          title: 'dress' + dress.name,
+                          title: 'dress',
                           "dress" : dress
                       });
                  },
