@@ -38,13 +38,25 @@ router.route('/')
     var user_id = req.user._id;
     var owner = req.user.username;
     var event_id = req.body.event_id;
+    var brand = req.body.brand;
+    var cost = req.body.cost;
+    var img_url = req.body.img_url;
+    var sTop = req.body.sTop;
+    var sBot = req.body.sBot;
+    var colour = req.body.colour;
 
     //call create function
     mongoose.model('Dress').create({
         name : name,
         user_id : user_id,
-        owner: owner,
-        event_id : event_id
+        owner : owner,
+        event_id : event_id,
+        brand : brand,
+        cost : cost,
+        img_url : img_url,
+        sTop : sTop,
+        sBot : sBot,
+        colour : colour
 
     }, function (err, dress) {
           if (err) {
@@ -70,14 +82,27 @@ router.post('/:id/edit', function(req, res) {
     var user_id = req.user._id;
     var owner = req.user.username;
     var event_id = req.body.event_id;
+    var brand = req.body.brand;
+    var cost = req.body.cost;
+    var img_url = req.body.img_url;
+    var sTop = req.body.sTop;
+    var sBot = req.body.sBot;
+    var colour = req.body.colour;
+
 
    //find the document by ID
     mongoose.model('Dress').findById(req.id, function (err, dress) {
       dress.update({
       name : name,
       user_id : user_id,
-      owner: owner,
-      event_id : event_id
+      owner : owner,
+      event_id : event_id,
+      brand : brand,
+      cost : cost,
+      img_url : img_url,
+      sTop : sTop,
+      sBot : sBot,
+      colour : colour
 
     }, function (err, dressID) {
           if (err) {

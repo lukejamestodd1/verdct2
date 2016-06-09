@@ -8,10 +8,10 @@ var dressSchema = new mongoose.Schema({
   brand: String,
   cost: Number,
   img_url: String,
-  styleTop: String,
-  styleBottom: String,
+  sTop: String,
+  sBot: String,
   colour: String
-  
+
 });
 
 mongoose.model('Dress', dressSchema);
