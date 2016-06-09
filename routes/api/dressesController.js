@@ -66,7 +66,7 @@ router.route('/')
               console.log('POST creating new dress: ' + dress);
               res.format({
               	html: function(){
-                           res.redirect("/home");
+                           res.redirect("/api/events/" + event_id + "/shortlist");
                 }
             });
           }

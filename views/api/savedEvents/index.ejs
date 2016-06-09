@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../../partials/head %>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <% include ../../partials/navbar %>
+        <% include ../../partials/header %>
+      </header>
+    </div>
+
+<h1>Showing all saved events in the database:</h1>
+    <% for(var i = 0; i < savedEvents.length; i++){ %>
+      <p><a href="/api/savedEvents/<%= savedEvents[i]._id %>"><%= savedEvents[i].u_name %>'s dress for <%= savedEvents[i].e_name %></a></p>
+      <p><%= savedEvents[i].d_name %></p>
+      <p><%= savedEvents[i].d_img %></p>
+      <p><%= savedEvents[i].brand %></p>
+      <p><%= savedEvents[i].cost %></p>
+      <p><%= savedEvents[i].sTop %></p>
+      <p><%= savedEvents[i].sBot %></p>
+      <p><%= savedEvents[i].colour %></p>
+      <form action="/api/savedEvents/<%= savedEvents[i]._id %>/edit" method="post" enctype="application/x-www-form-urlencoded" class="margined">
+        <input type="hidden" value="DELETE" name="_method"/>
+        <button type="submit" class="btn-lg btn-primary btn-centre">Delete This Event</button>
+      </form>
+    <% } %>
+
+</body>
+</html>

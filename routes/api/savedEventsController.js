@@ -24,7 +24,12 @@ router.route('/')
               } else {
                   
                   res.format({
-                      
+                      html: function(){
+                           res.render("api/savedEvents/index",{
+                                title: "all saved events",
+                                "savedEvents" : savedEvents
+                           });
+                     },
                     //JSON response will show all savedEvents in JSON format
                     json: function(){
                         res.json(savedEvents);
@@ -220,7 +225,7 @@ router.delete('/:id/edit', function (req, res){
                     res.format({
                         //HTML returns back to the main page
                           html: function(){
-                               res.redirect("/home");
+                               res.redirect("/api/savedEvents");
                          },
                          //JSON returns the item with the message that is has been deleted
                         json: function(){
