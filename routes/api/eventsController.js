@@ -186,7 +186,7 @@ router.param('id', function(req, res, next, id) {
 router.route('/:id')
   .get(function(req, res) {
     mongoose.model('Event').findById(req.id, function (err, event) {
-        mongoose.model('SavedEvent').find({event_id : req.id, confirmed: true}, function (err, savedEvents) {
+        mongoose.model('SavedEvent').find({event_id : req.id}, function (err, savedEvents) {
           if (err) {
             console.log('GET Error: There was a problem retrieving: ' + err);
           } else {

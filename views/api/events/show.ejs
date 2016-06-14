@@ -18,7 +18,8 @@
       </div>
       
     <h1>Showing all users with dresses registered for this event:</h1>
-    <% for(var i = 0; i < savedEvents.length; i++){ %>
+    <% for(var i = 0; i < savedEvents.length; i++){ 
+          if (savedEvents[i].dress_id != undefined){ %>
       <p><a href="/api/savedEvents/<%= savedEvents[i]._id %>"><%= savedEvents[i].u_name %></a></p>
       <p><%= savedEvents[i].d_name %></p>
       <p><%= savedEvents[i].d_img %></p>
@@ -27,7 +28,7 @@
       <p><%= savedEvents[i].sTop %></p>
       <p><%= savedEvents[i].sBot %></p>
       <p><%= savedEvents[i].colour %></p>
-    <% } %>
+    <% }} %>
 
     <form action="/api/events/<%= event.id %>/edit" method="post" enctype="application/x-www-form-urlencoded" class="margined">
       <input type="hidden" value="DELETE" name="_method"/>

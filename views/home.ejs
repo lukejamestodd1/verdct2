@@ -20,11 +20,14 @@
     	<p><a href="api/events/<%= events[i]._id %>"><%= events[i].name %></a></p>
     <% } %>
 
+      <!-- show savedEvents with a dress saved -->
       <h1>Events I've Saved a Dress to:</h1>
 		<% for(var i = 0; i < savedEvents.length; i++){ 
           if (savedEvents[i].dress_id != undefined ) { %>
     	       <p><a href="api/events/<%= savedEvents[i].event_id %>"><%= savedEvents[i].e_name %></a>Dress Name: <%= savedEvents[i].d_name %></p>
       <% }} %>
+
+      <!-- show saved events with no dress saved -->
     <h1>Events I'm Interested in:</h1>
       <% for(var i = 0; i < savedEvents.length; i++){ 
           if (savedEvents[i].dress_id == undefined ) { %>

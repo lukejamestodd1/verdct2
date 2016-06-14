@@ -1,8 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose'); //mongo connection
-var	bodyParser = require('body-parser'); //parses information from POST
-var methodOverride = require('method-override'); //used to manipulate POST
+var mongoose = require('mongoose');
+var	bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+
+// var visibility = function(attribute, checkbox){
+//   if (checkbox === 'checked'){
+//     return attrubute;
+//   } else {
+//     return 'undefined';
+//   }
+// };
 
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(methodOverride(function(req, res){
