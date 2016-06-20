@@ -13,7 +13,7 @@
 
 <h1>Edit saved event object:</h1>
       
-      <form action="/api/savedEvent/<%= savedEvent.id %>/edit" method="post" name="updatesavedEvent" enctype="application/x-www-form-urlencoded" class="margined">
+      <form action="/api/savedEvent/<%= savedEvent.id %>" method="post" name="updatesavedEvent" enctype="application/x-www-form-urlencoded" class="margined">
       <div class="form-group">
         <p>u_name:
           <input id="inputName" type="text" value="<%= savedEvent.u_name %>" name="u_name"/>

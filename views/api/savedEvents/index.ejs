@@ -21,7 +21,7 @@
       <p><%= savedEvents[i].sTop %></p>
       <p><%= savedEvents[i].sBot %></p>
       <p><%= savedEvents[i].colour %></p>
-      <form action="/api/savedEvents/<%= savedEvents[i]._id %>/edit" method="post" enctype="application/x-www-form-urlencoded" class="margined">
+      <form action="/api/savedEvents/<%= savedEvents[i]._id %>" method="post" enctype="application/x-www-form-urlencoded" class="margined">
         <input type="hidden" value="DELETE" name="_method"/>
         <button type="submit" class="btn-lg btn-primary btn-centre">Delete This Event</button>
       </form>

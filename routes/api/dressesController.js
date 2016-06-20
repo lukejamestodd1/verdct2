@@ -74,7 +74,7 @@ router.route('/')
 });
 
 //======================== UPDATE ONE
-router.post('/:id/edit', function(req, res) {
+router.post('/:id', function(req, res) {
     // Get our REST or form values. These rely on the "name" attributes
     var name = req.body.name;
     var user_id = req.user._id;
@@ -201,7 +201,7 @@ router.get('/:id/edit', function(req, res) {
 });
 
 //=================== DELETE
-router.delete('/:id/edit', function (req, res){
+router.delete('/:id', function (req, res){
     //find dress by ID
     mongoose.model('Dress').findById(req.id, function (err, dress) {
         if (err) {

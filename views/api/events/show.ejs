@@ -30,7 +30,7 @@
       <p><%= savedEvents[i].colour %></p>
     <% }} %>
 
-    <form action="/api/events/<%= event.id %>/edit" method="post" enctype="application/x-www-form-urlencoded" class="margined">
+    <form action="/api/events/<%= event.id %>" method="post" enctype="application/x-www-form-urlencoded" class="margined">
       <input type="hidden" value="DELETE" name="_method"/>
       <button type="submit" class="btn-lg btn-primary btn-centre">Delete This Event</button>
     </form>

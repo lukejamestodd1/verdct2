@@ -8,7 +8,7 @@
     <h1><%= title %></h1>
 
 
-    <form action="/api/events/<%= event.id %>/edit" method="post" name="updateevent" enctype="application/x-www-form-urlencoded" class="margined">
+    <form action="/api/events/<%= event.id %>" method="post" name="updateevent" enctype="application/x-www-form-urlencoded" class="margined">
       <div class="form-group">Edit this Event
         <p>Name:
           <input id="inputName" type="text" value="<%= event.name %>" name="name"/>
@@ -52,7 +52,7 @@
       </div>
     </form>
 
-    <form action="/api/events/<%= event.id %>/edit" method="post" enctype="application/x-www-form-urlencoded" class="margined">
+    <form action="/api/events/<%= event.id %>" method="post" enctype="application/x-www-form-urlencoded" class="margined">
       <input type="hidden" value="DELETE" name="_method"/>
       <button type="submit" class="btn-lg btn-primary btn-centre">Delete this Event</button>
     </form>
