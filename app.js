@@ -25,8 +25,7 @@ var savedEventsController = require('./routes/api/savedEventsController');
 //app
 var app = express();
 
-// uncomment after placing favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
