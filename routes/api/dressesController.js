@@ -65,6 +65,9 @@ router.route('/')
               //dress has been created
               console.log('POST creating new dress: ' + dress);
               res.format({
+                json: function(){
+                  res.json(dress);
+                },
               	html: function(){
                            res.redirect("/api/events/" + event_id + "/shortlist");
                 }
@@ -109,6 +112,9 @@ router.post('/:id', function(req, res) {
           else {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
+                      json: function(){
+                        res.json(dress);
+                      },
                       html: function(){
                            res.redirect("/home");
                      }

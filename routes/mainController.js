@@ -82,4 +82,8 @@ router.get('/api', function(req, res, next) {
   }
 });
 
+router.get('/spa', function(req, res, next) {
+  res.render('spa2', { title: 'Single Page Application' });
+});
+
 module.exports = router;
