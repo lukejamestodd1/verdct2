@@ -16,7 +16,9 @@ router.get('/register', function(req, res, next) {
 router.post('/register', function(req, res) {
     Account.register(new Account({ 
     	username : req.body.username, 
-    	email : req.body.email 
+    	email : req.body.email,
+      // facebook: { name : 'MARK ZUCKEGBERG'} 
+
     }), req.body.password, function(err, account) {
         if (err) {
             return res.render('register', { account : account, title: 'register' });
@@ -85,5 +87,13 @@ router.get('/api', function(req, res, next) {
 router.get('/spa', function(req, res, next) {
   res.render('spa2', { title: 'Single Page Application' });
 });
+
+// Facebook routes
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {  
+  successRedirect: '/home',
+  failureRedirect: '/',
+}));
 
 module.exports = router;

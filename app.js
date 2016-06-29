@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy; 
+var configAuth = require('./config/auth');
 
 //database and models
 var db = require('./models/db');
@@ -34,8 +36,47 @@ app.use(cookieParser());
 // passport config
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+passport.use(new FacebookStrategy({  
+    clientID: configAuth.facebookAuth.clientID,
+    clientSecret: configAuth.facebookAuth.clientSecret,
+    callbackURL: configAuth.facebookAuth.callbackURL,
+    profileFields: ['id', 'email', 'first_name', 'last_name'],
+  },
+  function(token, refreshToken, profile, done) {
+    process.nextTick(function() {
+      Account.findOne({ 'facebook.id': profile.id }, function(err, account) {
+        if (err)
+          return done(err);
+        if (account) {
+          return done(null, account);
+        } else {
+          var newAccount = new Account();
+          newAccount.facebook.id = profile.id;
+          newAccount.facebook.token = token;
+          newAccount.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+          newAccount.facebook.email = (profile.emails[0].value || '').toLowerCase();
+          newAccount.email = newAccount.facebook.email;
+          newAccount.username = newAccount.facebook.name;
+          newAccount.save(function(err) {
+            if (err)
+              throw err;
+            return done(null, newAccount);
+          });
+        }
+      });
+    });
+  }));
+
+passport.serializeUser(function(Account, done) {
+  done(null, Account);
+});
+
+passport.deserializeUser(function(Account, done) {
+  done(null, Account);
+});
+
+// passport.serializeUser(Account.serializeUser());
+// passport.deserializeUser(Account.deserializeUser());
 app.use(require('express-session')({
     secret: 'keyboard cat',
     resave: false,
