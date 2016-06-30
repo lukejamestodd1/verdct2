@@ -88,12 +88,17 @@ router.get('/spa', function(req, res, next) {
   res.render('spa2', { title: 'Single Page Application' });
 });
 
-// Facebook routes
+//Social login routes
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
-
 router.get('/auth/facebook/callback', passport.authenticate('facebook', {  
   successRedirect: '/home',
   failureRedirect: '/',
 }));
+router.get('/auth/instagram', passport.authenticate('instagram', { scope: 'email' }));
+router.get('/auth/instagram/callback', passport.authenticate('instagram', {  
+  successRedirect: '/home',
+  failureRedirect: '/',
+}));
+
 
 module.exports = router;

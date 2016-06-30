@@ -7,7 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy; 
+var FacebookStrategy = require('passport-facebook').Strategy;
+var InstagramStrategy = require('passport-instagram').Strategy; 
 var configAuth = require('./config/auth');
 
 //database and models
@@ -44,6 +45,7 @@ passport.use(new FacebookStrategy({
   },
   function(token, refreshToken, profile, done) {
     process.nextTick(function() {
+      //Find by EMAIL - and update details if match****
       Account.findOne({ 'facebook.id': profile.id }, function(err, account) {
         if (err)
           return done(err);
@@ -60,12 +62,42 @@ passport.use(new FacebookStrategy({
           newAccount.save(function(err) {
             if (err)
               throw err;
-            return done(null, newAccount);
+              return done(null, newAccount);
           });
         }
       });
     });
   }));
+
+passport.use(new InstagramStrategy({
+  clientID: configAuth.instagramAuth.clientID,
+  clientSecret: configAuth.instagramAuth.clientSecret,
+  callbackURL: configAuth.instagramAuth.callbackURL,
+  profileFields: ['id', 'email', 'first_name', 'last_name'],
+},
+function(accessToken, refreshToken, profile, done) {
+  process.nextTick(function () {
+    //Find by EMAIL - and update details if match****
+    Account.findOne({ 'instagram.id': profile.id }, function(err, account) {
+      if (err)
+        return done(err);
+      if (account) {
+        return done(null, account);
+      } else {
+        var newAccount = new Account();
+        newAccount.instagram.id = profile.id;
+        newAccount.instagram.token = token;
+        newAccount.instagram.name = profile.name.givenName + ' ' + profile.name.familyName;
+        newAccount.save(function(err) {
+          if (err)
+            throw err;
+            return done(null, newAccount);
+        });
+      }
+    });
+  });
+}
+));
 
 passport.serializeUser(function(Account, done) {
   done(null, Account);
@@ -75,8 +107,6 @@ passport.deserializeUser(function(Account, done) {
   done(null, Account);
 });
 
-// passport.serializeUser(Account.serializeUser());
-// passport.deserializeUser(Account.deserializeUser());
 app.use(require('express-session')({
     secret: 'keyboard cat',
     resave: false,

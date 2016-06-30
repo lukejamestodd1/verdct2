@@ -8,7 +8,12 @@ var Account = new Schema({
     email: String,
 
     facebook: {
-    	// name: String,
+    	id: String,
+	    token: String,
+	    email: String,
+	    name: String,
+    },
+    instagram: {
     	id: String,
 	    token: String,
 	    email: String,
