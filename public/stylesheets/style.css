@@ -1,8 +1,67 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-family: 'Lora', serif;
+	font-weight: 100;
+}
+.lora{
+	font-family: 'Lora', serif;
+	font-weight: 200;
+}
+.open{
+	font-family: 'Open Sans', sans-serif;
 }
 
 a {
   color: #00B7FF;
+  opacity: 1;
+}
+
+.side-nav{
+	background-color: rgba(0,0,0,0.87);
+	opacity: 0.7;
+	width: 70%;
+}
+
+#top{
+	background-color: black;
+	opacity: 1;
+}
+
+.side-nav a {
+	opacity: 1;
+	color: white;
+	display: inline;
+}
+#menu-close{
+	display: inline;
+	float: right;
+}
+.menu-gap{
+	padding-top: 2em;
+	padding-bottom: 2em;
+	text-align: center;	
+}
+#menu-divider{
+	width: 50%;
+	display: inline-block;
+}
+
+#nav-bot{
+	height: 30%;
+	padding-top: 2em;
+}
+#nav-bot a{
+	color: white;
+	display: inline;
+}
+#nav-bot .col{
+	padding: 1em;
+}
+#nav-bot img{
+	padding: 0.5em;
+}
+#bottom{
+	padding-top: 0.1rem;
+}
+#bottom2{
+	height: 1.5em;
 }

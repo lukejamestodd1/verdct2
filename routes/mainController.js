@@ -85,7 +85,7 @@ router.get('/api', function(req, res, next) {
 });
 
 router.get('/spa', function(req, res, next) {
-  res.render('spa2', { title: 'Single Page Application' });
+  res.render('spa', { title: 'Verdct', user: req.user});
 });
 
 //Social login routes

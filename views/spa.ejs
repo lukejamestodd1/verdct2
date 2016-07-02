@@ -5,22 +5,38 @@
     <title><%= title %></title>
     <link rel="icon" type="image" href="/../../public/favicon.png">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <% include partials/nav-top.ejs %>
 
-  	<div class="container">
+  	
       <header>
-        <h1><%= title %></h1>
+        <div class="section teal lighten-4">
+          <div class="container">
+            <h1>Ensure nobody wears the same dress as you</h1>
+          </div>
+        </div>
       </header>
-   	</div>
+
+      <main>
+        <div class="section">
+          <div class="container">
+            <h3>Has your event been registed yet?</h2>
+          </div>
+        </div>
+      </main>
+   	
 		
+    <div class="parallax-container">
+      <div class="parallax"><img src="images/bed.jpg"></div>
+    </div>
 
 
-
-
-
-		
+		  <% include partials/footer.ejs %>
       <% include partials/scripts %>
   </body>
 </html>
