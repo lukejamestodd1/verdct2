@@ -36,8 +36,69 @@
           </div>
         </div>
       </div>
-
       </main>
+        
+        <ul class="collapsible center-align open" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header active"><h5>1. Name the event</h5></div>
+            <div class="collapsible-body">
+              <p>(Don't worry, you can always change the details later)</p>
+
+              <div class="row flex-container form1 valign-wrapper">
+                <p class="margined">the </p>
+                <div class="input-field col s7 form valign">
+                  <input id="name" type="text">
+                  <label for="name">name of the event</label>
+                </div>
+                </div>
+                  
+                  <div class="row flex-container form1 valign-wrapper">
+                    <p class="margined">is a </p>
+                    <div class="input-field col s2 form valign black-text">
+                      <% include partials/e-sel %>
+                    </div>
+
+                    <p class="margined">in</p>
+                  <div class="input-field col s3 form valign">
+                    <input id="city" type="text" class="">
+                    <label for="city">city or suburb</label>
+                  </div>
+                    
+                    <p class="margined">on</p>
+                  <div class="input-field col s2 form valign">
+                    <input id="date" type="date" class="datepicker">
+                    <label for="date">choose date</label>
+                  </div>
+
+                  </div>
+
+              
+
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><h5>2. Select an image</h5></div>
+            <div class="collapsible-body">
+              <p>(Don't worry, you can always change the details later)</p>
+              <div class="carousel">
+                <img class="carousel-item" src="images/e1.png">
+                <img class="carousel-item" src="images/e2.png">
+                <img class="carousel-item" src="images/e3.png">
+                <img class="carousel-item" src="images/e4.png"> 
+                <img class="carousel-item" src="images/e5.png"> 
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><h5>3. Set up a password (optional)</h5></div>
+            <div class="collapsible-body">
+              <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+          </li>
+        </ul>
+          
+          
       <% include partials/footer.ejs %>
       <% include partials/scripts %>
   </body>

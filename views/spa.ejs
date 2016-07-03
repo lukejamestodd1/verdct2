@@ -8,85 +8,51 @@
 
   	
       <header>
-        <div class="teal lighten-4">
-          <div class="container">
-           <div class="row">
-            <div class="col s12 m5 l5">
-              <h1>Ensure nobody wears the same dress as you</h1>
+        <div class="teal lighten-4 row flex-container wr" id="header-img">
+          
+            <div class="col s12 m5 l5 flex-item">
+              <div class="section x">
+                <div class="container">
+              <h2>Ensure nobody wears the same dress as you</h2>
+              <p class="open x">Remain anonymous and avoid any #twinning disasters at your event.</p>
+              <div class="center-align">
+                <a href="/info" class="waves-effect waves-light btn-large teal lighten-4 open black-text big-button y">How it works</a>
+              </div>
             </div>
-            <div class="col s12 m7 l7">
-              <img src="images/bed.jpg" class="responsive-img">
             </div>
-          </div>
         </div>
+
+            <div class="col s12 m7 l7 flex-item">
+              <img src="images/bed.jpg" class="responsive-img" id="header-img">
+            </div>
+       
       </div>
       </header>
 
       <main>
         <div class="section">
           <div class="container">
-            <h3>Has your event been registed yet?</h2>
-            <h4></h4>
+            <h3>Has your event been registered yet?</h2>
+
+              <div class="row flex-container form1 valign-wrapper">
+                <h5 class="margined">I'm looking for a </h5>
+                <div class="input-field col s4 form valign black-text">
+                  <% include partials/e-sel %>
+                </div>
+              </div>
+              <div class="row flex-container form1 valign-wrapper">
+                <h5 class="margined">and it's called </h5>
+                <div class="input-field col s7 form valign">
+                        <input id="name" type="text" placeholder="St Mark's College Formal">
+                        <label for="name"></label>
+                      </div>
+                </div>
+              </div>
+
+
           </div>
         </div>
       </main>
-
-    <div class="parallax-container">
-      <div class="parallax"><img src="images/bed.jpg"></div>
-    </div>
-
-      <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <div class="section teal lighten-4">
-          <div class="container">
-            <div class="row">
-              <div class="col s8">
-                <h3>How to use Verdct</h3>
-              </div>
-              <div class="col s4 right-align x">
-                <a href="/spa">
-                  <i class="material-icons black-text">clear</i>
-                </a>
-               </div>
-            </div>
-          </div>
-
-          <div class="container">
-           <div class="row padded">
-            
-            <div class="col s12 m12 l4 center-align">
-              <img src="images/how1.png" class="responsive-img center-align how">
-              <div class="">
-                <p class="center-align how2 open">Search for your event on Verdct. <br class="hide-on-large-only">If it's not there, add it!</p>
-              </div>
-            </div>
-
-            <div class="col s12 m12 l4 center-align">
-              <img src="images/how2.png" class="responsive-img center-align how">
-              <div class="">
-                <p class="center-align how2 open">Create a shortlist of looks. <br class="hide-on-large-only">When you're ready, lock down<br class="hide-on-large-only"> the dress you're wearing <br class="hide-on-large-only">so others can see it.</p>
-              </div>
-            </div>
-
-            <div class="col s12 m12 l4 center-align">
-              <img src="images/how3.png" class="responsive-img center-align how">
-              <div class="">
-              <p class="center-align how2 open">Others will be alerted if they try <br class="hide-on-large-only">and add the same dress, <br class="hide-on-large-only">so you can relax and enjoy your night!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-  </div>
-
 
 		  <% include partials/footer.ejs %>
       <% include partials/scripts %>

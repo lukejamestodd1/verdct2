@@ -44,7 +44,6 @@ a {
 	width: 50%;
 	display: inline-block;
 }
-
 #nav-bot{
 	height: 30%;
 	padding-top: 2em;
@@ -66,7 +65,11 @@ a {
 	height: 1.5em;
 }
 .x{
-	margin-top: 2em;
+	margin-top: 3em;
+}
+.y{
+	margin-top: 4em;
+	margin-bottom: 4em;
 }
 .how{
 	padding-top: 8em;
@@ -86,3 +89,57 @@ a {
 #contact{
 	display: block;
 }
+.big-button{
+	border: 1px;
+	border-color: black;
+	border-style: solid;
+	text-transform: none;
+}
+#ok{
+	margin-top: 8em;
+}
+
+#header-img{
+	height: 35em;
+	width: auto;
+}
+.flex-container{
+	display: flex;
+	flex-direction: row;
+}
+.wr{
+	flex-wrap: wrap-reverse;	
+}
+.flex-item{
+	padding: 0 !important;
+}
+.form{
+	flex-shrink: 1;
+	margin-left: 1em !important;
+}
+.form1{
+	
+}
+.collapsible-header h5{
+	font-weight: 700; 
+}
+.collapsible-header.active{
+	border-bottom: none !important; 
+}
+
+.margined{
+	margin-left: 3em;
+}
+/* label color */
+   .input-field label {
+     color: grey;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: grey;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #000;
+     box-shadow: 0 1px 0 0 #000;
+   }
