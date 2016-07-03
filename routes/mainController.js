@@ -6,11 +6,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Verdct' });
+  res.render('index', { title: 'Verdct', user: req.user });
 });
 
 router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register' });
+  res.render('register', { title: 'Register', user: req.user });
 });
 
 router.post('/register', function(req, res) {
@@ -24,7 +24,7 @@ router.post('/register', function(req, res) {
             return res.render('register', { account : account, title: 'register' });
         }
         passport.authenticate('local')(req, res, function () {
-            res.redirect('/home');
+            res.redirect('/spa');
         });
     });
 });
@@ -34,12 +34,12 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/home');
+    res.redirect('/spa');
 });
 
 router.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('/spa');
 });
 
 router.get('/home', function(req, res, next) {
@@ -62,13 +62,6 @@ router.get('/home', function(req, res, next) {
   }
 });
 
-router.get('/about', function(req, res, next) {
-  res.render('contact', { title: 'Contact' });
-});
-
-router.get('/contact', function(req, res, next) {
-  res.render('contact', { title: 'Contact' });
-});
 
 router.get('/api', function(req, res, next) {
 	if (req.user) {
@@ -86,6 +79,18 @@ router.get('/api', function(req, res, next) {
 
 router.get('/spa', function(req, res, next) {
   res.render('spa', { title: 'Verdct', user: req.user});
+});
+
+router.get('/info', function(req, res, next) {
+  res.render('info', { title: 'How it works', user: req.user});
+});
+
+router.get('/contact', function(req, res, next) {
+  res.render('contact', { title: 'Contact', user: req.user});
+});
+
+router.get('/about', function(req, res, next) {
+  res.render('about', { title: 'About', user: req.user});
 });
 
 //Social login routes

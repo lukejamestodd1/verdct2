@@ -4,7 +4,7 @@ body {
 }
 .lora{
 	font-family: 'Lora', serif;
-	font-weight: 200;
+	font-weight: lighter;
 }
 .open{
 	font-family: 'Open Sans', sans-serif;
@@ -64,4 +64,25 @@ a {
 }
 #bottom2{
 	height: 1.5em;
+}
+.x{
+	margin-top: 2em;
+}
+.how{
+	padding-top: 8em;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+.how2{
+	padding-top: 1em;
+	padding-left: 2em;
+	padding-right: 2em;
+	font-size: 90%;
+}
+.padded{
+	padding-bottom: 8em;
+}
+
+#contact{
+	display: inline-block;
 }

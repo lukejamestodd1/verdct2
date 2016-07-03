@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include partials/head %>
+    <% include partials/head2.ejs %>
   </head>
   <body>
-  	<div class="container">
-      <header>
-        <% include partials/navbar %>
-        <% include partials/header %>
-      </header>
-    
+    <% include partials/nav-top.ejs %>
+      <main>
+        <div class="section">
+          <div class="container">
+            <div class="row open">
+              <div class="col s12 m8 l8">
+                <h4 class="lora">Contact us</h4>
+                <p class="open">We're always happy to answer questions you have or help with an issue you are facing. Just send us a message in the form below.</p>
+
+                <div class="row" id="contact">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input id="name" type="text">
+                        <label for="name">Your name</label>
+                      </div>
+                      <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email" data-error="wrong" data-success="right">Your email</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="row">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">How are you involved in the event?</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+
+              </div>
+
+              <div class="col s12 m4 l4 open">
+                <div class="section">
+                  <p>General enquiries</p>
+                  <a href="hello@verdct.com">hello@verdct.com</a>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                  <p>For advertisers</p>
+                  <a href="marketing@verdct.com">marketing@verdct.com</a>
+                </div>
+               </div>
+            </div>
+          </div>
+
+          <div class="container">
+           <div class="row padded">
+            
+          </div>
+        </div>
+
+      </main>
+      <% include partials/footer.ejs %>
+      <% include partials/scripts %>
   </body>
 </html>
