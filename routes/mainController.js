@@ -105,5 +105,9 @@ router.get('/auth/instagram/callback', passport.authenticate('instagram', {
   failureRedirect: '/',
 }));
 
+router.get('/spa2', function(req, res, next) {
+  res.render('spa2', { title: 'Verdct', user: req.user});
+});
+
 
 module.exports = router;
