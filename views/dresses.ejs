@@ -1,0 +1,38 @@
+<!-- ASSIGN CONTROLLER -->
+<div ng-app="dress" ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER AND DRESS COUNT -->
+        <div class="text-center">
+            <h1>All the dresses <span class="label label-info">{{ dresses.length }}</span></h1>
+        </div>
+
+        <!-- DRESS LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <!-- LOOP OVER DRESSES IN $scope.dresses -->
+                <div class="checkbox" ng-repeat="dress in dresses">
+                    <label>
+                        <input type="checkbox" ng-click="deleteDress(dress._id)"> {{ dress.name }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM TO CREATE NEW DRESS -->
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="dress name" ng-model="formData.name">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="dress brand" ng-model="formData.brand">
+                    </div>
+                    <!-- createDress() -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createDress()">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
