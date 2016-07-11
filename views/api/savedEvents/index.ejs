@@ -11,7 +11,8 @@
       </header>
     </div>
 
-<h1>Showing all saved events in the database:</h1>
+<h1><%= title %></h1>
+<h1>total = <%= total %></h1>
     <% for(var i = 0; i < savedEvents.length; i++){ %>
       <p><a href="/api/savedEvents/<%= savedEvents[i]._id %>"><%= savedEvents[i].u_name %>'s dress for <%= savedEvents[i].e_name %></a></p>
       <p><%= savedEvents[i].d_name %></p>

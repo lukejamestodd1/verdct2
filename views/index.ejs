@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include partials/head %>
+    <% include partials/head2.ejs %>
   </head>
   <body>
-  	<div class="container">
-      <header>
-        <% include partials/navbar %>
-        <% include partials/header %>
-      </header>
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span><%= title %></h1>
-    		<p>Welcome to <%= title %></p>
-    		<p>Login or Register with:</p>
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/register" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-        <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-        <a href="/auth/instagram" class="btn btn-primary"><span class="fa fa-instagram"></span> Instagram</a>
-    </div>
+    <% include partials/nav-top.ejs %>
+    <% include partials/header.ejs %>
+    <main>
+        <% if (user) { %>
+        <% include savedEvents.ejs %>
+        <% } %>
 
-</div>
+        <div class="section">
+          <div class="container">
+            <h3>Has your event been registered yet?</h2>
+              <div class="row flex-container form1 valign-wrapper">
+                <h5 class="margined">I'm looking for a </h5>
+                <div class="input-field col s4 form valign black-text">
+                  <% include partials/e-sel %>
+                </div>
+              </div>
+              <div class="row flex-container form1 valign-wrapper">
+                <h5 class="margined">and it's called </h5>
+                <div class="input-field col s7 form valign">
+                        <input id="name" type="text" placeholder="St Mark's College Formal">
+                        <label for="name"></label>
+                      </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </main>
+      <% include partials/footer.ejs %>
+      <% include partials/scripts %>
   </body>
 </html>

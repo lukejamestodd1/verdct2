@@ -1,0 +1,38 @@
+<!-- ASSIGN CONTROLLER -->
+<div ng-app="event" ng-controller="eventController">
+    <div class="container">
+
+        <!-- HEADER AND EVENT COUNT -->
+        <div class="text-center">
+            <h1>All the events <span class="label label-info">{{ events.length }}</span></h1>
+        </div>
+
+        <!-- EVENT LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <!-- LOOP OVER EVENTES IN $scope.events -->
+                <div class="checkbox" ng-repeat="event in events">
+                    <label>
+                        <input type="checkbox" ng-click="deleteEvent(event._id)"> {{ event.name }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM TO CREATE NEW EVENT -->
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="event name" ng-model="formData.name">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="event brand" ng-model="formData.brand">
+                    </div>
+                    <!-- createEvent() -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createEvent()">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include partials/head %>
+    <% include partials/head2.ejs %>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <% include partials/navbar %>
-        <% include partials/header %>
-      </header>
+    <% include partials/nav-top.ejs %>
     
-	<div class="container">
-
-	<div class="col-sm-6 col-sm-offset-3">
-
-    <h1><span class="fa fa-sign-in"></span> <%= title %></h1>
-
-    <!-- SIGNUP FORM -->
-    <form action="/register" method="post">
-        <div class="form-group">
-            <input type='text', class="form-control" name="username", placeholder='Enter Username'>
+    <main>
+        <div class="section">
+          <div class="container">
+            <div class="row open">
+              <h4 class="lora w">Sign up</h4>
+              <div class="col s12 m6 l6">
+                <div class="z social">
+                  <p class="open z">sign up with</p>
+                  <a href="/auth/facebook"><img src="images/fbt.png"></a>
+                  <a href="/auth/instagram"><img src="images/int.png"></a>
+                  <a href="/auth/twitter"><img src="images/twt.png"></a>
+                </div>
+                <p>Already have an account? <a href="/login">Login</a></p>
+                <p>Or go <a href="/">home</a>.</p>
+              </div>
+              <div class="col s12 m6 l6">
+                <p class="open z">or</p>
+                <div class="row">
+                  <form action="/register" method="post" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                          <input type="text" name="email" id="email">
+                          <label for="email">Enter your email</label>
+                      </div>
+                      <div class="input-field col s12">
+                          <input type="text" name="username" id="username">
+                          <label for="username">Choose a username</label>
+                      </div>
+                      <div class="input-field col s12 z">
+                          <input type="password" name="password" id="password">
+                          <label for="password">Choose a password</label>
+                      </div>
+                      <button type="submit" class="btn btn-main z">Sign up</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
-
-        <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-    </form>
-
-    <hr>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-
-</div>
-
-</div>
-    
-   
-</body>
+      </main>
+    <% include partials/footer.ejs %>
+    <% include partials/scripts %>
+  </body>
 </html>

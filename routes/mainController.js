@@ -24,7 +24,7 @@ router.post('/register', function(req, res) {
             return res.render('register', { account : account, title: 'register' });
         }
         passport.authenticate('local')(req, res, function () {
-            res.redirect('/spa');
+            res.redirect('/');
         });
     });
 });
@@ -34,12 +34,12 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/spa');
+    res.redirect('/');
 });
 
 router.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/spa');
+    res.redirect('/');
 });
 
 router.get('/home', function(req, res, next) {
@@ -96,18 +96,37 @@ router.get('/about', function(req, res, next) {
 //Social login routes
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 router.get('/auth/facebook/callback', passport.authenticate('facebook', {  
-  successRedirect: '/home',
+  successRedirect: '/',
   failureRedirect: '/',
 }));
 router.get('/auth/instagram', passport.authenticate('instagram', { scope: 'email' }));
 router.get('/auth/instagram/callback', passport.authenticate('instagram', {  
-  successRedirect: '/home',
+  successRedirect: '/',
   failureRedirect: '/',
 }));
 
-router.get('/spa2', function(req, res, next) {
-  res.render('spa2', { title: 'Verdct', user: req.user});
-});
-
+//============== GET SAVED EVENTS FOR CURRENT USER
+router.route('/cu').get(function(req, res, next) {
+        //retrieve all savedEvents from Monogo
+        mongoose.model('SavedEvent').find({user_id : req.user._id}, function (err, savedEvents) {
+              if (err) {
+                  return console.error(err);
+              } else {
+                  res.format({
+                      html: function(){
+                           res.render("api/savedEvents/index",{
+                                title: "all saved events FOR CURRENT USER",
+                                "savedEvents" : savedEvents,
+                                total: savedEvents.length
+                           });
+                     },
+                    //JSON response will show all savedEvents in JSON format
+                    json: function(){
+                        res.json(savedEvents);
+                    }
+                });
+              }     
+        });
+    })
 
 module.exports = router;

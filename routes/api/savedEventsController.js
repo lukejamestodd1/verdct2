@@ -35,7 +35,8 @@ router.route('/')
                       html: function(){
                            res.render("api/savedEvents/index",{
                                 title: "all saved events",
-                                "savedEvents" : savedEvents
+                                "savedEvents" : savedEvents,
+                                total: savedEvents.length
                            });
                      },
                     //JSON response will show all savedEvents in JSON format
