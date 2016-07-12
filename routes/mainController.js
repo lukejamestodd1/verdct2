@@ -4,10 +4,66 @@ var Account = require('../models/account');
 var mongoose = require('mongoose');
 var router = express.Router();
 
-/* GET home page. */
+// ============ MAIN GET ROUTES =============
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Verdct', user: req.user });
 });
+
+router.get('/info', function(req, res, next) {
+  res.render('info', { title: 'How it works', user: req.user});
+});
+
+router.get('/contact', function(req, res, next) {
+  res.render('contact', { title: 'Contact', user: req.user});
+});
+
+router.get('/about', function(req, res, next) {
+  res.render('about', { title: 'About', user: req.user});
+});
+
+router.get('/search', function(req, res, next) {
+  res.render('search', { title: 'Search', user: req.user});
+});
+
+router.get('/account', function(req, res, next) {
+  res.render('account', { title: 'Account', user: req.user});
+});
+
+router.get('/newevent', function(req, res, next) {
+  res.render('newevent', { title: 'Create Event', user: req.user});
+});
+
+router.get('/events', function(req, res, next) {
+  res.render('myevents', { title: 'My Events', user: req.user});
+});
+
+// ============= LOGIN ROUTES ==============
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Login', user : req.user });
+});
+
+router.post('/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/');
+});
+
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {  
+  successRedirect: '/',
+  failureRedirect: '/',
+}));
+
+router.get('/auth/instagram', passport.authenticate('instagram', { scope: 'email' }));
+
+router.get('/auth/instagram/callback', passport.authenticate('instagram', {  
+  successRedirect: '/',
+  failureRedirect: '/',
+}));
 
 router.get('/register', function(req, res, next) {
   res.render('register', { title: 'Register', user: req.user });
@@ -29,28 +85,14 @@ router.post('/register', function(req, res) {
     });
 });
 
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login', user : req.user });
-});
-
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
-});
-
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
-
+// ============= API/ BACK ROUTES ==============
 router.get('/home', function(req, res, next) {
   if (req.user) {
 		mongoose.model('Event').find({}, function (err, events) {
       mongoose.model('SavedEvent').find({user_id : req.user._id}, function (err, savedEvents) {
       		res.render('home', {
   					title: 'Home',
-			    	user_id: req.user._id,
-			    	email: req.user.email,
-			    	username: req.user.username,
+			    	user : req.user,
 			    	events : events,
 			    	savedEvents : savedEvents
 			    });   
@@ -61,7 +103,6 @@ router.get('/home', function(req, res, next) {
     res.redirect('/');
   }
 });
-
 
 router.get('/api', function(req, res, next) {
 	if (req.user) {
@@ -76,34 +117,6 @@ router.get('/api', function(req, res, next) {
     res.redirect('/');
   }
 });
-
-router.get('/spa', function(req, res, next) {
-  res.render('spa', { title: 'Verdct', user: req.user});
-});
-
-router.get('/info', function(req, res, next) {
-  res.render('info', { title: 'How it works', user: req.user});
-});
-
-router.get('/contact', function(req, res, next) {
-  res.render('contact', { title: 'Contact', user: req.user});
-});
-
-router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'About', user: req.user});
-});
-
-//Social login routes
-router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {  
-  successRedirect: '/',
-  failureRedirect: '/',
-}));
-router.get('/auth/instagram', passport.authenticate('instagram', { scope: 'email' }));
-router.get('/auth/instagram/callback', passport.authenticate('instagram', {  
-  successRedirect: '/',
-  failureRedirect: '/',
-}));
 
 //============== GET SAVED EVENTS FOR CURRENT USER
 router.route('/cu').get(function(req, res, next) {

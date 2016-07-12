@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head2.ejs %>
+  </head>
+  <body>
+    <% include partials/nav-top.ejs %>
+      <main>
+        <div class="section teal lighten-4">
+          <div class="container">
+            <div class="row">
+              <div class="col s5 offset-s4">
+                <h4 class="lora">Create a new event</h4>
+                <p class="open w">fill in as many details as possible to help people find the event</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m4">
+                <ul class="collapsible open" data-collapsible="accordion">
+                  <li>
+                    <div class="collapsible-header z"><h5>1. Name the event</h5></div>
+                    <div class="collapsible-body">
+                        <div class="input-field col s12 z">
+                          <input id="name" type="text">
+                          <label for="name" class="">Event name</label>
+                        </div>
+                        <p class="">Event type</p>
+                        <div class="input-field col s12 z">
+                          <% include partials/e-sel %>
+                        </div>
+
+                          <div class="input-field col s12 z">
+                            <input id="city" type="text" class="">
+                            <label for="city" class="">City or suburb</label>
+                          </div>
+                            
+                          <div class="input-field col s12 z">
+                            <input id="date" type="date" class="datepicker">
+                            <label for="date" class="">Date</label>
+                          </div>
+                    </div>
+                  </li>
+          <li>
+            <div class="collapsible-header active z"><h5>2. Select a cover image</h5></div>
+            <div class="collapsible-body">
+              <div class="carousel">
+                <img class="carousel-item" src="images/e1.png">
+                <img class="carousel-item" src="images/e2.png">
+                <img class="carousel-item" src="images/e3.png">
+                <img class="carousel-item" src="images/e4.png"> 
+                <img class="carousel-item" src="images/e5.png"> 
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header z"><h5>3. Set a password</h5></div>
+            <div class="collapsible-body">
+              <div class="input-field col s12">
+                <input id="password" type="text">
+                <label for="password" class="">Password</label>
+              </div>
+              <ul class="margined">
+                <li class="white-text">.</li>
+                <li>Password is optional</li>
+                <li>Not case sensitive</li>
+                <li>Can't decide? <a href="/passwords">Read our suggestions</a></li>
+              </ul>
+                  <button href="/api/events/new" method="post" class="waves-effect waves-light btn-large open white black-text big-button x">Save event</button>
+                  <a href="/" class="margined waves-effect waves-light btn-large open white black-text big-button x" id="cancel">Cancel</a>
+              <div class="x">
+              <p>P.S. You can edit all of the details later</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </main>        
+      <% include partials/footer.ejs %>
+      <% include partials/scripts %>
+  </body>
+</html>

@@ -64,6 +64,9 @@ a {
 #bottom2{
 	height: 1.5em;
 }
+.v{
+	margin-top: 10em;
+}
 .w{
 	margin-bottom: 1em;
 	margin-top: 1em;
@@ -127,8 +130,17 @@ a {
 .form1{
 	
 }
-.collapsible-header h5{
-	font-weight: 700; 
+.collapsible-header{
+	 border: none;
+}
+.collapsible-body{
+	 border: none;
+}
+.collapsible-body p{
+	 padding-left: 1em;
+}
+.collapsible{
+	 box-shadow: none;
 }
 .collapsible-header.active{
 	border-bottom: none !important; 
@@ -187,4 +199,29 @@ a {
 }
 .social img{
 	padding: 0.5em;
+}
+.search{
+	padding-left: 3em;
+	padding-right: 3em;
+}
+.collapsible{
+	border: none;
+	margin: 0;
+}
+.input-field{
+	margin-top: 0;
+}
+.margined >li {
+	list-style-type: disc;
+}
+#fill{
+	list-style-type: none; 
+}
+.margined .y{
+	display: block;
+}
+#cancel{
+	border: none !important;
+	color: #00B7FF !important;
+	box-shadow: none;
 }

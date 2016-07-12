@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head2.ejs %>
+  </head>
+  <body>
+    <% include partials/nav-top.ejs %>
+    <main>
+      <div class="section teal lighten-4">
+        <div class="container">
+          <div class="row flex-container form1 valign-wrapper">
+            <h5 class="">I'm looking for a </h5>
+            <div class="input-field col s4 form valign black-text">
+              <% include partials/e-sel %>
+            </div>
+            <h5 class="margined">called</h5>
+            <div class="input-field col s7 form valign">
+              <input id="name" type="text" value="St Mark's Year 11 Formal">
+            </div>
+          </div>
+        </div> 
+      </div>
+
+      <div class="section">
+        <% include events.ejs %>
+      
+      </div>
+
+    </main>
+      <% include partials/footer.ejs %>
+      <% include partials/scripts %>
+  </body>
+</html>
