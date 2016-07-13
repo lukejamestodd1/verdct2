@@ -1,20 +1,17 @@
-<!-- ASSIGN CONTROLLER -->
 <div ng-app="savedEvent" ng-controller="savedEventController">
-        <div class="container" id="cusec">
-        <!-- HEADER AND SAVED EVENT COUNT -->
-        <div class="text-center y">
-            <h3>Your events: <span class="label label-info" id="cuse">{{ savedEvents.length }}</span></h3>
+    <div class="container" id="cusec">
+
+    <!-- HEADER AND SAVED EVENT COUNT -->
+    <div class="text-center">
+        <h3>Your events: <span class="label label-info" id="cuse">{{ savedEvents.length }}</span></h3>
+    </div>
+
+    <!-- EVENT LIST -->
+    <div class="row">
+        <div class="col s12 m6 l4 center-align v" ng-repeat="savedEvent in savedEvents">
+            <img src="images/e4.png" class="responsive-img center-align">
+            <p class="center-align how2 open">{{savedEvent.e_name}}</p>
         </div>
-        <!-- EVENT LIST -->
-        <div id="todo-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                <!-- LOOP OVER EVENTES IN $scope.savedEvents -->
-                <div ng-repeat="savedEvent in savedEvents">
-                    <label>
-                        <input type="checkbox" ng-click="deleteEvent(savedEvent._id)"> {{ savedEvent.e_name }}
-                    </label>
-                </div>
-            </div>
-        </div>
+    </div>
     </div>
 </div>

@@ -197,7 +197,8 @@ router.route('/:id')
                  res.render('api/events/show', {
                     title: 'event',
                     "event" : event,
-                    "savedEvents" : savedEvents
+                    "savedEvents" : savedEvents,
+                    user : req.user
                 });
               }
               // json: function(){

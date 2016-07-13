@@ -1,37 +1,56 @@
 <div ng-app="event" ng-controller="eventController">
     <div class="container">
+            
+            <div class="col s12 center-align">
+              <a href="/newevent" class="waves-effect waves-light btn-large white open black-text big-button y">Can't find your event? Register it now</a>
+            </div>
 
         <!-- HEADER AND EVENT COUNT -->
         <div class="text-center">
             <h5>We found <span class="label label-info">{{ events.length }}</span> matching events</h5>
         </div>
 
-        <!-- EVENT LIST -->
-        <div id="todo-list" class="row">
+           <div class="row padded">
+            <div class="col s12 m6 l4 center-align v" ng-repeat="event in events">
+            <a href="api/events/{{event._id}}">
+              <img src="images/e2.png" class="responsive-img center-align">
+              <div class="">
+                <p class="center-align how2 open">{{event.name}}</p>
+              </div>
+            </a>
+            </div>
+
+            <div class="col s12 center-align">
+              <a href="/newevent" class="waves-effect waves-light btn-large white open black-text big-button" id="ok">Can't find your event? Register it now</a>
+            </div>
+        
+      </div>
+    </div>
+</div>
+
+<!-- CREATE EVENT
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        
+                        <input type="text" class="form-control input-lg text-center" placeholder="event name" ng-model="formData.name">
+                        
+                        <input type="text" class="form-control input-lg text-center" placeholder="event brand" ng-model="formData.brand">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createEvent()">Add</button>
+                </form>
+            </div>
+        </div> -->
+
+<!-- DELETE EVENT -->
+     <!--    <div id="todo-list" class="row">
             <div class="col-sm-4 col-sm-offset-4">
-                <!-- LOOP OVER EVENTES IN $scope.events -->
-                <div class="checkbox" ng-repeat="event in events">
+                <! LOOP OVER EVENTES IN $scope.events -->
+                <!-- <div class="checkbox" ng-repeat="event in events">
                     <label>
                         <input type="checkbox" ng-click="deleteEvent(event._id)"> {{ event.name }}
                     </label>
                 </div>
             </div>
-        </div>
-
-        <!-- FORM TO CREATE NEW EVENT -->
-        <div id="todo-form" class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-                <form>
-                    <div class="form-group">
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="event name" ng-model="formData.name">
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="event brand" ng-model="formData.brand">
-                    </div>
-                    <!-- createEvent() -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createEvent()">Add</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+        </div> -->

@@ -1,38 +1,129 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include ../../partials/head %>
+    <% include ../../partials/head2 %>
+    <link rel='stylesheet' href='../../stylesheets/style.css'/>
   </head>
   <body>
-    <div class="container">
+    <% include ../../partials/nav-top %>
       <header>
-        <% include ../../partials/navbar %>
+        <div class="parallax-container">
+          <div class="parallax">
+          <img src="../../images/e4.png">
+        </div>
+        </div>
       </header>
-    </div>
 
-      <div class="container">
-        <h1><%= event.name %></h1>
-         <a href="/api/events/<%= event.id %>/edit" class="margined">Edit</a>
-         <a href="/api/events/<%= event.id %>/shortlist" class="margined">MY SHORTLIST</a>
-      </div>
+<div class="section">
+        
       
-    <h1>Showing all users with dresses registered for this event:</h1>
-    <% for(var i = 0; i < savedEvents.length; i++){ 
-          if (savedEvents[i].dress_id != undefined){ %>
-      <p><a href="/api/savedEvents/<%= savedEvents[i]._id %>"><%= savedEvents[i].u_name %></a></p>
-      <p><%= savedEvents[i].d_name %></p>
-      <p><%= savedEvents[i].d_img %></p>
-      <p><%= savedEvents[i].brand %></p>
-      <p><%= savedEvents[i].cost %></p>
-      <p><%= savedEvents[i].sTop %></p>
-      <p><%= savedEvents[i].sBot %></p>
-      <p><%= savedEvents[i].colour %></p>
-    <% }} %>
+      <div class="container center-align v">
+        <h3><%= event.name %></h3>
+        <p>4 months until the event!</p>
+      </div>
 
-    <form action="/api/events/<%= event.id %>" method="post" enctype="application/x-www-form-urlencoded" class="margined">
-      <input type="hidden" value="DELETE" name="_method"/>
-      <button type="submit" class="btn-lg btn-primary btn-centre">Delete This Event</button>
-    </form>
+      <div class="center-align open">
+      <div class="row">
+        <div class="col s6 black-text underline bold">The Event. Public: anyone can view</div>
+        <div class="col s6">
+          <a href="/api/events/<=% event.id %>/shortlist" class="black-text">Your Shortlist. Private: only you can view</a>
+        </div>
+      </div>
+      </div>
 
+      <!-- <div class="row">
+    <div class="col s12">
+      <ul class="tabs open tabz">
+        <li class="tab col s3"><a class="active tabz black-text" href="#event">The Event. Public: anyone can view</a></li>
+        <li class="tab col s3"><a class="tabz black-text" href="#shortlist">Your Shortlist. Private: only you can view</a></li>
+      </ul>
+    </div>
+    <div id="event" class="col s12 center-align">EVENT PAGE</div>
+    <div id="shortlist" class="col s12 center-align">SHORTLIST PAGE</div>
+  </div> -->
+
+      <div class="divider"></div>
+
+
+
+
+</div>
+         
+      <% var RD = 0;
+        for(var i = 0; i < savedEvents.length; i++){ 
+          if (savedEvents[i].dress_id != undefined){ 
+            RD++;
+        }}%>
+      <% if (RD === 0){ %>
+        <div class="row">
+          <div class="col s6 offset-s4 y open">
+              <p>Looks like nobody is ready to register their dress.</p>
+              <p>Share this event with other guests</p>
+              <div class="z social">
+                <a href="/auth/facebook"><img src="../../images/fbt.png"></a>
+                <a href="/auth/instagram"><img src="../../images/int.png"></a>
+                <a href="/auth/twitter"><img src="../../images/twt.png"></a>
+              </div>
+            </div>
+        </div>
+      <% } else { %>
+        <% if (RD === 1){ %>
+          <p id="RD" class="margined"><%= RD %> person has chosen what they're wearing</p>
+        <% } else { %>
+          <p id="RD" class="margined"><%= RD %> people have chosen what they're wearing</p>
+        <% } %>
+      <div class="container">
+        <div class="row padded">
+      <% for(var i = 0; i < savedEvents.length; i++){ 
+            if (savedEvents[i].dress_id != undefined){ %>
+          <div class="col s12 m6 l4 v open card">
+            <div class="row">
+              <div class="col s6">
+                <a href="/api/savedEvents/<%= savedEvents[i]._id %>">
+                  <img src="../../images/d1.jpg" class="responsive-img center-align">
+                </a>
+              </div>
+            <div class="col s6">
+                <p class="underline"><%= savedEvents[i].u_name %>'s dress</p>
+                <p>Dress name: <%= savedEvents[i].d_name %></p>
+                <p>img:<%= savedEvents[i].d_img %></p>
+                <p>Brand:<%= savedEvents[i].brand %></p>
+                <p>Cost:<%= savedEvents[i].cost %></p>
+                <p>Top style:<%= savedEvents[i].sTop %></p>
+                <p>Bottom style:<%= savedEvents[i].sBot %></p>
+                <p>Colour:<%= savedEvents[i].colour %></p>
+              </div>
+            </div>
+          </div>
+        <% }}} %>
+      </div>
+    </div>
+    
+  <a href="/api/events/<%= event.id %>/edit" class="margined">Edit this event</a>
+  <% include ../../partials/footer %>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1561353927499605',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  <script src="../../javascripts/spa.js"></script>
+  <script src="../../javascripts/init.js"></script>
 </body>
 </html>

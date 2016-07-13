@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head2.ejs %>
+  </head>
+  <body>
+    <% include partials/nav-top.ejs %>
+    <main>
+        <div class="section">
+          <div class="container">
+            <div class="row open">
+              <h4 class="lora w">Your Verdct account</h4>
+              <div class="col s12 m6 l6">
+                <div class="z social">
+                  <p class="open z">Connect your networks to Verdct</p>
+                  <a href="/auth/facebook"><img src="images/fbt.png"></a>
+                  <a href="/auth/instagram"><img src="images/int.png"></a>
+                  <a href="/auth/twitter"><img src="images/twt.png"></a>
+                </div>
+                <p><a href="/">home</a>.</p>
+              </div>
+              <div class="col s12 m6 l6">
+                <p class="open z">Change your password</p>
+                <div class="row x">
+                  <form action="/api/users/<%= user.id %>" method="post" class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12 z">
+                          <input type="password" name="password" id="password">
+                          <label for="password">New password</label>
+                      </div>
+                      <div class="input-field col s12 z">
+                          <input type="text" name="passwordConf" id="passwordConf">
+                          <label for="passwordConf">Confirm new password</label>
+                      </div>
+                      <button type="submit" class="btn btn-main z white">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <% include partials/footer.ejs %>
+      <% include partials/scripts %>
+  </body>
+</html>

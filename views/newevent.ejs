@@ -9,7 +9,7 @@
         <div class="section teal lighten-4">
           <div class="container">
             <div class="row">
-              <div class="col s5 offset-s4">
+              <div class="col s12 m5 offset-m3">
                 <h4 class="lora">Create a new event</h4>
                 <p class="open w">fill in as many details as possible to help people find the event</p>
               </div>
@@ -20,10 +20,10 @@
         <div class="section">
           <div class="container">
             <div class="row">
-              <div class="col s12 m6 offset-m4">
+              <div class="col s12 m6 offset-m3">
                 <ul class="collapsible open" data-collapsible="accordion">
                   <li>
-                    <div class="collapsible-header z"><h5>1. Name the event</h5></div>
+                    <div class="collapsible-header active z"><h5>1. Name the event</h5></div>
                     <div class="collapsible-body">
                         <div class="input-field col s12 z">
                           <input id="name" type="text">
@@ -46,7 +46,7 @@
                     </div>
                   </li>
           <li>
-            <div class="collapsible-header active z"><h5>2. Select a cover image</h5></div>
+            <div class="collapsible-header z"><h5>2. Select a cover image</h5></div>
             <div class="collapsible-body">
               <div class="carousel">
                 <img class="carousel-item" src="images/e1.png">
@@ -55,10 +55,21 @@
                 <img class="carousel-item" src="images/e4.png"> 
                 <img class="carousel-item" src="images/e5.png"> 
               </div>
+
+                <div class="file-field input-field">
+                  <div class="btn waves-effect waves-light btn-large open white black-text big-button">
+                    <span><i class="material-icons">camera_alt</i></span>
+                    <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" value="Or upload your own image">
+                  </div>
+                </div>
+              
             </div>
           </li>
           <li>
-            <div class="collapsible-header z"><h5>3. Set a password</h5></div>
+            <div class="collapsible-header z"><h5>3. Set a password (optional)</h5></div>
             <div class="collapsible-body">
               <div class="input-field col s12">
                 <input id="password" type="text">

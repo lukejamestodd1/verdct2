@@ -8,18 +8,36 @@
     <main>
       <div class="section teal lighten-4">
         <div class="container">
-          <div class="row flex-container form1 valign-wrapper">
-            <h5 class="">I'm looking for a </h5>
-            <div class="input-field col s4 form valign black-text">
-              <% include partials/e-sel %>
+          <div class="row">
+            <div class="col s12 m5">
+              <p class="">Event type</p>
+              <div class="input-field u">
+                <% include partials/e-sel %>
+              </div>
             </div>
-            <h5 class="margined">called</h5>
-            <div class="input-field col s7 form valign">
-              <input id="name" type="text" value="St Mark's Year 11 Formal">
+            <div class="col s12 m5">
+              <p class="">Event name</p>
+              <div class="input-field u">
+                <input id="name" type="text">
+              </div>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col s12 m5">
+                <p class="">Month</p>
+                <div class="input-field u">
+                    <% include partials/months %>
+                </div>
+              </div>
+              <div class="col s12 m5">
+                <p class="">City/town</p>
+                  <div class="input-field u">
+                    <input id="city" type="text">
+                  </div>
+              </div>
             </div>
           </div>
-        </div> 
-      </div>
+      </div> 
 
       <div class="section">
         <% include events.ejs %>
