@@ -19,6 +19,13 @@ var Account = new Schema({
 	    email: String,
 	    name: String,
 	    username: String,
+    },
+    twitter: {
+        id: String,
+        token: String,
+        email: String,
+        name: String,
+        username: String,
     }
 });
 
