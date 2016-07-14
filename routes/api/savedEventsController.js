@@ -136,7 +136,7 @@ router.post('/:id', function(req, res) {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
                       html: function(){
-                           res.redirect("/home");
+                           res.redirect("/");
                      }
                   });
            }

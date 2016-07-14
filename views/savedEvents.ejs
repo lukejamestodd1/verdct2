@@ -3,14 +3,16 @@
 
     <!-- HEADER AND SAVED EVENT COUNT -->
     <div class="text-center">
-        <h3>Your events: <span class="label label-info" id="cuse">{{ savedEvents.length }}</span></h3>
+        <h3>Your events: <span class="label label-info" id="cuse"></span></h3>
     </div>
 
     <!-- EVENT LIST -->
     <div class="row">
         <div class="col s12 m6 l4 center-align v" ng-repeat="savedEvent in savedEvents">
+            <a href="api/events/{{savedEvent.e_id}}">
             <img src="images/e4.png" class="responsive-img center-align">
             <p class="center-align how2 open">{{savedEvent.e_name}}</p>
+            </a>
         </div>
     </div>
     </div>

@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose'); //mongo connection
@@ -116,7 +117,7 @@ router.post('/:id', function(req, res) {
                         res.json(dress);
                       },
                       html: function(){
-                           res.redirect("/home");
+                           res.redirect("/");
                      }
                   });
            }
@@ -223,7 +224,7 @@ router.delete('/:id', function (req, res){
                     res.format({
                         //HTML returns back to the main page
                           html: function(){
-                               res.redirect("/home");
+                               res.redirect("/");
                          },
                          //JSON returns the item with the message that is has been deleted
                         json: function(){

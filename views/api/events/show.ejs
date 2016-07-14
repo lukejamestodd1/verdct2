@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col s6 black-text underline bold">The Event. Public: anyone can view</div>
         <div class="col s6">
-          <a href="/api/events/<=% event.id %>/shortlist" class="black-text">Your Shortlist. Private: only you can view</a>
+          <a href="/api/events/<%= event._id %>/shortlist" class="black-text">Your Shortlist. Private: only you can view</a>
         </div>
       </div>
       </div>
@@ -37,9 +37,10 @@
         <li class="tab col s3"><a class="active tabz black-text" href="#event">The Event. Public: anyone can view</a></li>
         <li class="tab col s3"><a class="tabz black-text" href="#shortlist">Your Shortlist. Private: only you can view</a></li>
       </ul>
+    <div class="divider"></div>
     </div>
-    <div id="event" class="col s12 center-align">EVENT PAGE</div>
-    <div id="shortlist" class="col s12 center-align">SHORTLIST PAGE</div>
+    <div id="event" class="col s12 center-align y"><h5>EVENT PAGE</h5></div>
+    <div id="shortlist" class="col s12 center-align y"><h5>SHORTLIST PAGE</h5></div>
   </div> -->
 
       <div class="divider"></div>
@@ -67,11 +68,16 @@
             </div>
         </div>
       <% } else { %>
+      <div class="container">
+        <div class="row">
         <% if (RD === 1){ %>
-          <p id="RD" class="margined"><%= RD %> person has chosen what they're wearing</p>
+          <h5 id="RD" class=""><%= RD %> person has chosen what they're wearing</h5>
         <% } else { %>
-          <p id="RD" class="margined"><%= RD %> people have chosen what they're wearing</p>
+          <h5 id="RD" class=""><%= RD %> people have chosen what they're wearing</h5>
         <% } %>
+      </div>
+    </div>
+
       <div class="container">
         <div class="row padded">
       <% for(var i = 0; i < savedEvents.length; i++){ 
@@ -98,8 +104,24 @@
         <% }}} %>
       </div>
     </div>
-    
-  <a href="/api/events/<%= event.id %>/edit" class="margined">Edit this event</a>
+
+    <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger nocaps open center-align" href="#modal1">Event admin</a>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h5 class="lora z">Enter the password to update details for this event</h5>
+      <div class="input-field col s12 x">
+          <input type="password" name="password" id="password">
+          <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat nocaps">Enter</a>
+    </div>
+  </div>
+  <!-- <a href="/api/events/%= event.id %>/edit" class="margined">Edit this event</a> -->
+
   <% include ../../partials/footer %>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>

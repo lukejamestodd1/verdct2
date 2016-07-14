@@ -135,7 +135,7 @@ router.post('/:id', function(req, res) {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
                       html: function(){
-                           res.redirect("/home");
+                           res.redirect("/");
                      },
                      //JSON responds showing the updated values
                     json: function(){
@@ -251,10 +251,11 @@ router.get('/:id/shortlist', function(req, res) {
                   //HTML response will render the 'edit.jade' template
                   html: function(){
                          res.render('api/events/shortlist', {
-                            title: 'event',
+                            title: 'shortlist',
                             "event" : event,
                             "dresses" : dresses,
-                            "savedEvents" : savedEvents
+                            "savedEvents" : savedEvents,
+                            user: req.user
                         });
                    },
                    //JSON response will return the JSON output
@@ -288,7 +289,7 @@ router.delete('/:id', function (req, res){
                     res.format({
                         //HTML returns back to the main page
                           html: function(){
-                               res.redirect("/home");
+                               res.redirect("/");
                          },
                          //JSON returns the item with the message that is has been deleted
                         json: function(){

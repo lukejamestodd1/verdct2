@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/head2.ejs %>
+  </head>
+  <body>
+    <% include partials/nav-top.ejs %>
+      <main>
+        <div class="section teal lighten-4">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m5 offset-m3">
+                <h4 class="lora">Add a dress to your shortlist</h4>
+                <p class="open w">Fill in as many details as possible to help avoid a clash!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m3">
+                <ul class="collapsible open" data-collapsible="accordion">
+                  <li>
+                    <div class="collapsible-header active z"><h5>The image</h5></div>
+                    <div class="collapsible-body">
+                      <div class="file-field input-field">
+                        <div class="btn waves-effect waves-light btn-large open white black-text big-button">
+                          <span><i class="material-icons">camera_alt</i></span>
+                          <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text" value="Upload your own image">
+                        </div>
+                      </div>
+                      <p>or</p>
+                          <div class="input-field col s12 z">
+                  <input id="img_url" type="text">
+                  <label for="img_url" class="">Copy/paste the image URL </label>
+                </div>  
+                    </div>
+                  </li>
+          <li>
+            <div class="collapsible-header z"><h5>The style</h5></div>
+            <div class="collapsible-body">
+                <div class="carousel">
+                <img class="carousel-item" src="images/e1.png">
+                <img class="carousel-item" src="images/e2.png">
+                <img class="carousel-item" src="images/e3.png">
+                <img class="carousel-item" src="images/e4.png"> 
+                <img class="carousel-item" src="images/e5.png"> 
+              </div> 
+            
+                
+              
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header z"><h5>The colour</h5></div>
+            <div class="collapsible-body">
+              <div class="col s12 open card grey lighten-2">
+            
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header z"><h5>The details</h5></div>
+            <div class="collapsible-body">
+              <div class="input-field col s12 z">
+                  <input id="brand" type="text">
+                  <label for="brand" class="">Brand/designer</label>
+                </div>
+
+                  <div class="input-field col s12 z">
+                    <input id="name" type="text" class="">
+                    <label for="name" class="">Dress name</label>
+                  </div>
+                  <p class="">Price range</p>
+                <div class="input-field col s12 z">
+                  <% include partials/prices %>
+                </div>
+                  <button href="/api/events/new" method="post" class="waves-effect waves-light btn-large open white black-text big-button x">Save</button>
+                  <a href="/" class="margined waves-effect waves-light btn-large open white black-text big-button x" id="cancel">Cancel</a>
+              <div class="x">
+              <p>P.S. You can edit all of the details later</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </main>        
+      <% include partials/footer.ejs %>
+      <% include partials/scripts %>
+  </body>
+</html>

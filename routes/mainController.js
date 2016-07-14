@@ -33,6 +33,10 @@ router.get('/newevent', function(req, res, next) {
   res.render('newevent', { title: 'Create Event', user: req.user});
 });
 
+router.get('/newdress', function(req, res, next) {
+  res.render('newdress', { title: 'Create Event', user: req.user});
+});
+
 router.get('/events', function(req, res, next) {
   res.render('myevents', { title: 'My Events', user: req.user});
 });

@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% include ../../partials/head %>
+    <% include ../../partials/head2 %>
+    <link rel='stylesheet' href='../../../stylesheets/style.css'/>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <% include ../../partials/navbar %>
-      </header>
-    </div>
-
-      <div class="container">
-        <h1><%= event.name %></h1>
-         <a href="/api/events/<%= event.id %>/edit" class="margined">Edit</a>
+    <% include ../../partials/nav-top %>
+      <div class="parallax-container">
+          <div class="parallax">
+          <img src="../../../images/e4.png">
+        </div>
       </div>
 
-<div class="container">
+<div class="section">
+      <div class="container center-align v">
+        <h3><%= event.name %></h3>
+        <p>4 months until the event!</p>
+      </div>
+
+      <div class="center-align open">
+      <div class="row">
+        <div class="col s6">
+          <a href="/api/events/<%= event._id %>" class="black-text">The Event. Public: anyone can view</a></div>
+        <div class="col s6 underline bold">
+          Your Shortlist. Private: only you can view
+        </div>
+      </div>
+      </div>
+
+      <div class="divider"></div>
+</div>
 
       <% if(savedEvents.length <= 0){ %>
+        <p class="margined">You are not following this event</p>
         <form id="formAddSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/" class="margined">
           <div class="form-group">
             <p>
@@ -32,31 +47,65 @@
         </form>
       <% } %>
 
-        <h1>Dresses on my shortlist for this event:</h1>
-        <% for(var i = 0; i < dresses.length; i++){ %>
-          <p><a href="/api/dresses/<%= dresses[i]._id %>"><%= dresses[i].name %></a>
-          </p>
-            <% if(savedEvents.length > 0){ %>
-              <form id="formEditSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/<%= savedEvents[0].id %>" class="margined">
-            <div class="form-group">
-              <p>
-                <input id="event_id"type="hidden" value="<%= event.id %>" name="event_id"/>
-                <input id="e_name"  type="hidden" value="<%= event.name %>" name="e_name"/>
-                <input id="e_img"   type="hidden" value="<%= event.img_url %>" name="e_img"/>
-                <input id="dress_id"type="hidden" value="<%= dresses[i]._id %>" name="dress_id"/>
-                <input id="d_name"  type="hidden" value="<%= dresses[i].name %>" name="d_name"/>
-                <input id="d_img"   type="hidden" value="<%= dresses[i].img_url %>" name="d_img"/>
-                <input id="brand"   type="hidden" value="<%= dresses[i].brand %>" name="brand"/>
-                <input id="cost"    type="hidden" value="<%= dresses[i].cost %>" name="cost"/>
-                <input id="sTop"    type="hidden" value="<%= dresses[i].sTop %>" name="sTop"/>
-                <input id="sBot"    type="hidden" value="<%= dresses[i].sBot %>" name="sBot"/>
-                <input id="colour"  type="hidden" value="<%= dresses[i].colour %>" name="colour"/>
-              </p>
-              <p>
-                <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">This is the one!</button>
-              </p>
+      <div class="container">
+        <div class="row">
+          <h5>Save your top 3 dresses here</h5>
+          <div class="col s12 m5 l3 v open card newDress grey lighten-2">
+            <div class="">
+              <a href="/newdress/">Add a new dress</a>
             </div>
-          </form>
+
+          </div>
+          <div class="col s12 m5 l3 v open card newDress grey lighten-2">
+            <div class="">
+              <a href="newdress">Add a new dress</a>
+            </div>
+
+          </div>
+          <div class="col s12 m5 l3 v open card newDress grey lighten-2">
+            <div class="">
+              <a href="newdress">Add a new dress</a>
+            </div>
+
+          </div>
+          <% for(var i = 0; i < dresses.length; i++){ %>
+          <div class="col s12 m6 l4 v open card">
+            <div class="row">
+              <div class="col s6">
+                <a href="/api/dresses/<%= dresses[i]._id %>/edit">
+                    <img src="../../../images/d1.jpg" class="responsive-img center-align">
+                </a>
+              </div>
+              <div class="col s6">
+                <p>Dress name: <%= dresses[i].name %></p>
+                <p>img:<%= dresses[i].img_url %></p>
+                <p>Brand:<%= dresses[i].brand %></p>
+                <p>Cost:<%= dresses[i].cost %></p>
+                <p>Top style:<%= dresses[i].sTop %></p>
+                <p>Bottom style:<%= dresses[i].sBot %></p>
+                <p>Colour:<%= dresses[i].colour %></p>
+
+                  <% if(savedEvents.length > 0){ %>
+                    <form id="formEditSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/<%= savedEvents[0].id %>" class="margined">
+                  <div class="form-group">
+                    <p>
+                      <input id="event_id"type="hidden" value="<%= event.id %>" name="event_id"/>
+                      <input id="e_name"  type="hidden" value="<%= event.name %>" name="e_name"/>
+                      <input id="e_img"   type="hidden" value="<%= event.img_url %>" name="e_img"/>
+                      <input id="dress_id"type="hidden" value="<%= dresses[i]._id %>" name="dress_id"/>
+                      <input id="d_name"  type="hidden" value="<%= dresses[i].name %>" name="d_name"/>
+                      <input id="d_img"   type="hidden" value="<%= dresses[i].img_url %>" name="d_img"/>
+                      <input id="brand"   type="hidden" value="<%= dresses[i].brand %>" name="brand"/>
+                      <input id="cost"    type="hidden" value="<%= dresses[i].cost %>" name="cost"/>
+                      <input id="sTop"    type="hidden" value="<%= dresses[i].sTop %>" name="sTop"/>
+                      <input id="sBot"    type="hidden" value="<%= dresses[i].sBot %>" name="sBot"/>
+                      <input id="colour"  type="hidden" value="<%= dresses[i].colour %>" name="colour"/>
+                    </p>
+                    <p>
+                      <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">This is the one!</button>
+                    </p>
+                  </div>
+                </form>
             <% } else { %>
 
           <form id="formAddSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents" class="margined">
@@ -80,10 +129,35 @@
             </div>
           </form>
           <% } %>
+          </div>
+            </div>
+            </div>
         <% } %>
       </div>
+    </div> 
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <h5>Have you seen?</h5>
+      <div class="col s6 m3 l2 v open newDress">
+        <img src="../../../images/d7.jpg" class="responsive-img"></div>
+      <div class="col s6 m3 l2 v open newDress">
+        <img src="../../../images/d3.jpg" class="responsive-img"></div>
+      <div class="col s6 m3 l2 v open newDress">
+        <img src="../../../images/d2.jpg" class="responsive-img"></div>
+      <div class="col s6 m3 l2 v open newDress">
+        <img src="../../../images/d5.jpg" class="responsive-img"></div>
+      <div class="col s6 m3 l2 v open newDress">
+        <img src="../../../images/d6.jpg" class="responsive-img"></div>
+    </div>
+  </div>
 
-      <form id="formAddDress" name="addDress" method="post" action="/api/dresses" class="margined">
+          <a class="waves-effect waves-light btn modal-trigger nocaps open center-align" href="#modal1">Add a new dress</a>
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h5 class="lora z">Add a new dress</h5>
+              <form id="formAddDress" name="addDress" method="post" action="/api/dresses" class="margined">
         <div class="form-group">Add a New Dress to my shortlist for this event
           <p>Dress Name:
             <input id="inputName" type="text" placeholder="Enter Dress Name" name="name"/>
@@ -112,7 +186,84 @@
           </p>
         </div>
       </form>
+              
 
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat nocaps">Back</a>
+            </div>
+          </div>
+        
+        <a class="waves-effect waves-light btn modal-trigger nocaps open center-align" href="#modal2">Login to save dress</a>
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h5 class="lora z">Log in to save your dress</h5>
+      <div class="section">
+          <div class="container">
+            <div class="row open">
+              <div class="col s12 m6 l6">
+                <div class="z social">
+                  <p class="open z">sign in with</p>
+                  <a href="/auth/facebook"><img src="../../../images/fbt.png"></a>
+                  <a href="/auth/instagram"><img src="../../../images/int.png"></a>
+                  <a href="/auth/twitter"><img src="../../../images/twt.png"></a>
+                </div>
+                <p>Need an account? <a href="/register">Signup</a></p>
+                <p>Or go <a href="/">home</a>.</p>
+              </div>
+              <div class="col s12 m6 l6">
+                <p class="open z">or enter your Verdct details</p>
+                <div class="row">
+                  <form action="/login" method="post" class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                          <input type="text" name="username" id="username">
+                          <label for="username">Username</label>
+                      </div>
+                      <div class="input-field col s12 z">
+                          <input type="password" name="password" id="password">
+                          <label for="password">Password</label>
+                      </div>
+                      <button type="submit" class="btn btn-main z white">Login</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!!" class=" modal-action modal-close waves-effect waves-green btn-flat nocaps">Enter</a>
+    </div>
+  </div>
+      
 
+  <% include ../../partials/footer %>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1561353927499605',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  <script src="../../../javascripts/spa.js"></script>
+  <script src="../../../javascripts/init.js"></script>
 </body>
 </html>

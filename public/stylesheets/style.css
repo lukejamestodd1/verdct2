@@ -188,6 +188,9 @@ a {
 	-webkit-filter: invert(100%);
 	filter: invert(100%);
 }
+.logo2{
+	
+}
 
 
 .dropdown-content li>a, .dropdown-content li>span {
@@ -267,4 +270,11 @@ a {
 }
 .underline{
 	text-decoration: underline;
+}
+.newDress{
+	height: 20em;
+	width: 15em;
+}
+.nocaps{
+	text-transform: none !important;
 }
