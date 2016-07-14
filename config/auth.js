@@ -9,14 +9,14 @@ module.exports = {
     clientSecret: '5e19d2bceb0e426c9a7c8116a7385e97',
     callbackURL: 'http://localhost:8080/auth/instagram/callback',
   }
-  twitterAuth: {
-    consumerKey: 'YOUR-TWITTER-CONSUMER-KEY',
-    consumerSecret: 'YOUR-TWITTER-CONSUMER-SECRET',
-    callbackURL: 'http://localhost:3000/auth/twitter/callback',
-  },
-  googleAuth: {
-    clientID: 'YOUR-GOOGLE-CLIENT-ID',
-    clientSecret: 'YOUR-GOOGLE-CLIENT-SECRET',
-    callbackURL: 'http://localhost:3000/auth/google/callback',
-  },
+  // twitterAuth: {
+  //   consumerKey: 'YOUR-TWITTER-CONSUMER-KEY',
+  //   consumerSecret: 'YOUR-TWITTER-CONSUMER-SECRET',
+  //   callbackURL: 'http://localhost:3000/auth/twitter/callback',
+  // },
+  // googleAuth: {
+  //   clientID: 'YOUR-GOOGLE-CLIENT-ID',
+  //   clientSecret: 'YOUR-GOOGLE-CLIENT-SECRET',
+  //   callbackURL: 'http://localhost:3000/auth/google/callback',
+  // },
 };
