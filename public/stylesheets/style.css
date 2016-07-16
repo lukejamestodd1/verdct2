@@ -189,7 +189,7 @@ a {
 	filter: invert(100%);
 }
 .logo2{
-	
+
 }
 
 
@@ -278,3 +278,15 @@ a {
 .nocaps{
 	text-transform: none !important;
 }
+.bx-viewport {
+    width: 100%;
+    overflow: visible !important; 
+}
+.bx-wrapper .bx-pager .bx-pager-item, .bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+    display: none;
+ }
+ .bx-wrapper .bx-controls-direction a {
+    position: absolute;
+     top: 100%;
+ }
+ 
