@@ -30,6 +30,15 @@ $(document).ready(function(){
         moveSlides: 1,
         startSlide: 1,
     });
+    $('.bxslider3').bxSlider({
+        minSlides: 1,
+        maxSlides: 5,
+        slideWidth: 300,
+        slideMargin: 50,
+        infiniteLoop: true,
+        moveSlides: 1,
+        startSlide: 1,
+    });
     // $('.slick').slick({
     //   centerMode: true,
     //   centerPadding: '100px',

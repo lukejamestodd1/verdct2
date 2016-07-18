@@ -21,43 +21,49 @@
           <div class="container">
             <div class="row">
               <div class="col s12 m6 offset-m3">
-                    <div class="z"><h5>1. Name the event</h5></div>
-                    <div class="">
-                        <div class="input-field col s12 z">
-                          <input id="name" type="text">
-                          <label for="name" class="">Event name</label>
-                        </div>
-                        <p class="">Event type</p>
-                        <div class="input-field col s12 z">
-                          <% include partials/e-sel %>
-                        </div>
+                <p>Name of event</p>
+                <div class="input-field col s12 z">
+                  <input id="name" type="text">
+                  <label for="name">Event name</label>
+                </div>      
+                <p class="">Event type</p>
+                <div class="input-field col s12 z">
+                  <% include partials/e-sel %>
+                </div>
+                <div class="input-field col s12 z">
+                  <input id="city" type="text" class="">
+                  <label for="city" class="">City or suburb</label>
+                </div>  
+                <div class="input-field col s12 z">
+                  <input id="date" type="date" class="datepicker">
+                  <label for="date" class="">Date</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
 
-                          <div class="input-field col s12 z">
-                            <input id="city" type="text" class="">
-                            <label for="city" class="">City or suburb</label>
-                          </div>
-                            
-                          <div class="input-field col s12 z">
-                            <input id="date" type="date" class="datepicker">
-                            <label for="date" class="">Date</label>
-                          </div>
-                    </div>
-                  
-            <div class="z"><h5>2. Select a cover image</h5></div>
-            <div class="">
-              <ul class="bxslider eventSlider">
-                <li><img class="center-align" src="/images/e1.png"></li>
-                <li><img class="center-align" src="/images/e2.png"></li>
-                <li><img class="center-align" src="/images/e3.png"></li>
-                <li><img class="center-align" src="/images/e4.png"></li>
-                <li><img class="center-align" src="/images/e5.png"></li>
-                <li><img class="center-align" src="/images/e6.png"></li>
-                <li><img class="center-align" src="/images/e7.png"></li>
-                <li><img class="center-align" src="/images/e8.png"></li>
-                <li><img class="center-align" src="/images/e9.png"></li>
-                <li><img class="center-align" src="/images/e10.png"></li>
-              </ul>
-
+        <div class="section teal lighten-4 z">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m3 z">
+                <h5 class="lora">Select a cover image</h5>
+              </div>
+            </div>
+            <ul class="bxslider3 center-align">
+              <li><img class="center-align" src="/images/e1.png"></li>
+              <li><img class="center-align" src="/images/e2.png"></li>
+              <li><img class="center-align" src="/images/e3.png"></li>
+              <li><img class="center-align" src="/images/e4.png"></li>
+              <li><img class="center-align" src="/images/e5.png"></li>
+              <li><img class="center-align" src="/images/e6.png"></li>
+              <li><img class="center-align" src="/images/e7.png"></li>
+              <li><img class="center-align" src="/images/e8.png"></li>
+              <li><img class="center-align" src="/images/e9.png"></li>
+              <!-- <li><img class="center-align" src="/images/e10.png"></li> -->
+            </ul>
+            <div class="row v">
+              <div class="col s12 m6 offset-m3">
                 <div class="file-field input-field">
                   <div class="btn waves-effect waves-light btn-large open white black-text big-button">
                     <span><i class="material-icons">camera_alt</i></span>
@@ -67,39 +73,36 @@
                     <input class="file-path validate" type="text" value="Or upload your own image">
                   </div>
                 </div>
-              
-            </div>
-          
-            <div class="z"><h5>3. Set a password (optional)</h5></div>
-            <div class="">
-              <div class="input-field col s12">
-                <input id="password" type="text">
-                <label for="password" class="">Password</label>
-              </div>
-              <ul class="margined">
-                <li class="white-text">.</li>
-                <li>Password is optional</li>
-                <li>Not case sensitive</li>
-                <li>Can't decide? <a href="/passwords">Read our suggestions</a></li>
-              </ul>
-                  <button href="/api/events/new" method="post" class="waves-effect waves-light btn-large open white black-text big-button x">Save event</button>
-                  <a href="/" class="margined waves-effect waves-light btn-large open white black-text big-button x" id="cancel">Cancel</a>
-              <div class="x">
-              <p>P.S. You can edit all of the details later</p>
-              </div>
-            </div>
-        
-       
-
-
-
-
               </div>
             </div>
           </div>
         </div>
 
-
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m3">
+                <h5 class="lora w">Set a password?</h5>
+                <div class="input-field col s12">
+                  <input id="password" type="text">
+                  <label for="password" class="">Password</label>
+                </div>
+                <ul class="margined">
+                  <li class="white-text">.</li>
+                  <li>Password is optional</li>
+                  <li>Not case sensitive</li>
+                  <li>Can't decide? <a href="/passwords">Read our suggestions</a></li>
+                </ul>
+                <button href="/api/events/new" method="post" class="waves-effect waves-light btn-large open white black-text big-button x">Save event</button>
+                <a href="/" class="margined waves-effect waves-light btn-large open white black-text big-button x" id="cancel">Cancel</a>
+                <div class="x">
+                  <p>P.S. You can edit all of the details later</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </main>        
       <% include partials/footer.ejs %>
       <% include partials/scripts %>
