@@ -1,5 +1,5 @@
 body {
-	font-family: 'Lora', serif;
+	font-family: 'Open Sans', serif;
 	font-weight: 100;
 }
 .lora{
@@ -280,7 +280,9 @@ a {
 }
 .bx-viewport {
     width: 100%;
-    overflow: visible !important; 
+    overflow: visible !important;
+    background-color: transparent !important;
+    border: none !important;
 }
 .bx-wrapper .bx-pager .bx-pager-item, .bx-wrapper .bx-controls-auto .bx-controls-auto-item {
     display: none;
@@ -289,4 +291,41 @@ a {
     position: absolute;
      top: 100%;
  }
- 
+ .topimg{
+ 	position: absolute;
+ 	bottom: 0;
+ 	-webkit-user-select: initial;
+ }
+
+ .topcont:hover{
+	-webkit-filter: invert(0%);
+ }
+
+ .topcont{
+ 	position: relative;
+ 	min-height: 150px;
+ 	font-size: 0.75em;
+ 	-webkit-filter: invert(40%);
+ }
+
+ .btmtitle{
+ 	/*position: absolute;*/
+ 	bottom: 0;
+ }
+ .btmcont{
+ 	-webkit-filter: invert(40%);
+ 	/*position: relative;*/
+ 	min-height: 150px;
+ 	font-size: 0.75em;
+ }
+.bx-wrapper {
+    position: relative;
+    margin: 0 auto; 
+    padding: 0;
+}
+.selected{
+	-webkit-filter: invert(0%);
+}
+.btmcont:hover{
+	-webkit-filter: invert(0%);
+ }

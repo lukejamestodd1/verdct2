@@ -14,9 +14,56 @@ $(document).ready(function(){
   	});
     $('.bxslider').bxSlider({
         minSlides: 3,
-        maxSlides: 5,
-        slideWidth: 100,
-        slideMargin: 10,
+        maxSlides: 10,
+        slideWidth: 75,
+        slideMargin: 5,
         infiniteLoop: true,
+        moveSlides: 1,
+        startSlide: 5,
+    });
+    $('.bxslider2').bxSlider({
+        minSlides: 3,
+        maxSlides: 10,
+        slideWidth: 75,
+        slideMargin: 5,
+        infiniteLoop: true,
+        moveSlides: 1,
+        startSlide: 8,
+    });
+    // $('.slick').slick({
+    //   centerMode: true,
+    //   centerPadding: '100px',
+    //   slidesToShow: 9,
+    //   infinite: true,
+    //   slidesToScroll: 1,
+    //   focusOnSelect: true,
+    //   responsive: [
+    //     {
+    //       breakpoint: 768,
+    //       settings: {
+    //         arrows: true,
+    //         centerMode: true,
+    //         centerPadding: '40px',
+    //         slidesToShow: 3
+    //       }
+    //     },
+    //     {
+    //       breakpoint: 480,
+    //       settings: {
+    //         arrows: true,
+    //         centerMode: true,
+    //         centerPadding: '40px',
+    //         slidesToShow: 1
+    //       }
+    //     }
+    //   ]
+    // });
+    $('.topcont').click(function(){
+      $(this).addClass('selected');
+      $(this).siblings().removeClass('selected');
+    });
+    $('.btmcont').click(function(){
+      $(this).addClass('selected');
+      $(this).siblings().removeClass('selected');
     });
 });
