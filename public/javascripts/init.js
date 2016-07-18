@@ -19,7 +19,7 @@ $(document).ready(function(){
         slideMargin: 5,
         infiniteLoop: true,
         moveSlides: 1,
-        startSlide: 5,
+        startSlide: 1,
     });
     $('.bxslider2').bxSlider({
         minSlides: 3,
@@ -28,7 +28,7 @@ $(document).ready(function(){
         slideMargin: 5,
         infiniteLoop: true,
         moveSlides: 1,
-        startSlide: 8,
+        startSlide: 1,
     });
     // $('.slick').slick({
     //   centerMode: true,
