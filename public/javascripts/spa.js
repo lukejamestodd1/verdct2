@@ -47,6 +47,7 @@ function eventController($scope, $http) {
         .error(function(data) {
             console.log('Error: ' + data);
         });
+    
     // when submitting the add form, send the text to the node API
     $scope.createEvent = function() {
         $http.post('/api/events', $scope.formData)

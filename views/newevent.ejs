@@ -17,26 +17,47 @@
           </div>
         </div>
 
+<div ng-app="event" ng-controller="eventController">
+  <form>
         <div class="section">
           <div class="container">
             <div class="row">
-              <div class="col s12 m6 offset-m3">
-                <p>Name of event</p>
+              <div class="col s12 m6 offset-m3 form-group">
+                <p class="z">Name of event</p>
                 <div class="input-field col s12 z">
-                  <input id="name" type="text">
+                  <input id="name" type="text" name="name" ng-model="formData.name">
                   <label for="name">Event name</label>
                 </div>      
                 <p class="">Event type</p>
-                <div class="input-field col s12 z">
-                  <% include partials/e-sel %>
+                <div class="input-field col s12 v">
+                  <select id="type" name="type" ng-model="formData.type">
+                    <option value="school formal" selected> school formal</option>
+                    <option value="semi-formal"> semi-formal</option>
+                    <option value="party"> party</option>
+                    <option value="ball"> ball</option>
+                    <option value="gala"> gala</option>
+                    <option value="graduation"> graduation</option>
+                  </select>
                 </div>
                 <div class="input-field col s12 z">
-                  <input id="city" type="text" class="">
+                  <input id="city" name="city" type="text" ng-model="formData.city">
                   <label for="city" class="">City or suburb</label>
                 </div>  
                 <div class="input-field col s12 z">
-                  <input id="date" type="date" class="datepicker">
-                  <label for="date" class="">Date</label>
+                  <select id="date" name="date" ng-model="formData.date">
+                    <option value="1" selected> January</option>
+                    <option value="2"> February</option>
+                    <option value="3"> March</option>
+                    <option value="4"> April</option>
+                    <option value="5"> May</option>
+                    <option value="6"> June</option>
+                    <option value="7"> July</option>
+                    <option value="8"> August</option>
+                    <option value="9"> September</option>
+                    <option value="10"> October</option>
+                    <option value="11"> November</option>
+                    <option value="12"> December</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -60,7 +81,7 @@
               <li><img class="center-align" src="/images/e7.png"></li>
               <li><img class="center-align" src="/images/e8.png"></li>
               <li><img class="center-align" src="/images/e9.png"></li>
-              <!-- <li><img class="center-align" src="/images/e10.png"></li> -->
+              <li><img class="center-align" src="/images/e10.png"></li>
             </ul>
             <div class="row v">
               <div class="col s12 m6 offset-m3">
@@ -76,6 +97,7 @@
               </div>
             </div>
           </div>
+          <input id="img_url" name="img_url" type="hidden" ng-model="formData.img_url">
         </div>
 
         <div class="section">
@@ -84,7 +106,7 @@
               <div class="col s12 m6 offset-m3">
                 <h5 class="lora w">Set a password?</h5>
                 <div class="input-field col s12">
-                  <input id="password" type="text">
+                  <input id="password" name="password" type="text" ng-model="formData.password">
                   <label for="password" class="">Password</label>
                 </div>
                 <ul class="margined">
@@ -93,7 +115,12 @@
                   <li>Not case sensitive</li>
                   <li>Can't decide? <a href="/passwords">Read our suggestions</a></li>
                 </ul>
-                <button href="/api/events/new" method="post" class="waves-effect waves-light btn-large open white black-text big-button x">Save event</button>
+                
+                <% if(user){ %>
+                <button type="submit" class="waves-effect waves-light btn-large open white black-text big-button x" ng-click="createEvent()">Save event</button>
+                <% } else { %>
+                <a class="modal-trigger waves-effect waves-light btn-large open white black-text big-button x" href="#login">Save event</a>
+                <% } %>
                 <a href="/" class="margined waves-effect waves-light btn-large open white black-text big-button x" id="cancel">Cancel</a>
                 <div class="x">
                   <p>P.S. You can edit all of the details later</p>
@@ -102,7 +129,51 @@
             </div>
           </div>
         </div>
-        
+  </form>
+</div>
+       <!-- Modal Structure -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <h5 class="lora z">Log in to save your event</h5>
+      <div class="section">
+          <div class="container">
+            <div class="row open">
+              <div class="col s12 m6 l6">
+                <div class="z social">
+                  <p class="open z">sign in with</p>
+                  <a href="/auth/facebook"><img src="../../../images/fbt.png"></a>
+                  <a href="/auth/instagram"><img src="../../../images/int.png"></a>
+                  <a href="/auth/twitter"><img src="../../../images/twt.png"></a>
+                </div>
+                <p>Need an account? <a href="/register">Signup</a></p>
+                <p>Or go <a href="/">home</a>.</p>
+              </div>
+              <div class="col s12 m6 l6">
+                <p class="open z">or enter your Verdct details</p>
+                <div class="row">
+                  <form action="/login" method="post" class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                          <input type="text" name="username" id="username">
+                          <label for="username">Username</label>
+                      </div>
+                      <div class="input-field col s12 z">
+                          <input type="password" name="password" id="password">
+                          <label for="password">Password</label>
+                      </div>
+                      <button type="submit" class="btn btn-main z white">Login</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!!" class="modal-action modal-close waves-effect waves-green btn-flat nocaps">Enter</a>
+    </div>
+  </div> 
       </main>        
       <% include partials/footer.ejs %>
       <% include partials/scripts %>

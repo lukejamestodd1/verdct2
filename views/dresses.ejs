@@ -25,9 +25,15 @@
                 <form>
                     <div class="form-group">
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="dress name" ng-model="formData.name">
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="dress brand" ng-model="formData.brand">
+                        <input type="text" class="form-control input-lg text-center" placeholder="dress name" name="name" ng-model="formData.name">
+                        <input type="text" class="form-control input-lg text-center" placeholder="dress brand" name="brand" ng-model="formData.brand">
+                        <input type="text" class="form-control input-lg text-center" placeholder="top style" name="sTop" ng-model="formData.sTop">
+                        <input type="text" class="form-control input-lg text-center" placeholder="dress sBot" name="sBot" ng-model="formData.sBot">
+                        <input type="text" class="form-control input-lg text-center" placeholder="dress colour" name="colour" ng-model="formData.colour">
+                        <input type="text" class="form-control input-lg text-center" value="5773706fb8b53cee5ac35066" name="user_id" ng-model="formData.user_id">
+                        <input type="text" class="form-control input-lg text-center" value="Luke Todd" name="owner" ng-model="formData.owner">
+                        <input type="text" class="form-control input-lg text-center" value="57579e8317c0a22e977878c9" name="event_id" ng-model="formData.event_id">
+                        
                     </div>
                     <!-- createDress() -->
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="createDress()">Add</button>

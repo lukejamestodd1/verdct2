@@ -43,7 +43,7 @@ router.get('/events', function(req, res, next) {
 
 // ============= LOGIN ROUTES ==============
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login', user : req.user });
+  res.render('login', { title: 'Login', user : req.user});
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
@@ -61,6 +61,8 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/',
   failureRedirect: '/',
 }));
+
+
 
 router.get('/auth/instagram', passport.authenticate('instagram', { scope: 'email' }));
 

@@ -17,6 +17,8 @@
         </div>
       </div>
 
+<div ng-app="dress" ng-controller="dressController">
+  <form>
       <div class="section">
         <div class="container">
           <div class="row">
@@ -35,7 +37,7 @@
               </div>
               <p>or</p>
               <div class="input-field col s12 z">
-                <input id="img_url" type="text">
+                <input id="img_url" name="img_url" type="text" ng-model="formData.img_url">
                 <label for="img_url" class="">Copy/paste the image URL </label>
               </div>  
             </div>
@@ -52,7 +54,7 @@
           </div>
         </div>
 
-        <ul class="bxslider teal lighten-4 center-align" id="sTop">
+        <ul class="bxslider teal lighten-4 center-align">
           <li class="center-align topcont">Asymetrical<img class="topimg" src="/images/tops/Asymetrical.png"></li>
           <li class="center-align topcont">Collar<img class="topimg" src="/images/tops/Collar.png"></li>
           <li class="center-align topcont">Draped<img class="topimg" src="/images/tops/Draped.png"></li>
@@ -72,7 +74,7 @@
           <li class="center-align topcont">Round neck<img class="topimg" src="/images/tops/RoundNeck.png"></li>
         </ul>
 
-        <ul class="bxslider2 input-field" id="sBot">
+        <ul class="bxslider2">
           <li class="btmcont center-align">
             <img class="center-align" src="/images/bottoms/A-line.png">
             <p class="btmtitle center-align">A-line</p>
@@ -127,14 +129,15 @@
           </li>
         </ul>
         </div>
-      
+      <input id="sTop" name="sTop" type="hidden" value="" ng-model="formData.sTop">
+      <input id="sBot" name="sBot" type="hidden" value="" ng-model="formData.sBot">
         
       <div class="section">
         <div class="container">
           <div class="row">
             <div class="col s12 m6 offset-m3">
               <h5 class="lora">The colour</h5>
-              <input class="jscolor"></input>
+              <input class="jscolor" id="colour" name="colour" type="text" ng-model="formData.colour"></input>
             </div>
           </div>
         </div>
@@ -146,18 +149,27 @@
             <div class="col s12 m6 offset-m3">
               <h5 class="lora">The details</h5>
                <div class="input-field col s12 z">
-                <input id="brand" type="text">
+                <input id="brand" type="text" name="brand" ng-model="formData.brand">
                 <label for="brand" class="">Brand/designer</label>
               </div>
               <div class="input-field col s12 z">
-                <input id="name" type="text" class="">
+                <input id="name" type="text" name="name" ng-model="formData.name">
                 <label for="name" class="">Dress name</label>
               </div>
               <p class="">Price range</p>
               <div class="input-field col s12 z">
-                <% include partials/prices %>
+                <select id="cost" type="text" name="cost" ng-model="formData.cost">
+                  <option value="1" selected> $ 0 - 100</option>
+                  <option value="2"> $ 100 - 170</option>
+                  <option value="3"> $ 170 - 250</option>
+                  <option value="4"> $ 250 - 370</option>
+                  <option value="5"> $ 370 - 500</option>
+                  <option value="6"> $ 500 - 620</option>
+                  <option value="7"> $ 620 - 800</option>
+                  <option value="8"> $ 800 +</option>
+                </select>
               </div>
-              <button href="/api/events/new" method="post" class="waves-effect waves-light btn-large open white black-text big-button x">Save</button>
+              <button type="submit" ng-click="createDress()" class="waves-effect waves-light btn-large open white black-text big-button x" href="api/dresses">Save</button>
               <a href="/" class="margined waves-effect waves-light btn-large open white black-text big-button x" id="cancel">Cancel</a>
               <div class="x">
                 <p>P.S. You can edit all of the details later</p>
@@ -166,6 +178,8 @@
           </div>
         </div>
       </div>
+  </form>
+</div>
     </main>
        
     <% include partials/footer.ejs %>

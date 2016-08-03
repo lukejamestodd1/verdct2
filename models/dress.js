@@ -11,7 +11,6 @@ var dressSchema = new mongoose.Schema({
   sTop: String,
   sBot: String,
   colour: String
-
 });
 
 mongoose.model('Dress', dressSchema);

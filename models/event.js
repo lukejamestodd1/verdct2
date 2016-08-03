@@ -20,3 +20,5 @@ var eventSchema = new mongoose.Schema({
 });
 
 mongoose.model('Event', eventSchema);
+
+//user_id, u_name,

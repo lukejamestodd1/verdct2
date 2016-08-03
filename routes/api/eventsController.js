@@ -276,11 +276,13 @@ router.get('/:id/shortlist', function(req, res) {
 router.delete('/:id', function (req, res){
     //find event by ID
     mongoose.model('Event').findById(req.id, function (err, event) {
+      mongoose.model('SavedEvent').find({event_id : req.id}, function (err, savedEvents) {
         if (err) {
             return console.error(err);
         } else {
             //remove it from Mongo
             event.remove(function (err, event) {
+              savedEvents.remove(function (err, savedEvents){
                 if (err) {
                     return console.error(err);
                 } else {
@@ -300,7 +302,9 @@ router.delete('/:id', function (req, res){
                       });
                 }
             });
+          });
         }
+      });
     });
 });
 
