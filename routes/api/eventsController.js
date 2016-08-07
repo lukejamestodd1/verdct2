@@ -282,10 +282,12 @@ router.delete('/:id', function (req, res){
         } else {
             //remove it from Mongo
             event.remove(function (err, event) {
-              savedEvents.remove(function (err, savedEvents){
                 if (err) {
                     return console.error(err);
                 } else {
+                    for (var i = 0; i < savedEvents.length; i++){
+                      savedEvents[i].remove({});
+                    }
                     //Returning success messages saying it was deleted
                     console.log('DELETE removing ID: ' + event._id);
                     res.format({
@@ -302,7 +304,6 @@ router.delete('/:id', function (req, res){
                       });
                 }
             });
-          });
         }
       });
     });

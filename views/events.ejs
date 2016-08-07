@@ -18,6 +18,9 @@
                 <p class="center-align how2 open">{{event.name}}</p>
               </div>
             </a>
+
+            <a class="btn" ng-click="deleteEvent(event._id)">Delete</a>
+
             </div>
 
             <div class="col s12 center-align">
@@ -40,17 +43,5 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="createEvent()">Add</button>
                 </form>
-            </div>
-        </div> -->
-
-<!-- DELETE EVENT -->
-     <!--    <div id="todo-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                <! LOOP OVER EVENTES IN $scope.events -->
-                <!-- <div class="checkbox" ng-repeat="event in events">
-                    <label>
-                        <input type="checkbox" ng-click="deleteEvent(event._id)"> {{ event.name }}
-                    </label>
-                </div>
             </div>
         </div> -->
