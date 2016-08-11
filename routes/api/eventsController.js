@@ -180,7 +180,7 @@ router.param('id', function(req, res, next, id) {
             // go to the next thing
             next(); 
         } 
-    });
+    }); 
 });
 // =================== SHOW ONE EVENT
 router.route('/:id')
