@@ -6,7 +6,7 @@ var dressSchema = new mongoose.Schema({
   owner: String,
   event_id: String,
   brand: String,
-  cost: Number,
+  cost: String,
   img_url: String,
   sTop: String,
   sBot: String,

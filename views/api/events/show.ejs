@@ -19,7 +19,7 @@
         <h3><%= event.name %></h3>
         <p><%= event.month %></p> 
         <% var cDate = new Date();
-            var cMonth = cDate.getMonth() + 1;
+            var cMonth = cDate.getMonth();
             var months = event.month - cMonth; 
             if (months < 0){ %>
               <p>this is a past event</p>

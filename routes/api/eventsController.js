@@ -38,39 +38,52 @@ router.route('/')
     .post(function(req, res) {
         // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
         var name = req.body.name;
-        var user_id = req.user._id;
-        var owner = req.user.username;
+        var type = req.body.type;
+        var img_url = req.body.img_url;
+
+        var u_id = req.user._id;
+        var u_name = req.user.username;
+        
         var venue = req.body.venue;
         var address = req.body.address;
         var suburb = req.body.suburb;
         var city = req.body.city;
         var state = req.body.state;
-        var type = req.body.type;
-        var month = req.body.month;
+        
         var time = req.body.time;
-        var img_url = req.body.img_url;
+        var day = req.body.day;
+        var month = req.body.month;
+        var year = req.body.year;
+        var date = new Date(year + "-" + month + "-" + day);
+
         var login = req.body.login;
         var password = req.body.password;
         var admin = req.body.admin;
-  
+        
         //call create function
         mongoose.model('Event').create({
           name : name,
-          user_id : user_id,
-          owner : owner,
+          type : type,
+          img_url : img_url,
+
+          u_id : u_id,
+          u_name : u_name,
+
           venue : venue,
           address : address,
           suburb : suburb,
           city : city,
           state : state,
-          type : type,
-          month : month,
+          
           time : time,
-          img_url : img_url,
+          day : day,
+          month : month,
+          year : year,
+          date : date,
+          
           login : login,
           password : password,
           admin :  []
-
         },
         function (err, event) {
               if (err) {
@@ -93,17 +106,24 @@ router.route('/')
 router.post('/:id', function(req, res) {
     // Get our REST or form values. These rely on the "name" attributes
       var name = req.body.name;
-      var user_id = req.user._id;
-      var owner = req.user.username;
+      var type = req.body.type;
+      var img_url = req.body.img_url;
+
+      var u_id = req.user._id;
+      var u_name = req.user.username;
+      
       var venue = req.body.venue;
       var address = req.body.address;
       var suburb = req.body.suburb;
       var city = req.body.city;
       var state = req.body.state;
-      var type = req.body.type;
-      var month = req.body.month;
+      
       var time = req.body.time;
-      var img_url = req.body.img_url;
+      var day = req.body.day;
+      var month = req.body.month;
+      var year = req.body.year;
+      var date = new Date(year, month, day, time);
+      
       var login = req.body.login;
       var password = req.body.password;
       var admin = req.body.admin;
@@ -112,17 +132,24 @@ router.post('/:id', function(req, res) {
     mongoose.model('Event').findById(req.id, function (err, event) {
         event.update({
           name : name,
-          user_id : user_id,
-          owner : owner,
+          type : type,
+          img_url : img_url,
+
+          u_id : u_id,
+          u_name : u_name,
+
           venue : venue,
           address : address,
           suburb : suburb,
           city : city,
           state : state,
-          type : type,
-          month : month,
+          
           time : time,
-          img_url : img_url,
+          day : day,
+          month : month,
+          year : year,
+          date : date,
+          
           login : login,
           password : password,
           admin :  []
@@ -280,7 +307,7 @@ router.delete('/:id', function (req, res){
       mongoose.model('SavedEvent').find({event_id : req.id}, function (err, savedEvents) {
         if (err) {
             return console.error(err);
-        } else {
+        } else { 
             //remove it from Mongo
             event.remove(function (err, event) {
                 if (err) {

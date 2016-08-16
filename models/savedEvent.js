@@ -10,7 +10,7 @@ var savedEventSchema = new mongoose.Schema({
   d_name: String,
   d_img: String,
   brand: String,
-  cost: Number,
+  cost: String,
   sTop: String,
   sBot: String,
   colour: String
