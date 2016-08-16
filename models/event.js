@@ -10,7 +10,7 @@ var eventSchema = new mongoose.Schema({
   city: String,
   state: String,
   type: String,
-  date: Date,
+  month: String,
   time: String,
   img_url: String,
   login: String,

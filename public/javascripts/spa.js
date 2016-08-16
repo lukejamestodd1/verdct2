@@ -71,6 +71,10 @@ function eventController($scope, $http) {
                 console.log('Error: ' + data);
             });
     };
+    $scope.clearFilter = function() {
+      console.log("xxx");
+      $scope.query = {};
+    };
 }
 
 var savedEvent = angular.module('savedEvent', []);

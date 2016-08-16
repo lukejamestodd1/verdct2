@@ -46,7 +46,7 @@ router.route('/')
         var city = req.body.city;
         var state = req.body.state;
         var type = req.body.type;
-        var date = req.body.date;
+        var month = req.body.month;
         var time = req.body.time;
         var img_url = req.body.img_url;
         var login = req.body.login;
@@ -64,7 +64,7 @@ router.route('/')
           city : city,
           state : state,
           type : type,
-          date : date,
+          month : month,
           time : time,
           img_url : img_url,
           login : login,
@@ -101,7 +101,7 @@ router.post('/:id', function(req, res) {
       var city = req.body.city;
       var state = req.body.state;
       var type = req.body.type;
-      var date = req.body.date;
+      var month = req.body.month;
       var time = req.body.time;
       var img_url = req.body.img_url;
       var login = req.body.login;
@@ -120,7 +120,7 @@ router.post('/:id', function(req, res) {
           city : city,
           state : state,
           type : type,
-          date : date,
+          month : month,
           time : time,
           img_url : img_url,
           login : login,
@@ -200,6 +200,7 @@ router.route('/:id')
                     "savedEvents" : savedEvents,
                     user : req.user
                 });
+                 console.log(event);
               }
               // json: function(){
               //     res.json(event);

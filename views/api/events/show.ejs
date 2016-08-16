@@ -15,11 +15,19 @@
       </header>
 
 <div class="section">
-        
-      
       <div class="container center-align v">
         <h3><%= event.name %></h3>
-        <p>4 months until the event!</p>
+        <p><%= event.month %></p> 
+        <% var cDate = new Date();
+            var cMonth = cDate.getMonth() + 1;
+            var months = event.month - cMonth; 
+            if (months < 0){ %>
+              <p>this is a past event</p>
+            <% } else if (months === 0){ %>
+            <p>event is this month!</p>
+            <% } else { %>
+            <p><%= months %> months until the event!</p>
+           <% } %>
       </div>
 
       <div class="center-align open">
