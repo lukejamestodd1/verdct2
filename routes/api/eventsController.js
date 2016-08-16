@@ -122,8 +122,8 @@ router.post('/:id', function(req, res) {
       var day = req.body.day;
       var month = req.body.month;
       var year = req.body.year;
-      var date = new Date(year, month, day, time);
-      
+      var date = new Date(year + "-" + month + "-" + day);
+
       var login = req.body.login;
       var password = req.body.password;
       var admin = req.body.admin;
