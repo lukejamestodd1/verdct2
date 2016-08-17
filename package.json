@@ -16,6 +16,7 @@
     "mongoose": "^4.4.20",
     "morgan": "^1.6.1",
     "multer": "^1.1.0",
+    "nodemailer": "^0.7.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-instagram": "^1.0.0",

@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
 var mongoose = require('mongoose');
+var nodemailer = require('nodemailer');
 var router = express.Router();
 
 // ============ MAIN GET ROUTES =============
@@ -146,6 +147,46 @@ router.route('/cu').get(function(req, res, next) {
                 });
               }     
         });
-    })
+});
+
+// =========== Email functionality ========== //
+router.post('/contact', function(req, res) {
+  //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
+  var smtpTrans = nodemailer.createTransport('SMTP', {
+    service: 'Gmail',
+    auth: {
+        user: "cakepudding1@gmail.com",
+        pass: "cakePudding222"
+    }
+  });
+  //Mail options
+  var mailOpts = {
+    from: req.body.email,
+    to: 'lukejamestodd1@hotmail.com',
+    subject: 'Website contact form',
+    html: 'From ' + req.body.nm + '<br><br>' + req.body.email + '<br><br>'  + req.body.message
+  };
+
+  //Checking for completion
+  if (!req.body.nm || !req.body.email || !req.body.message) {
+    res.render('contact', {title: 'Contact Us', msg: 'Please include a name and email.', err: true, page: 'contact', user: req.user})
+  //Honey pot spam rejection
+  } else if (req.body.spampot) {
+    res.render('contact', {title: 'Contact Us', msg: 'You are a spam bot.', err: true, page: 'contact' , user: req.user})
+  }
+
+  //Error msging
+  smtpTrans.sendMail(mailOpts, function (error, response) {
+    //Email not sent
+    if (error) {
+        console.log(error);
+        res.render('contact', { title: 'Contact Us', msg: 'Error occured.', err: true, page: 'contact', user: req.user})
+    }
+    //Yay!! Email sent
+    else {
+        res.render('contact', { title: 'Contact Us', msg: 'Message sent! Thank you.', err: false, page: 'contact', user: req.user});
+    }
+  });
+});
 
 module.exports = router;
