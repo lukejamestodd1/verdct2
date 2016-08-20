@@ -7,7 +7,10 @@ $(document).ready(function(){
   	$('.carousel').carousel();
     $('.parallax').parallax();
     $('ul.tabs').tabs({});
-    $('.modal-trigger').leanModal();
+    $('.modal-trigger1').leanModal({
+        opacity: .6,
+        dismissible: false
+    });
   	$('.datepicker').pickadate({
     	selectMonths: true, // Creates a dropdown to control month
     	selectYears: 15 // Creates a dropdown of 15 years to control year
@@ -75,4 +78,24 @@ $(document).ready(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
     });
+    
 });
+
+function checkPass() {
+        var password = document.getElementById('password').value;
+        var message = document.getElementById('confirmMessage');
+        var eventpass = document.getElementById('eventpass').innerHTML;
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        if (password === eventpass){ 
+            message.style.color = goodColor;
+            message.innerHTML = "correct!"
+            $('#dummy').addClass('hidden');
+            $('#enter').removeClass('hidden');   
+        } else {
+            message.style.color = badColor;
+            message.innerHTML = "incorrect";
+            $('#dummy').removeClass('hidden');
+            $('#enter').addClass('hidden');
+        }
+    }

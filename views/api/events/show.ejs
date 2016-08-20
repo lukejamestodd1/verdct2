@@ -112,23 +112,37 @@
         <% }}} %>
       </div>
     </div>
-
-    <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger nocaps open center-align" href="#modal1">Event admin</a>
+    
+<% if (event.password != undefined){ %>
+<a class="waves-effect waves-light btn modal-trigger1 nocaps open center-align hidden" href="#modalpass">Password</a>
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <div id="modalpass" class="modal">
     <div class="modal-content">
-      <h5 class="lora z">Enter the password to update details for this event</h5>
-      <div class="input-field col s12 x">
-          <input type="password" name="password" id="password">
-          <label for="password">Password</label>
+      <a href="/search" class=""> < Back to all events</a>
+      <div class="container v row">
+        <p class="z">This event is password protected. Please enter the password</p>
+        <div class="input-field col s6 x">
+            <input type="password" name="password" id="password" onkeyup="checkPass(); return false;">
+            <label for="password">Password</label>
+            <span id="confirmMessage" class="confirmMessage"></span>
+            <div id="eventpass" class="hidden"><%= event.password %></div>
+        </div>
+        <div class="col s6">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn nocaps hidden" id="enter">Enter</a>
+          <a href="#!" class="waves-effect waves-green btn nocaps disabled" id="dummy">Enter</a>
+        </div>
       </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat nocaps">Enter</a>
+      </div>
+    <div class="modal-footer container">
+      <p class="z">Don't have the password? <a href="/contact" class="">Message the event organiser</a></p>
     </div>
   </div>
-  <!-- <a href="/api/events/%= event.id %>/edit" class="margined">Edit this event</a> -->
+<% } %>
+  
+  <% if(user){
+    if(user._id === event.u_id){ %>
+    <a href="/api/events/<%= event.id %>/edit" class="margined">Edit this event</a>
+  <% }} %>
 
   <% include ../../partials/footer %>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -155,5 +169,9 @@
 </script>
   <script src="../../javascripts/spa.js"></script>
   <script src="../../javascripts/init.js"></script>
+  
+  <script> if (event.password != undefined) { 
+    $('#modalpass').openModal({dismissible: false});
+  }</script>
 </body>
 </html>

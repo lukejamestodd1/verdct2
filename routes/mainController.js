@@ -162,7 +162,7 @@ router.post('/contact', function(req, res) {
   //Mail options
   var mailOpts = {
     from: req.body.email,
-    to: 'lukejamestodd1@hotmail.com',
+    to: 'dixon.anna@gmail.com',
     subject: 'Website contact form',
     html: 'From ' + req.body.nm + '<br><br>' + req.body.email + '<br><br>'  + req.body.message
   };

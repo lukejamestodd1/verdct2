@@ -20,9 +20,7 @@ var eventSchema = new mongoose.Schema({
   year: String,
   date: Date,
 
-  login: String,
   password: String,
-  admin: Array
 
 });
 

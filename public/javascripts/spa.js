@@ -10,6 +10,15 @@ function dressController($scope, $http) {
         .error(function(data) {
             console.log('Error: ' + data);
         });
+    $scope.init = function(name, event_id)
+      {
+        //This function is sort of private constructor for controller
+        $scope.name = name;
+        $scope.event_id = event_id;
+        //Based on passed argument you can make a call to resource
+        //and initialize more objects
+        //$resource.getMeBond(007)
+      };
     // when submitting the add form, send the text to the node API
     $scope.createDress = function() {
         $http.post('/api/dresses', $scope.formData)

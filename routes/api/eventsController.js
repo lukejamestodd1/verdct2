@@ -55,10 +55,9 @@ router.route('/')
         var month = req.body.month;
         var year = req.body.year;
         var date = new Date(year + "-" + month + "-" + day);
-
-        var login = req.body.login;
+        
         var password = req.body.password;
-        var admin = req.body.admin;
+        
         
         //call create function
         mongoose.model('Event').create({
@@ -81,9 +80,7 @@ router.route('/')
           year : year,
           date : date,
           
-          login : login,
-          password : password,
-          admin :  []
+          password : password
         },
         function (err, event) {
               if (err) {
@@ -123,10 +120,8 @@ router.post('/:id', function(req, res) {
       var month = req.body.month;
       var year = req.body.year;
       var date = new Date(year + "-" + month + "-" + day);
-
-      var login = req.body.login;
+      
       var password = req.body.password;
-      var admin = req.body.admin;
       
    //find the document by ID
     mongoose.model('Event').findById(req.id, function (err, event) {
@@ -150,9 +145,7 @@ router.post('/:id', function(req, res) {
           year : year,
           date : date,
           
-          login : login,
-          password : password,
-          admin :  []
+          password : password
             
         }, function (err, eventID) {
           if (err) {
@@ -240,27 +233,30 @@ router.route('/:id')
 
  //====================== SHOW EDIT FORM
 router.get('/:id/edit', function(req, res) {
+    
     //search for the event within Mongo
     mongoose.model('Event').findById(req.id, function (err, event) {
         if (err) {
             console.log('GET Error: There was a problem retrieving: ' + err);
         } else {
             //Return the event
-            // console.log('GET Retrieving ID: ' + event._id);
-  
-            res.format({
-                //HTML response will render the 'edit.jade' template
-                html: function(){
-                       res.render('api/events/edit', {
-                          title: 'event',
-                          "event" : event
-                      });
-                 },
-                 //JSON response will return the JSON output
-                json: function(){
-                       res.json(event);
-                 }
-            });
+            console.log('GET Retrieving ID: ' + event._id);
+            
+            if(req.user._id === event.u_id){
+              res.format({
+                  html: function(){
+                         res.render('api/events/edit', {
+                            title: 'event',
+                            "event" : event
+                        });
+                   },
+                  json: function(){
+                         res.json(event);
+                   }
+              });
+            } else {
+              res.redirect('/:id');
+            }
         }
     });
 });
@@ -278,7 +274,7 @@ router.get('/:id/shortlist', function(req, res) {
               res.format({
                   //HTML response will render the 'edit.jade' template
                   html: function(){
-                         res.render('api/events/shortlist', {
+                         res.render('api/events/shortlist2', {
                             title: 'shortlist',
                             "event" : event,
                             "dresses" : dresses,

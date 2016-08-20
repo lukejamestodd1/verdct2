@@ -328,3 +328,6 @@ a {
 .btmcont:hover{
 	-webkit-filter: invert(0%);
  }
+.hidden{
+	display: none;
+}
