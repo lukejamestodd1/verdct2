@@ -78,7 +78,7 @@ $(document).ready(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
     });
-    
+
 });
 
 function checkPass() {
@@ -91,7 +91,8 @@ function checkPass() {
             message.style.color = goodColor;
             message.innerHTML = "correct!"
             $('#dummy').addClass('hidden');
-            $('#enter').removeClass('hidden');   
+            $('#enter').removeClass('hidden');
+            // $('#pbtn').addClass('hidden');  
         } else {
             message.style.color = badColor;
             message.innerHTML = "incorrect";
