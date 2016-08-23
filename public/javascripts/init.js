@@ -8,7 +8,7 @@ $(document).ready(function(){
     $('.parallax').parallax();
     $('ul.tabs').tabs({});
     $('.modal-trigger1').leanModal({
-        opacity: .6,
+        opacity: .7,
         dismissible: false
     });
   	$('.datepicker').pickadate({
@@ -78,6 +78,14 @@ $(document).ready(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
     });
+    // if(event){
+    //     if(event.password != undefined){
+    //         $('#eventpass').openModal({
+    //             opacity: .7,
+                
+    //         });
+    //     }
+    // }
 
 });
 
@@ -87,7 +95,7 @@ function checkPass() {
         var eventpass = document.getElementById('eventpass').innerHTML;
         var goodColor = "#66cc66";
         var badColor = "#ff6666";
-        if (password === eventpass){ 
+        if (password.toUpperCase() === eventpass.toUpperCase()){ 
             message.style.color = goodColor;
             message.innerHTML = "correct!"
             $('#dummy').addClass('hidden');

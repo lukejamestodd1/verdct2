@@ -78,11 +78,12 @@
         </div>
 
            <div class="row padded">
-            <div class="col s12 m6 l4 center-align v" ng-repeat="event in events | filter: {name: search.name, city: search.city, type: search.type || undefined, month: search.month || undefined}">
+            <div class="col s12 m6 l4 center-align v" ng-repeat="event in events | filter: {name: search.name, city: search.city, type: search.type || undefined, month: search.month || undefined} | orderBy: 'date'">
             <a href="api/events/{{event._id}}">
               <img src="images/e2.png" class="responsive-img center-align">
               <div class="">
                 <p class="center-align how2 open">{{event.name}}</p>
+                <p class="center-align how2 open">{{event.date | date: 'MMMM'}}</p>
               </div>
             </a>
 
