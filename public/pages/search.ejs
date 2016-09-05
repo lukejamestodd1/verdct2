@@ -1,0 +1,98 @@
+<h1>search</h1>
+
+<h3>{{message}}</h3>
+
+
+      
+    <div class="section teal lighten-4">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m5">
+            <p class="">Event type</p>
+            <div class="input-field u">
+              <select ng-model="search.type" type="text">
+                <option value="school formal" selected> school formal</option>
+                <option value="semi-formal"> semi-formal</option>
+                <option value="party"> party</option>
+                <option value="ball"> ball</option>
+                <option value="gala"> gala</option>
+                <option value="graduation"> graduation</option>
+              </select>
+            </div>
+          </div>
+          <div class="col s12 m5">
+            <p class="">Event name</p>
+            <div class="input-field u">
+              <input type="text"  value="Name" ng-model="search.name">
+            </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col s12 m5">
+              <p class="">Month</p>
+              <div class="input-field u">
+                  <select ng-model="search.month" type="text">
+                    <option value="1" selected> January</option>
+                    <option value="2"> February</option>
+                    <option value="3"> March</option>
+                    <option value="4"> April</option>
+                    <option value="5"> May</option>
+                    <option value="6"> June</option>
+                    <option value="7"> July</option>
+                    <option value="8"> August</option>
+                    <option value="9"> September</option>
+                    <option value="10"> October</option>
+                    <option value="11"> November</option>
+                    <option value="12"> December</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col s12 m5">
+              <p class="">City/town</p>
+                <div class="input-field u">
+                  <input type="text"  value="City" ng-model="search.city">
+                </div>
+            </div>
+          </div>
+        </div>
+        <button id="clear-filter" ng-click="clearFilter()" type="button">Clear Filters</button>
+    </div> 
+
+    <div class="section">
+
+   <!--  < include events.ejs %> -->
+   
+<div class="container">
+        
+        <div class="col s12 center-align">
+          <a href="/newevent" class="waves-effect waves-light btn-large white open black-text big-button y">Can't find your event? Register it now</a>
+        </div>
+
+    <!-- HEADER AND EVENT COUNT -->
+    <div class="text-center">
+        <h5>We found <span class="label label-info">{{ results.length }}</span> matching events</h5>
+        
+    </div>
+
+       <div class="row padded">
+        <div class="col s12 m6 l4 center-align v" ng-repeat="event in events | filter: {name: search.name, city: search.city, type: search.type || undefined, month: search.month || undefined} | orderBy: 'date'">
+        <a href="#events/{{event._id}}">
+          <img src="images/e2.png" class="responsive-img center-align">
+          <div class="">
+            <p class="center-align how2 open">{{event.name}}</p>
+            <p class="center-align how2 open">{{event.date | date: 'MMMM'}}</p>
+          </div>
+        </a>
+
+        <a class="btn" ng-click="deleteEvent(event._id)">Delete</a>
+
+        </div>
+
+        <div class="col s12 center-align">
+          <a href="/newevent" class="waves-effect waves-light btn-large white open black-text big-button" id="ok">Can't find your event? Register it now</a>
+        </div>
+        
+      </div>
+    </div>
+</div>
+

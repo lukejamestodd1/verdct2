@@ -6,6 +6,10 @@ var nodemailer = require('nodemailer');
 var router = express.Router();
 
 // ============ MAIN GET ROUTES =============
+router.get('/spa', function(req, res, next) {
+  res.render('../public/pages/spa', { title: 'Verdct', user: req.user });
+});
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Verdct', user: req.user });
 });

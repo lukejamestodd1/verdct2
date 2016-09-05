@@ -70,6 +70,7 @@ $(document).ready(function(){
     //     }
     //   ]
     // });
+
     $('.topcont').click(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');

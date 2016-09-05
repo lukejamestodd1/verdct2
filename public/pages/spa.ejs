@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="myApp">
+  <head>
+   <link rel="icon" type="image" href="favicon.png">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+   <link rel='stylesheet' href='/javascripts/jquery.bxslider.css'/>
+   <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <a href="#/">SPA Home | </a>
+    <a href="#/info">Info | </a>
+    <a href="#/about">About | </a>
+    <a href="#/search">Search | </a>
+    <a href="#/login">Login | </a>
+    <a href="/api">API | </a>
+    <a href="#/newevent">New Event | </a>
+    <a href="#/contact">Contact | </a>
+    <a href="/">exit SPA | </a>
+  	<% include navbar %>
+  	
+ 
+
+    
+
+    <div ng-view></div>
+
+    <% include footer %>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.bxslider.min.js"></script>
+    <script src="/javascripts/spa.js"></script>
+    <script src="javascripts/init.js"></script>
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1561353927499605',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+  </body>
+</html>

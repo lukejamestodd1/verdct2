@@ -1,3 +1,118 @@
+var app = angular.module('myApp', ['ngRoute', 'ngResource']);
+
+app.config(function($routeProvider) {
+  $routeProvider
+
+  .when('/', {
+    templateUrl : 'pages/home.ejs',
+    controller  : 'HomeController'
+  })
+  .when('/search', {
+    templateUrl : 'pages/search.ejs',
+    controller  : 'SearchController'
+  })
+  .when('/events/:id', {
+    templateUrl : 'pages/eventpage.ejs',
+    controller  : 'EventPageController'
+  })
+
+  .when('/info', {
+    templateUrl : 'pages/info.ejs',
+    controller  : 'InfoController'
+  })
+  .when('/about', {
+    templateUrl : 'pages/about.ejs',
+    controller  : 'AboutController'
+  })
+  .when('/login', {
+    templateUrl : 'pages/login.ejs',
+    controller  : 'LoginController'
+  })
+  .when('/contact', {
+    templateUrl : 'pages/contact.ejs',
+    controller  : 'ContactController'
+  })
+  .when('/newevent', {
+    templateUrl : 'pages/newevent.ejs',
+    controller  : 'NewEventController'
+  })
+  .otherwise({redirectTo: '/'});
+});
+
+// =========================== FACTORIES ====================== //
+
+app.factory('CUSavedEvents', ['$http', function($http){
+  return $http.get('/cu');
+}]);
+
+app.factory('Events', ['$http', function($http){
+  return $http.get('/api/events');
+}]);
+
+app.factory('Event', ['$resource', function($resource){
+  //get/save/post/delete all included in resource, need to define update method
+  return $resource('/api/events/:id', null, {
+    'update': {method: 'PUT'}
+  });
+}]);
+
+// ========================== CONTROLLERS ===================== //
+
+app.controller('HomeController', ['$scope', 'CUSavedEvents', function ($scope, CUSavedEvents) {
+  CUSavedEvents.success(function(data){
+    $scope.savedEvents = data;
+    $scope.message = 'Hello from HomeController';
+    console.log(data);
+  })
+  .error(function(data, status){
+    console.log(data, status);
+    $scope.savedEvents = [];
+  });
+}]);
+
+app.controller('SearchController', ['$scope', 'Events', function ($scope, Events) {
+  Events.success(function(data){
+    $scope.events = data;
+    $scope.message = 'Hello from SearchController';
+    console.log(data);
+  })
+  .error(function(data, status){
+    console.log(data, status);
+    $scope.events = [];
+  });
+}]);
+
+app.controller('EventPageController', ['$scope', 'Event', function ($scope, Event) {
+    $scope.events = Event.query();
+    $scope.message = 'Hello from EventPageController';
+    console.log(Event.query()); 
+}]);
+
+
+app.controller('InfoController', function($scope) {
+  $scope.message = 'Hello from InfoController';
+});
+
+app.controller('AboutController', function($scope) {
+  $scope.message = 'Hello from AboutController';
+});
+
+app.controller('LoginController', function($scope) {
+  $scope.message = 'Hello from LoginController';
+});
+
+app.controller('ContactController', function($scope) {
+  $scope.message = 'Hello from ContactController';
+});
+
+app.controller('NewEventController', function($scope) {
+  $scope.message = 'Hello from NewEventController';
+});
+
+
+
+// ==============================================================
+
 var dress = angular.module('dress', []);
 function dressController($scope, $http) {
     $scope.formData = {};
