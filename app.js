@@ -10,6 +10,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var InstagramStrategy = require('passport-instagram').Strategy; 
 var configAuth = require('./config/auth');
+var AWS = require('aws-sdk');
 
 //database and models
 var db = require('./models/db');
@@ -127,6 +128,14 @@ app.use('/api/events', eventsController);
 app.use('/api/dresses', dressesController);
 app.use('/api/savedEvents', savedEventsController);
 
+//AWS config
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: 'ap-southeast-2'
+});
+
+// var S3 = new AWS.s3();
 
 
 //error handling
