@@ -79,6 +79,24 @@ $(document).ready(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
     });
+    var url = '';
+    $('.img_sel').click(function(){
+      $(this).addClass('selected');
+      $(this).siblings().removeClass('selected');
+      
+      //set the img_url property to chosen img
+      url =  $(this).find('img').attr('src');
+      console.log(url);
+
+      $('#img_url').val(url);
+      console.log($('#img_url').val());
+      //debugger;
+
+      // $('#img_url').attr('value', url);  
+      // console.log($('#img_url').attr('value'));
+    });
+
+
     // if(event){
     //     if(event.password != undefined){
     //         $('#eventpass').openModal({

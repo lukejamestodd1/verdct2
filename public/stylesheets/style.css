@@ -299,7 +299,6 @@ a {
  .topcont:hover{
 	-webkit-filter: invert(0%);
  }
-
  .topcont{
  	position: relative;
  	min-height: 150px;
@@ -323,6 +322,12 @@ a {
     padding: 0;
 }
 .selected{
+	-webkit-filter: invert(0%);
+}
+.img_sel{
+	-webkit-filter: invert(20%);
+}
+.img_sel:hover{
 	-webkit-filter: invert(0%);
 }
 .btmcont:hover{

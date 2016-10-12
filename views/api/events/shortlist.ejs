@@ -238,7 +238,7 @@
       <a href="#!!" class=" modal-action modal-close waves-effect waves-green btn-flat nocaps">Enter</a>
     </div>
   </div>
-
+  <% if(savedEvents.length > 0){ %>
   <a class="waves-effect waves-light btn modal-trigger nocaps open center-align" href="#modal3">This is the one!</a>
           <div id="modal3" class="modal">
             <div class="modal-content">
@@ -304,7 +304,7 @@
             </div>
             
           </div>
-      
+    <% } %>
 
   <% include ../../partials/footer %>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

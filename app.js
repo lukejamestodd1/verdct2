@@ -135,7 +135,7 @@ AWS.config.update({
   region: 'ap-southeast-2'
 });
 
-// var S3 = new AWS.s3();
+// var S3 = new AWS.S3();
 
 
 //error handling
