@@ -116,17 +116,9 @@ router.get('/home', function(req, res, next) {
 });
 
 router.get('/api', function(req, res, next) {
-	if (req.user) {
     res.render('api/index', {
-    	title: 'API',
-    	user_id: req.user._id,
-    	email: req.user.email,
-    	username: req.user.username
+    	title: 'API'
     });
-  }
-  else {
-    res.redirect('/');
-  }
 });
 
 //============== GET SAVED EVENTS FOR CURRENT USER

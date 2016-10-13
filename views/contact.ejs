@@ -13,6 +13,24 @@
                 <h4 class="lora">Contact us</h4>
                 <p class="open">We're always happy to answer questions you have or help with an issue you are facing. Just send us a message in the form below.</p>
                 <div class="row" id="contact">
+
+                  <form 
+                  action="mailto:lukejamestodd1@gmail.com"
+                  method="POST"
+                  enctype="multipart/form-data"
+                  name="EmailTestForm">
+                  Your Name:<br>
+                  <input type="text" size="20" name="VisitorName"><br><br>
+
+                  Your Comment:<br>
+                  <textarea name="VisitorComment" rows="4" cols="20">
+                  </textarea><br><br>
+
+                  <input type="submit" value="Email This Form">
+
+                  </form>
+
+
                   <form class="col s12" action='/contact' name='contactus' id='contactus' method='post'>
                     <div class="row v">
                       <div class="input-field col s12 m6">

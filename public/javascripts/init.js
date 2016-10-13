@@ -84,13 +84,16 @@ $(document).ready(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
       
+      var appElement = document.querySelector('[ng-app=event]');
+      var $scope = angular.element(appElement).scope();
+      
       //set the img_url property to chosen img
       url =  $(this).find('img').attr('src');
-      console.log(url);
-
-      $('#img_url').val(url);
-      console.log($('#img_url').val());
-      //debugger;
+      
+      //set scope formdata to url
+      $scope.$apply(function () {
+            $scope.formData.img_url = url;
+      });
 
       // $('#img_url').attr('value', url);  
       // console.log($('#img_url').attr('value'));
