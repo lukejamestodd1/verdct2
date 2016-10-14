@@ -14,6 +14,7 @@
                 <p class="">Event type</p>
                 <div class="input-field u">
                   <select ng-model="search.type" type="text">
+                    <option value=""> any type</option>
                     <option value="school formal" selected> school formal</option>
                     <option value="semi-formal"> semi-formal</option>
                     <option value="party"> party</option>
@@ -35,6 +36,7 @@
                   <p class="">Month</p>
                   <div class="input-field u">
                       <select ng-model="search.month" type="text">
+                        <option value=""> any month</option>
                         <option value="1" selected> January</option>
                         <option value="2"> February</option>
                         <option value="3"> March</option>
@@ -58,7 +60,6 @@
                 </div>
               </div>
             </div>
-            <button id="clear-filter" ng-click="clearFilter()" type="button">Clear Filters</button>
         </div> 
 
         <div class="section">
@@ -78,7 +79,14 @@
         </div>
 
            <div class="row padded">
-            <div class="col s12 m6 l4 center-align v" ng-repeat="event in events | filter: {name: search.name, city: search.city, type: search.type || undefined, month: search.month || undefined} | orderBy: 'date'">
+            <div class="col s12 m6 l4 center-align v"
+             ng-repeat="event in events 
+             | filter: 
+             {name: search.name, 
+             city: search.city, 
+             type: search.type || undefined, 
+             month: search.month || undefined} 
+             | orderBy: 'date'">
             <a href="api/events/{{event._id}}">
               <img src="images/e2.png" class="responsive-img center-align">
               <div class="">
