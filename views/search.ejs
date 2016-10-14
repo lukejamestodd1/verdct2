@@ -88,7 +88,7 @@
              month: search.month || undefined} 
              | orderBy: 'date'">
             <a href="api/events/{{event._id}}">
-              <img src="images/e2.png" class="responsive-img center-align">
+              <img src="{{event.img_url}}" class="responsive-img center-align">
               <div class="">
                 <p class="center-align how2 open">{{event.name}}</p>
                 <p class="center-align how2 open">{{event.date | date: 'MMMM'}}</p>

@@ -162,6 +162,7 @@ function dressController($scope, $http) {
 var event = angular.module('event', []);
 function eventController($scope, $http) {
     $scope.formData = {};
+
     // when landing on the page, get all events and show them
     $http.get('/api/events')
         .success(function(data) {
@@ -188,12 +189,22 @@ function eventController($scope, $http) {
     $scope.deleteEvent = function(id) {
         $http.delete('/api/events/' + id)
             .success(function(data) {
-                $scope.events = data;
                 console.log(data);
+                $scope.getEvents();
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
+    };
+    $scope.getEvents = function() {
+      $http.get('/api/events')
+          .success(function(data) {
+              $scope.events = data;
+              console.log(data);
+          })
+          .error(function(data) {
+              console.log('Error: ' + data);
+          });
     };
 }
 

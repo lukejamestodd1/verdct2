@@ -147,7 +147,7 @@ router.route('/cu').get(function(req, res, next) {
 
 // =========== Email functionality ========== //
 router.post('/contact', function(req, res) {
-  //Setup Nodemailer transport, I chose gmail. Create an application-specific password to avoid problems.
+  //Setup Nodemailer transport
   var smtpTrans = nodemailer.createTransport('SMTP', {
     service: 'Gmail',
     auth: {
@@ -155,20 +155,32 @@ router.post('/contact', function(req, res) {
         pass: "cakePudding222"
     }
   });
+  
   //Mail options
   var mailOpts = {
     from: req.body.email,
-    to: 'dixon.anna@gmail.com',
+    to: 'lukejamestodd1@gmail.com',
     subject: 'Website contact form',
     html: 'From ' + req.body.nm + '<br><br>' + req.body.email + '<br><br>'  + req.body.message
   };
 
   //Checking for completion
   if (!req.body.nm || !req.body.email || !req.body.message) {
-    res.render('contact', {title: 'Contact Us', msg: 'Please include a name and email.', err: true, page: 'contact', user: req.user})
+    res.render('contact', {
+      title: 'Contact Us', 
+      msg: 'Please include a name and email.', 
+      err: true, 
+      page: 'contact', 
+      user: req.user})
+
   //Honey pot spam rejection
   } else if (req.body.spampot) {
-    res.render('contact', {title: 'Contact Us', msg: 'You are a spam bot.', err: true, page: 'contact' , user: req.user})
+    res.render('contact', {
+      title: 'Contact Us', 
+      msg: 'You are a spam bot.', 
+      err: true, 
+      page: 'contact' , 
+      user: req.user})
   }
 
   //Error msging
@@ -176,11 +188,18 @@ router.post('/contact', function(req, res) {
     //Email not sent
     if (error) {
         console.log(error);
-        res.render('contact', { title: 'Contact Us', msg: 'Error occured.', err: true, page: 'contact', user: req.user})
+        res.render('contact', { 
+          title: 'Contact Us', 
+          msg: 'Error occured.', 
+          err: true, page: 'contact', user: req.user})
     }
     //Yay!! Email sent
     else {
-        res.render('contact', { title: 'Contact Us', msg: 'Message sent! Thank you.', err: false, page: 'contact', user: req.user});
+        res.render('contact', { 
+          title: 'Contact Us',
+          msg: 'Message sent! Thank you.', 
+          err: false, page: 'contact', 
+          user: req.user});
     }
   });
 });

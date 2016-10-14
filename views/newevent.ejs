@@ -132,6 +132,7 @@
             </ul>
             <div class="row v">
               <div class="col s12 m6 offset-m3">
+                
                 <div class="file-field input-field">
                   <div class="btn waves-effect waves-light btn-large open white black-text big-button">
                     <span><i class="material-icons">camera_alt</i></span>
@@ -141,8 +142,9 @@
                     <input class="file-path validate" type="text" value="Or upload your own image">
                   </div>
                 </div>
+
                 <div class="col s12 z">
-                  <input id="img_url" name="img_url" ng-model="formData.img_url">
+                  <input id="img_url" name="img_url" type="hidden" ng-model="formData.img_url">
                 </div>
                 
               </div>

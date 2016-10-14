@@ -242,7 +242,7 @@ router.get('/:id/edit', function(req, res) {
             //Return the event
             console.log('GET Retrieving ID: ' + event._id);
             
-            if(req.user._id === event.u_id){
+            // if(req.user._id === event.u_id){
               res.format({
                   html: function(){
                          res.render('api/events/edit', {
@@ -254,9 +254,9 @@ router.get('/:id/edit', function(req, res) {
                          res.json(event);
                    }
               });
-            } else {
-              res.redirect('/:id');
-            }
+            // } else {
+            //   res.redirect('/:id');
+            // }
         }
     });
 });
