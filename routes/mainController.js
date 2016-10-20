@@ -155,13 +155,18 @@ router.post('/contact', function(req, res) {
         pass: "cakePudding222"
     }
   });
-  
+
   //Mail options
   var mailOpts = {
-    from: req.body.email,
+    from: 'cakepudding1@gmail.com',
     to: 'lukejamestodd1@gmail.com',
     subject: 'Website contact form',
-    html: 'From ' + req.body.nm + '<br><br>' + req.body.email + '<br><br>'  + req.body.message
+    html: 'From ' 
+      + req.body.nm 
+      + '<br><br>' 
+      + req.body.email 
+      + '<br><br>'  
+      + req.body.message
   };
 
   //Checking for completion

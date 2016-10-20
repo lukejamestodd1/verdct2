@@ -42,48 +42,35 @@ $(document).ready(function(){
         moveSlides: 1,
         startSlide: 1,
     });
-    // $('.slick').slick({
-    //   centerMode: true,
-    //   centerPadding: '100px',
-    //   slidesToShow: 9,
-    //   infinite: true,
-    //   slidesToScroll: 1,
-    //   focusOnSelect: true,
-    //   responsive: [
-    //     {
-    //       breakpoint: 768,
-    //       settings: {
-    //         arrows: true,
-    //         centerMode: true,
-    //         centerPadding: '40px',
-    //         slidesToShow: 3
-    //       }
-    //     },
-    //     {
-    //       breakpoint: 480,
-    //       settings: {
-    //         arrows: true,
-    //         centerMode: true,
-    //         centerPadding: '40px',
-    //         slidesToShow: 1
-    //       }
-    //     }
-    //   ]
-    // });
-
+    
+    var sTop = '';
+    var sBot = '';
     $('.topcont').click(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
+      var appElement = document.querySelector('[ng-app=dress]');
+      var $scope = angular.element(appElement).scope();
+      sTop =  $(this).find('p').html();
+      $scope.$apply(function () {
+        $scope.formData.sTop = sTop;
+      });
+
     });
     $('.btmcont').click(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
+      var appElement = document.querySelector('[ng-app=dress]');
+      var $scope = angular.element(appElement).scope();
+      sBot =  $(this).find('p').html();
+      $scope.$apply(function () {
+            $scope.formData.sBot = sBot;
+      });
     });
+
     var url = '';
     $('.img_sel').click(function(){
       $(this).addClass('selected');
       $(this).siblings().removeClass('selected');
-      
       var appElement = document.querySelector('[ng-app=event]');
       var $scope = angular.element(appElement).scope();
       
@@ -94,11 +81,7 @@ $(document).ready(function(){
       $scope.$apply(function () {
             $scope.formData.img_url = url;
       });
-
-      // $('#img_url').attr('value', url);  
-      // console.log($('#img_url').attr('value'));
     });
-
 
     // if(event){
     //     if(event.password != undefined){

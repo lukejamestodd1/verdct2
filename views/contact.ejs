@@ -13,8 +13,13 @@
                 <h4 class="lora">Contact us</h4>
                 <p class="open">We're always happy to answer questions you have or help with an issue you are facing. Just send us a message in the form below.</p>
                 <div class="row" id="contact">
+                    <!-- <h1>< msg %></h1> -->
+                  <form class="col s12" 
+                    action='/contact' 
+                    name='contactus' 
+                    id='contactus' 
+                    method="post">
 
-                  <form class="col s12" action='/contact' name='contactus' id='contactus' method='post'>
                     <div class="row v">
                       <div class="input-field col s12 m6">
                         <input type="text" name='nm' id='nm'>
@@ -25,17 +30,19 @@
                         <label for="email" data-error="invalid" data-success="ok">Your email</label>
                       </div>
                     </div>
+
                     <div class="row">
                       <div class="col s12">
                         <div class="row">
                           <div class="input-field col s12 v">
-                            <textarea name='message' id='textarea1' class='materialize-textarea'></textarea>
-                            <label for="textarea1">How are you involved in the event?</label>
+                            <textarea name='message' id='textarea1 message' class='materialize-textarea'></textarea>
+                            <label for="textarea1 message">How are you involved in the event?</label>
                           </div>
                         </div>
                       </div>
                       <input name='submit' type='submit' value='Send' id='submit' class='btn'>
                     </div>
+
                    </form>
                 </div>
               </div>
