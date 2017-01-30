@@ -10,6 +10,7 @@
     <div class="row">
         <div class="col s12 m6 l4 center-align v" ng-repeat="savedEvent in savedEvents">
             <a ng-href="api/events/{{ savedEvent.event_id }}">
+            <p>{{savedEvent.e_img}}</p>
             <img src="{{savedEvent.e_img}}" class="responsive-img center-align">
             <p class="center-align how2 open">{{savedEvent.e_name}}</p>
             </a>
