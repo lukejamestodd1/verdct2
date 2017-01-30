@@ -39,7 +39,7 @@ router.get('/newevent', function(req, res, next) {
 });
 
 router.get('/newdress', function(req, res, next) {
-  res.render('newdress', { title: 'New Dress', user: req.user});
+  res.render('newdress', { title: 'New Dress', user: req.user, event: req.event});
 });
 
 router.get('/events', function(req, res, next) {

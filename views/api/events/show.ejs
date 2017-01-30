@@ -69,9 +69,9 @@
               <p>Looks like nobody is ready to register their dress.</p>
               <p>Share this event with other guests</p>
               <div class="z social">
-                <a href="/auth/facebook"><img src="../../images/fbt.png"></a>
-                <a href="/auth/instagram"><img src="../../images/int.png"></a>
-                <a href="/auth/twitter"><img src="../../images/twt.png"></a>
+                <a href="/auth/facebook"><img src="/images/fbt.png"></a>
+                <a href="/auth/instagram"><img src="/images/int.png"></a>
+                <a href="/auth/twitter"><img src="/images/twt.png"></a>
               </div>
             </div>
         </div>
@@ -140,8 +140,8 @@
 <% } %>
   
   <% if(user){
-    if(user._id === event.u_id){ %>
-    <a href="/api/events/<%= event.id %>/edit" class="margined">Edit this event</a>
+      if(user._id === event.u_id){ %>
+        <a href="/api/events/<%= event.id %>/edit" class="margined">Edit this event</a>
   <% }} %>
 
   <% include ../../partials/footer %>
@@ -150,6 +150,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-resource.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="../../javascripts/jquery.bxslider.min.js"></script>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
