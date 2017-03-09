@@ -43,6 +43,7 @@ router.route('/')
 
         var u_id = req.user._id;
         var u_name = req.user.username;
+        var u_email = req.user.email;
         
         var venue = req.body.venue;
         var address = req.body.address;
@@ -67,6 +68,7 @@ router.route('/')
 
           u_id : u_id,
           u_name : u_name,
+          u_email : u_email,
 
           venue : venue,
           address : address,
@@ -108,7 +110,8 @@ router.post('/:id', function(req, res) {
 
       var u_id = req.user._id;
       var u_name = req.user.username;
-      
+      var u_email = req.user.email;
+
       var venue = req.body.venue;
       var address = req.body.address;
       var suburb = req.body.suburb;
@@ -132,6 +135,7 @@ router.post('/:id', function(req, res) {
 
           u_id : u_id,
           u_name : u_name,
+          u_email : u_email,
 
           venue : venue,
           address : address,
