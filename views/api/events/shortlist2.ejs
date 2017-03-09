@@ -92,13 +92,13 @@
 
         <!-- If no dresses, button to create 3 empty dresses -->
         <div ng-app="dress" ng-controller="dressController" ng-init="init('New Dress','<%= event.id %>')">
-          <!-- <form>
+          <form>
             <div class="form-group">
           <input type="text" class="form-control" id="name" name="name" value="New Dress" ng-model="formData.name">
-          <input type="text" class="form-control" id="event_id" name="event_id" value="" ng-model="formData.event_id"> -->
+          <input type="text" class="form-control" id="event_id" name="event_id" value="" ng-model="formData.event_id">
           <button type="submit" class="btn btn-primary btn-lg" ng-click="createDress()">Add dresses</button>
-            <!-- </div>
-          </form> -->
+            </div>
+          </form>
         </div>
       
       <% } else { %>

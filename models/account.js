@@ -6,7 +6,7 @@ var Account = new Schema({
     username: String,
     password: String,
     email: String,
-    recent_event_id: String,
+    last_event_id: String,
 
     facebook: {
     	id: String,

@@ -38,7 +38,7 @@ router.route('/')
     var name = req.body.name;
     var user_id = req.user._id;
     var owner = req.user.username;
-    var event_id = req.body.event_id;
+    var event_id = req.body.event._id;
     var brand = req.body.brand;
     var cost = req.body.cost;
     var img_url = req.body.img_url;

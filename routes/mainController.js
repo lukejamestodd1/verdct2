@@ -116,9 +116,29 @@ router.get('/home', function(req, res, next) {
 });
 
 router.get('/api', function(req, res, next) {
-    res.render('api/index', {
-    	title: 'API'
-    });
+  mongoose.model('Dress').find({}, function (err, dresses) {
+    mongoose.model('Account').find({}, function (err, accounts) {
+      mongoose.model('Event').find({}, function (err, events) {
+        mongoose.model('SavedEvent').find({}, function (err, savedEvents) {
+          if (err) {
+            return console.error(err);
+          } else {
+            res.format({
+              html: function(){
+                res.render('api/index', {
+                  title: 'API',
+                  Dtotal: dresses.length,
+                  Utotal: accounts.length,
+                  Etotal: events.length,
+                  SEtotal: savedEvents.length
+                });
+              }
+            });
+          }   
+        });   
+      });   
+    });   
+  });
 });
 
 //============== GET SAVED EVENTS FOR CURRENT USER

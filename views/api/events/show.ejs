@@ -106,6 +106,20 @@
                 <p>Top style:<%= savedEvents[i].sTop %></p>
                 <p>Bottom style:<%= savedEvents[i].sBot %></p>
                 <p>Colour:<%= savedEvents[i].colour %></p>
+                <% if(user){
+                    if (event.u_id == user._id || 
+                        user.email === 'cake@pudding.com' || 
+                        user.email === 'dixon.anna@gmail.com' || 
+                        user.email === 'sanft.jaime@gmail.com' || 
+                        user.email === 'lukejamestodd1@gmail.com'){ %>
+                      <form action="/api/savedEvents/<%= savedEvents[i]._id %>" 
+                        method="post" 
+                        enctype="application/x-www-form-urlencoded" 
+                        class="margined">
+                        <input type="hidden" value="DELETE" name="_method"/>
+                        <button type="submit" class="btn-lg btn-primary btn-centre">Delete this Dress</button>
+                      </form>
+                <% }} %>
               </div>
             </div>
           </div>
@@ -113,7 +127,7 @@
       </div>
     </div>
 
-<% if (event.password !== undefined){ %>
+<% if (event.password !== undefined && event.password != ''){ %>
 <a class="waves-effect waves-light btn modal-trigger1 nocaps open center-align" id="pbtn" href="#modalpass">Password</a>
   <!-- Modal Structure -->
   <div id="modalpass" class="modal">
@@ -171,5 +185,6 @@
 
   <script src="../../javascripts/spa.js"></script>
   <script src="../../javascripts/init.js"></script>
+
 </body>
 </html>

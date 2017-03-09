@@ -274,7 +274,7 @@ router.get('/:id/shortlist', function(req, res) {
               res.format({
                   //HTML response will render the 'edit.jade' template
                   html: function(){
-                         res.render('api/events/shortlist', {
+                         res.render('api/events/shortlist2', {
                             title: 'shortlist',
                             "event" : event,
                             "dresses" : dresses,
