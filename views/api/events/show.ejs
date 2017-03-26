@@ -116,8 +116,8 @@
                         method="post" 
                         enctype="application/x-www-form-urlencoded" 
                         class="margined">
-                        <input type="hidden" value="DELETE" name="_method"/>
-                        <button type="submit" class="btn-lg btn-primary btn-centre">Delete this Dress</button>
+                        <input type="hidden" value=undefined name="dress_id"/>
+                        <button type="submit" class="btn-lg btn-primary btn-centre">Remove this Dress</button>
                       </form>
                 <% }} %>
               </div>
@@ -155,7 +155,7 @@
   
   <% if(user){
       if(user._id === event.u_id){ %>
-        <a href="/api/events/<%= event.id %>/edit" class="margined">Edit this event</a>
+        <a href="/api/events/<%= event.id %>/edit" class="margined">Edit Event Details</a>
   <% }} %>
 
   <% include ../../partials/footer %>

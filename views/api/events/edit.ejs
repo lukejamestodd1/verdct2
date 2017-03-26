@@ -1,11 +1,236 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% include ../../partials/head2.ejs %>
   </head>
   <body>
+    <% include ../../partials/nav-top.ejs %>
+      <main>
+        <div class="section teal lighten-4">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m5 offset-m3">
+                <h4 class="lora">Edit event</h4>
+                <p class="open w">fill in as many details as possible to help people find the event</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <form action="/api/events/<%= event.id %>" method="post" name="updateevent" enctype="application/x-www-form-urlencoded" class="margined">
+<div ng-app="event" ng-controller="eventController">
+  <form>
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m3 form-group">
+                <p class="z">Name of event</p>
+                <div class="input-field col s12 z">
+                  <input id="name" type="text" name="name" ng-model="formData.name">
+                  <label for="name">Event name</label>
+                </div>      
+                <p class="">Event type</p>
+                <div class="input-field col s12 v">
+                  <select id="type" name="type" ng-model="formData.type">
+                    <option value="school formal" selected> school formal</option>
+                    <option value="semi-formal"> semi-formal</option>
+                    <option value="party"> party</option>
+                    <option value="ball"> ball</option>
+                    <option value="gala"> gala</option>
+                    <option value="graduation"> graduation</option>
+                  </select>
+                </div>
+                <div class="input-field col s12 z">
+                  <input id="city" name="city" type="text" ng-model="formData.city">
+                  <label for="city" class="">City or suburb</label>
+                </div>
+                <div class="col s12 m3 z">
+                <p class="">Day</p>
+                  <select id="day" name="day" ng-model="formData.day">
+                    <option value="01" selected> 1</option>
+                    <option value="02"> 2</option>
+                    <option value="03"> 3</option>
+                    <option value="04"> 4</option>
+                    <option value="05"> 5</option>
+                    <option value="06"> 6</option>
+                    <option value="07"> 7</option>
+                    <option value="08"> 8</option>
+                    <option value="09"> 9</option>
+                    <option value="10"> 10</option>
+                    <option value="11"> 11</option>
+                    <option value="12"> 12</option>
+                    <option value="13"> 13</option>
+                    <option value="14"> 14</option>
+                    <option value="15"> 15</option>
+                    <option value="16"> 16</option>
+                    <option value="17"> 17</option>
+                    <option value="18"> 18</option>
+                    <option value="19"> 19</option>
+                    <option value="20"> 20</option>
+                    <option value="21"> 21</option>
+                    <option value="22"> 22</option>
+                    <option value="23"> 23</option>
+                    <option value="24"> 24</option>
+                    <option value="25"> 25</option>
+                    <option value="26"> 26</option>
+                    <option value="27"> 27</option>
+                    <option value="28"> 28</option>
+                    <option value="29"> 29</option>
+                    <option value="30"> 30</option>
+                    <option value="31"> 31</option>
+                  </select>
+                </div>
+                <div class="col s12 m6 z">
+                <p class="">Month</p>  
+                  <select id="month" name="month" ng-model="formData.month">
+                    <option value="01" selected> January</option>
+                    <option value="02"> February</option>
+                    <option value="03"> March</option>
+                    <option value="04"> April</option>
+                    <option value="05"> May</option>
+                    <option value="06"> June</option>
+                    <option value="07"> July</option>
+                    <option value="08"> August</option>
+                    <option value="09"> September</option>
+                    <option value="10"> October</option>
+                    <option value="11"> November</option>
+                    <option value="12"> December</option>
+                  </select>
+                </div>
+                <div class="col s12 m3 z">
+                <p class="">Year</p>
+                  <select id="year" name="year" ng-model="formData.year">
+                    <option value="2016" selected="selected">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <div class="section teal lighten-4 z">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m3 z">
+                <h5 class="lora">Select a cover image</h5>
+              </div>
+            </div>
+            <ul class="bxslider3 center-align">
+              <li class="img_sel"><img class="center-align" src="/images/e1.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e2.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e3.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e4.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e5.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e6.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e7.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e8.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e9.png"></li>
+              <li class="img_sel"><img class="center-align" src="/images/e10.png"></li>
+            </ul>
+            <div class="row v">
+              <div class="col s12 m6 offset-m3">
+                
+                <div class="file-field input-field">
+                  <div class="btn waves-effect waves-light btn-large open white black-text big-button">
+                    <span><i class="material-icons">camera_alt</i></span>
+                    <input type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" value="Or upload your own image">
+                  </div>
+                </div>
+
+                <div class="col s12 z">
+                  <input id="img_url" name="img_url" type="hidden" ng-model="formData.img_url">
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m3">
+                <h5 class="lora w">Set a password?</h5>
+                <div class="input-field col s12">
+                  <input id="password" name="password" type="text" ng-model="formData.password">
+                  <label for="password" class="">Password</label>
+                </div>
+                <ul class="margined">
+                  <li class="white-text">.</li>
+                  <li>Password is optional</li>
+                  <li>Not case sensitive</li>
+                  <li>Can't decide? <a href="/passwords">Read our suggestions</a></li>
+                </ul>
+                
+                <% if(user){ %>
+                <button type="submit" class="waves-effect waves-light btn-large open white black-text big-button x" ng-click="createEvent()">Save event</button>
+                <% } else { %>
+                <a class="modal-trigger waves-effect waves-light btn-large open white black-text big-button x" href="#login">Update event</a>
+                <% } %>
+                <a href="/" class="margined waves-effect waves-light btn-large open white black-text big-button x" id="cancel">Cancel</a>
+                <div class="x">
+                  <form action="/api/events/<%= event.id %>" method="post" enctype="application/x-www-form-urlencoded" class="margined">
+                  <input type="hidden" value="DELETE" name="_method"/>
+                  <button type="submit" class="btn-lg btn-primary btn-centre">Delete this Event</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </form>
+</div>
+       <!-- Modal Structure -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <h5 class="lora z">Log in to save your event</h5>
+      <div class="section">
+          <div class="container">
+            <div class="row open">
+              <div class="col s12 m6 l6">
+                <div class="z social">
+                  <p class="open z">sign in with</p>
+                  <a href="/auth/facebook"><img src="../../../images/fbt.png"></a>
+                  <a href="/auth/instagram"><img src="../../../images/int.png"></a>
+                  <a href="/auth/twitter"><img src="../../../images/twt.png"></a>
+                </div>
+                <p>Need an account? <a href="/register">Signup</a></p>
+                <p>Or go <a href="/">home</a>.</p>
+              </div>
+              <div class="col s12 m6 l6">
+                <p class="open z">or enter your Verdct details</p>
+                <div class="row">
+                  <form action="/login" method="post" class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                          <input type="text" name="username" id="username">
+                          <label for="username">Username</label>
+                      </div>
+                      <div class="input-field col s12 z">
+                          <input type="password" name="password" id="password">
+                          <label for="password">Password</label>
+                      </div>
+                      <button type="submit" class="btn btn-main z white">Login</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!!" class="modal-action modal-close waves-effect waves-green btn-flat nocaps">Enter</a>
+    </div>
+  </div> 
+      </main> 
+      <form action="/api/events/<%= event.id %>" method="post" name="updateevent" enctype="application/x-www-form-urlencoded" class="margined">
       <div class="form-group">Edit this Event
         <p>Name:
           <input id="inputName" type="text" value="<%= event.name %>" name="name"/>
@@ -47,12 +272,8 @@
           <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">Save</button>
         </p>
       </div>
-    </form>
-
-    <form action="/api/events/<%= event.id %>" method="post" enctype="application/x-www-form-urlencoded" class="margined">
-      <input type="hidden" value="DELETE" name="_method"/>
-      <button type="submit" class="btn-lg btn-primary btn-centre">Delete this Event</button>
-    </form>
-
-</body>
+    </form>       
+      <% include ../../partials/footer.ejs %>
+      <% include ../../partials/scripts %>
+  </body>
 </html>
