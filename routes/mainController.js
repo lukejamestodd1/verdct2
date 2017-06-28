@@ -69,7 +69,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
 
 
 
-router.get('/auth/instagram', passport.authenticate('instagram', { scope: 'email' }));
+router.get('/auth/instagram', passport.authenticate('instagram'));
 
 router.get('/auth/instagram/callback', passport.authenticate('instagram', {
   successRedirect: '/',
