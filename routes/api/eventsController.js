@@ -22,15 +22,15 @@ router.route('/')
               if (err) {
                   return console.error(err);
               } else {
-                  
+
                   res.format({
-                      
+
                     //JSON response will show all events in JSON format
                     json: function(){
                         res.json(events);
                     }
                 });
-              }     
+              }
         });
     })
 
@@ -44,22 +44,22 @@ router.route('/')
         var u_id = req.user._id;
         var u_name = req.user.username;
         var u_email = req.user.email;
-        
+
         var venue = req.body.venue;
         var address = req.body.address;
         var suburb = req.body.suburb;
         var city = req.body.city;
         var state = req.body.state;
-        
+
         var time = req.body.time;
         var day = req.body.day;
         var month = req.body.month;
         var year = req.body.year;
         var date = new Date(year + "-" + month + "-" + day);
-        
+
         var password = req.body.password;
-        
-        
+
+
         //call create function
         mongoose.model('Event').create({
           name : name,
@@ -75,13 +75,13 @@ router.route('/')
           suburb : suburb,
           city : city,
           state : state,
-          
+
           time : time,
           day : day,
           month : month,
           year : year,
           date : date,
-          
+
           password : password
         },
         function (err, event) {
@@ -91,14 +91,14 @@ router.route('/')
                   //event has been created
                   console.log('POST creating new event: ' + event);
                   res.format({
-                  	
+
                     //JSON response will show the newly created event
                     json: function(){
                         res.json(event);
                     }
                 });
               }
-        })
+        });
     });
 
 //======================== UPDATE ONE
@@ -117,15 +117,15 @@ router.post('/:id', function(req, res) {
       var suburb = req.body.suburb;
       var city = req.body.city;
       var state = req.body.state;
-      
+
       var time = req.body.time;
       var day = req.body.day;
       var month = req.body.month;
       var year = req.body.year;
       var date = new Date(year + "-" + month + "-" + day);
-      
+
       var password = req.body.password;
-      
+
    //find the document by ID
     mongoose.model('Event').findById(req.id, function (err, event) {
         event.update({
@@ -142,19 +142,19 @@ router.post('/:id', function(req, res) {
           suburb : suburb,
           city : city,
           state : state,
-          
+
           time : time,
           day : day,
           month : month,
           year : year,
           date : date,
-          
+
           password : password
-            
+
         }, function (err, eventID) {
           if (err) {
               res.send("There was a problem updating the information to the database: " + err);
-          } 
+          }
           else {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
@@ -167,13 +167,13 @@ router.post('/:id', function(req, res) {
                      }
                   });
            }
-        })
+        });
     });
 });
 
 // ========================= CREATE NEW FORM
 router.get('/new', function(req, res) {
-    res.render('api/events/new', { title: 'Add New event' }); 
+    res.render('api/events/new', { title: 'Add New event' });
 });
 
 // route middleware to validate :id
@@ -184,8 +184,8 @@ router.param('id', function(req, res, next, id) {
         //if not found, repond 404
         if (err) {
             console.log(id + ' was not found');
-            res.status(404)
-            var err = new Error('Not Found');
+            res.status(404);
+            err = new Error('Not Found');
             err.status = 404;
             res.format({
                 html: function(){
@@ -197,14 +197,14 @@ router.param('id', function(req, res, next, id) {
             });
         //if it is found we continue on
         } else {
-            
+
             console.log(event);
             // once validation is done save the new item in the req
             req.id = id;
             // go to the next thing
-            next(); 
-        } 
-    }); 
+            next();
+        }
+    });
 });
 // =================== SHOW ONE EVENT
 router.route('/:id')
@@ -215,7 +215,7 @@ router.route('/:id')
             console.log('GET Error: There was a problem retrieving: ' + err);
           } else {
             console.log('GET Retrieving ID: ' + event._id);
-            
+
             res.format({
               html: function(){
                  res.render('api/events/show', {
@@ -231,13 +231,13 @@ router.route('/:id')
               // }
             });
           }
-        }); 
+        });
     });
   });
 
  //====================== SHOW EDIT FORM
 router.get('/:id/edit', function(req, res) {
-    
+
     //search for the event within Mongo
     mongoose.model('Event').findById(req.id, function (err, event) {
         if (err) {
@@ -245,7 +245,7 @@ router.get('/:id/edit', function(req, res) {
         } else {
             //Return the event
             console.log('GET Retrieving ID: ' + event._id);
-            
+
             // if(req.user._id === event.u_id){
               res.format({
                   html: function(){
@@ -307,7 +307,7 @@ router.delete('/:id', function (req, res){
       mongoose.model('SavedEvent').find({event_id : req.id}, function (err, savedEvents) {
         if (err) {
             return console.error(err);
-        } else { 
+        } else {
             //remove it from Mongo
             event.remove(function (err, event) {
                 if (err) {

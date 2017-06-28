@@ -12,15 +12,15 @@ var methodOverride = require('method-override');
 //   }
 // };
 
-router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(methodOverride(function(req, res){
       if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         // look in urlencoded POST bodies and delete it
-        var method = req.body._method
-        delete req.body._method
-        return method
+        var method = req.body._method;
+        delete req.body._method;
+        return method;
       }
-}))
+}));
 
 router.route('/')
     //============================== GET ALL
@@ -30,7 +30,7 @@ router.route('/')
               if (err) {
                   return console.error(err);
               } else {
-                  
+
                   res.format({
                       html: function(){
                            res.render("api/savedEvents/index",{
@@ -44,7 +44,7 @@ router.route('/')
                         res.json(savedEvents);
                     }
                 });
-              }     
+              }
         });
     })
 
@@ -93,7 +93,7 @@ router.route('/')
                     }
                   });
               }
-        })
+        });
     });
 
 //======================== UPDATE ONE
@@ -129,11 +129,11 @@ router.post('/:id', function(req, res) {
             sTop : sTop,
             sBot : sBot,
             colour : colour
-                
+
         }, function (err, savedEventID) {
           if (err) {
               res.send("There was a problem updating the information to the database: " + err);
-          } 
+          }
           else {
                   //HTML responds by going back to the page or you can be fancy and create a new view that shows a success page.
                   res.format({
@@ -142,13 +142,13 @@ router.post('/:id', function(req, res) {
                      }
                   });
            }
-        })
+        });
     });
 });
 
 // ========================= CREATE NEW FORM
 router.get('/new', function(req, res) {
-    res.render('api/savedEvents/new', { title: 'Add New savedEvent' }); 
+    res.render('api/savedEvents/new', { title: 'Add New savedEvent' });
 });
 
 // route middleware to validate :id
@@ -159,8 +159,8 @@ router.param('id', function(req, res, next, id) {
         //if not found, repond 404
         if (err) {
             console.log(id + ' was not found');
-            res.status(404)
-            var err = new Error('Not Found');
+            res.status(404);
+            err = new Error('Not Found');
             err.status = 404;
             res.format({
                 html: function(){
@@ -172,13 +172,13 @@ router.param('id', function(req, res, next, id) {
             });
         //if it is found we continue on
         } else {
-            
+
             console.log(savedEvent);
             // once validation is done save the new item in the req
             req.id = id;
             // go to the next thing
-            next(); 
-        } 
+            next();
+        }
     });
 });
 // =================== SHOW ONE
@@ -189,9 +189,9 @@ router.route('/:id')
         console.log('GET Error: There was a problem retrieving: ' + err);
       } else {
         console.log('GET Retrieving ID: ' + savedEvent._id);
-        
+
         res.format({
-          
+
           json: function(){
               res.json(savedEvent);
           }
@@ -209,7 +209,7 @@ router.get('/:id/edit', function(req, res) {
         } else {
             //Return the savedEvent
             // console.log('GET Retrieving ID: ' + savedEvent._id);
-  
+
             res.format({
                 html: function(){
                        res.render("api/savedEvents/edit",{
