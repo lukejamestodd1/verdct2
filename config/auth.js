@@ -7,7 +7,7 @@ module.exports = {
   instagramAuth: {
     clientID: '415641f31f244a4d8dc1db324e077ec7',
     clientSecret: '5e19d2bceb0e426c9a7c8116a7385e97',
-    redirectURI: 'http://localhost:8080/auth/instagram/callback',
+    redirect_uri: 'http://localhost:8080/auth/instagram/callback',
   }
   // twitterAuth: {
   //   consumerKey: 'YOUR-TWITTER-CONSUMER-KEY',

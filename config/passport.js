@@ -34,7 +34,7 @@ passport.use(new FacebookStrategy({
   }));
 
 // Instagram Strategy
-passport.use(new instagramStrategy({
+passport.use(new InstagramStrategy({
     clientID: configAuth.instagramAuth.clientID,
     clientSecret: configAuth.instagramAuth.clientSecret,
     redirectURI: configAuth.instagramAuth.redirectURI
