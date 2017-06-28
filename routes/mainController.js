@@ -62,7 +62,7 @@ router.get('/logout', function(req, res) {
 
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {  
+router.get('/auth/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/',
   failureRedirect: '/',
 }));
@@ -71,7 +71,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
 
 router.get('/auth/instagram', passport.authenticate('instagram', { scope: 'email' }));
 
-router.get('/auth/instagram/callback', passport.authenticate('instagram', {  
+router.get('/auth/instagram/callback', passport.authenticate('instagram', {
   successRedirect: '/',
   failureRedirect: '/',
 }));
@@ -81,10 +81,10 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', function(req, res) {
-    Account.register(new Account({ 
-    	username : req.body.username, 
+    Account.register(new Account({
+    	username : req.body.username,
     	email : req.body.email,
-      // facebook: { name : 'MARK ZUCKEGBERG'} 
+      // facebook: { name : 'MARK ZUCKEGBERG'}
 
     }), req.body.password, function(err, account) {
         if (err) {
@@ -106,7 +106,7 @@ router.get('/home', function(req, res, next) {
 			    	user : req.user,
 			    	events : events,
 			    	savedEvents : savedEvents
-			    });   
+			    });
     	});
 		});
   }
@@ -134,10 +134,10 @@ router.get('/api', function(req, res, next) {
                 });
               }
             });
-          }   
-        });   
-      });   
-    });   
+          }
+        });
+      });
+    });
   });
 });
 
@@ -161,7 +161,7 @@ router.route('/cu').get(function(req, res, next) {
                         res.json(savedEvents);
                     }
                 });
-              }     
+              }
         });
 });
 
@@ -181,31 +181,31 @@ router.post('/contact', function(req, res) {
     from: 'cakepudding1@gmail.com',
     to: 'lukejamestodd1@gmail.com',
     subject: 'Website contact form',
-    html: 'From ' 
-      + req.body.nm 
-      + '<br><br>' 
-      + req.body.email 
-      + '<br><br>'  
+    html: 'From '
+      + req.body.nm
+      + '<br><br>'
+      + req.body.email
+      + '<br><br>'
       + req.body.message
   };
 
   //Checking for completion
   if (!req.body.nm || !req.body.email || !req.body.message) {
     res.render('contact', {
-      title: 'Contact Us', 
-      msg: 'Please include a name and email.', 
-      err: true, 
-      page: 'contact', 
-      user: req.user})
+      title: 'Contact Us',
+      msg: 'Please include a name and email.',
+      err: true,
+      page: 'contact',
+      user: req.user});
 
   //Honey pot spam rejection
   } else if (req.body.spampot) {
     res.render('contact', {
-      title: 'Contact Us', 
-      msg: 'You are a spam bot.', 
-      err: true, 
-      page: 'contact' , 
-      user: req.user})
+      title: 'Contact Us',
+      msg: 'You are a spam bot.',
+      err: true,
+      page: 'contact' ,
+      user: req.user});
   }
 
   //Error msging
@@ -213,17 +213,17 @@ router.post('/contact', function(req, res) {
     //Email not sent
     if (error) {
         console.log(error);
-        res.render('contact', { 
-          title: 'Contact Us', 
-          msg: 'Error occured.', 
-          err: true, page: 'contact', user: req.user})
+        res.render('contact', {
+          title: 'Contact Us',
+          msg: 'Error occured.',
+          err: true, page: 'contact', user: req.user});
     }
     //Yay!! Email sent
     else {
-        res.render('contact', { 
+        res.render('contact', {
           title: 'Contact Us',
-          msg: 'Message sent! Thank you.', 
-          err: false, page: 'contact', 
+          msg: 'Message sent! Thank you.',
+          err: false, page: 'contact',
           user: req.user});
     }
   });
