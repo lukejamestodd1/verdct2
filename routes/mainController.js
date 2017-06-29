@@ -81,6 +81,7 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', function(req, res) {
+  
     Account.register(new Account({
     	username : req.body.username,
     	email : req.body.email,
