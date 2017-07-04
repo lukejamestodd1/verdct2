@@ -81,7 +81,47 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', function(req, res) {
-  
+
+    const signupUsername = req.body.username;
+    const signupPassword = req.body.signupPassword;
+    const signupEmail = req.body.email;
+
+    // Don't let users submit blank usernames or passwords
+      if (signupUsername === '' || signupPassword === '') {
+        res.render('register', {
+          errorMessage: 'Please provide both username and password'
+        });
+        return;
+      }
+
+    // Don't let users submit blank e-mail field
+    if (signupEmail === '') {
+      res.render('register', {
+        errorMessage: 'Please provide both username and password'
+      });
+      return;
+    }
+
+    // Check for existing e-mail address
+    Account.findOne(
+      // criteria
+      { email: signupEmail},
+
+      { email: 1},
+
+      (err, foundEmail) => {
+        if (err) {
+          next(err);
+          return;
+        }
+      if (foundEmail) {
+        res.render('register', {
+          errorMessage: 'E-mail already registered in the system!'
+        });
+        return;
+      }
+      }
+    );
     Account.register(new Account({
     	username : req.body.username,
     	email : req.body.email,
