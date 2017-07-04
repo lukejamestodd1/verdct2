@@ -25,6 +25,10 @@
                   <form action="/api/users/<%= user.id %>" method="post" class="col s12">
                     <div class="row">
                       <div class="input-field col s12 z">
+                        <input type="password" name="currentPassword" id="password">
+                        <label for="password">Current Password</label>
+                      </div>
+                      <div class="input-field col s12 z">
                           <input type="password" name="password" id="password">
                           <label for="password">New password</label>
                       </div>

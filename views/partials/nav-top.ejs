@@ -4,7 +4,7 @@
   <%  } %>
 <% } %>
 <% if (typeof user !== 'undefined') { %>
-  <p> logged in </p>
+  <p> logged in as username--> <%= user.username %> </p>
   <% if (user.email == 'cake@pudding.com'){ %>
     ADMIN USER MENU
     <a href="/spa"> SPA | </a>
