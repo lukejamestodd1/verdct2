@@ -38,7 +38,7 @@ a {
 .menu-gap{
 	padding-top: 2em;
 	padding-bottom: 2em;
-	text-align: center;	
+	text-align: center;
 }
 #menu-divider{
 	width: 50%;
@@ -122,7 +122,7 @@ a {
 	flex-direction: row;
 }
 .wr{
-	flex-wrap: wrap-reverse;	
+	flex-wrap: wrap-reverse;
 }
 .flex-item{
 	padding: 0 !important;
@@ -132,7 +132,7 @@ a {
 	margin-left: 1em !important;
 }
 .form1{
-	
+
 }
 .collapsible-header{
 	 border: none;
@@ -147,7 +147,7 @@ a {
 	 box-shadow: none;
 }
 .collapsible-header.active{
-	border-bottom: none !important; 
+	border-bottom: none !important;
 }
 
 .margined{
@@ -221,7 +221,7 @@ a {
 	list-style-type: disc;
 }
 #fill{
-	list-style-type: none; 
+	list-style-type: none;
 }
 .margined .y{
 	display: block;
@@ -318,7 +318,7 @@ a {
  }
 .bx-wrapper {
     position: relative;
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 0;
 }
 .selected{
@@ -335,4 +335,17 @@ a {
  }
 .hidden{
 	display: none;
+}
+
+.error {
+	background-color: mistyrose;
+	border: 1px solid red;
+	min-height: 20px;
+}
+
+.success {
+	background-color: chartreuse;
+	border: 1px solid green;
+	color: white;
+	min-height: 20px;
 }

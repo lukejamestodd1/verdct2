@@ -8,8 +8,9 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var InstagramStrategy = require('passport-instagram').Strategy; 
+var InstagramStrategy = require('passport-instagram').Strategy;
 var configAuth = require('./config/auth');
+var flash = require('connect-flash');
 var AWS = require('aws-sdk');
 
 //database and models
@@ -34,11 +35,51 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash());
 
 // passport config
 var Account = require('./models/account');
+// passport.use(new LocalStrategy(
+//   // 1st arg -> options to customize LocalStrategy
+//   {
+//     // <input name="loginUsername">
+//     usernameField: 'username',
+//     // <input name="loginPassword">
+//     passwordField: 'password'
+//   },
+//
+//   // 2nd arg -> callback for the logic that validates the login
+//   (username, password, next) =>{
+//     Account.findOne(
+//       { username: username},
+//         (err, theUser) => {
+//           //  Tell passport if there was an error(nothing we can do)
+//           if (err) {
+//            next(err);
+//            return;
+//           }
+//           // Tell passport if there is no user with given username
+//           if(!theUser) {
+//           //          false in 2nd arg means "Log in failed!"
+//           //            |
+//            next(null, false, { message: 'Wrong username'});
+//            return;
+//           }
+//           // Tell passport if the passwords don't match
+//           if ( loginPassword != req.user.password ) {
+//             // false means "Log in failed!"
+//             next(null, false, { message: 'Wrong password'});
+//             return;
+//           }
+//           // Give passport the user's details
+//           next(null, theUser, { message: `Login for ${theUser.username} successful`});
+//           //  -> this user goes to passport.serializeUser()
+//         }
+//     );
+//   }
+// ));
 passport.use(new LocalStrategy(Account.authenticate()));
-passport.use(new FacebookStrategy({  
+passport.use(new FacebookStrategy({
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,
     callbackURL: configAuth.facebookAuth.callbackURL,

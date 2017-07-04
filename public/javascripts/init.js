@@ -42,7 +42,7 @@ $(document).ready(function(){
         moveSlides: 1,
         startSlide: 1,
     });
-    
+
     var sTop = '';
     var sBot = '';
     $('.topcont').click(function(){
@@ -73,10 +73,10 @@ $(document).ready(function(){
       $(this).siblings().removeClass('selected');
       var appElement = document.querySelector('[ng-app=event]');
       var $scope = angular.element(appElement).scope();
-      
+
       //set the img_url property to chosen img
       url =  $(this).find('img').attr('src');
-      
+
       //set scope formdata to url
       $scope.$apply(function () {
             $scope.formData.img_url = url;
@@ -87,7 +87,7 @@ $(document).ready(function(){
     //     if(event.password != undefined){
     //         $('#eventpass').openModal({
     //             opacity: .7,
-                
+
     //         });
     //     }
     // }
@@ -100,12 +100,12 @@ function checkPass() {
         var eventpass = document.getElementById('eventpass').innerHTML;
         var goodColor = "#66cc66";
         var badColor = "#ff6666";
-        if (password.toUpperCase() === eventpass.toUpperCase()){ 
+        if (password.toUpperCase() === eventpass.toUpperCase()){
             message.style.color = goodColor;
-            message.innerHTML = "correct!"
+            message.innerHTML = "correct!";
             $('#dummy').addClass('hidden');
             $('#enter').removeClass('hidden');
-            // $('#pbtn').addClass('hidden');  
+            // $('#pbtn').addClass('hidden');
         } else {
             message.style.color = badColor;
             message.innerHTML = "incorrect";

@@ -30,7 +30,7 @@
 
       <div class="divider"></div>
 </div>
-      <!-- if no savedevent, show three empty/dummy dress containers, clicking one creates the saved event --> 
+      <!-- if no savedevent, show three empty/dummy dress containers, clicking one creates the saved event -->
       <% if(savedEvents.length <= 0){ %>
         <p class="margined">You are not following this event</p>
         <div class="container">
@@ -100,7 +100,7 @@
             </div>
           </form>
         </div>
-      
+
       <% } else { %>
           <!-- show dresses with links to edit dress object -->
           <% for(var i = 0; i < dresses.length; i++){ %>
@@ -119,7 +119,7 @@
                 <p>Top style:<%= dresses[i].sTop %></p>
                 <p>Bottom style:<%= dresses[i].sBot %></p>
                 <p>Colour:<%= dresses[i].colour %></p>
-                  
+
                 <!-- button to edit the saved event/lock it down -->
                 <a class="waves-effect waves-light btn modal-trigger nocaps open center-align" href="#modal3">This is the one!</a>
                 <div id="modal3" class="modal">
@@ -140,7 +140,7 @@
                             <input id="sTop"    type="hidden" value="<%= dresses[i].sTop %>" name="sTop"/>
                             <input id="sBot"    type="hidden" value="<%= dresses[i].sBot %>" name="sBot"/>
                             <input id="colour"  type="hidden" value="<%= dresses[i].colour %>" name="colour"/>
-                            
+
                             <input type="checkbox" class="filled-in" id="u_name" checked="checked" value='namenamename'name="name"/>
                               <label for="u_name">Your name</label>
                               <br>
@@ -158,7 +158,7 @@
                               <br>
                               <br>
                               <br>
-                          
+
                             <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">Ok, save it!</button>
                           </p>
                         </div>
@@ -166,7 +166,7 @@
                           <p>Preview</p>
                           <div class="row">
                             <div class="col s5 card grey newDress lighten-2">
-                                
+
                             </div>
                             <div class="col s5">
                                 <ul>
@@ -180,22 +180,22 @@
                           <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat nocaps">Cancel</a>
                         </div>
                       </form>
-                      
+
                   </div>
-                  
+
                 </div>
 
 
-          
+
           <% } %>
           </div>
             </div>
             </div>
         <% } %>
       </div>
-    </div> 
+    </div>
   </div>
-  
+
   <div class="container">
     <div class="row">
       <h5>Have you seen?</h5>
@@ -216,15 +216,15 @@
           <div id="modal3" class="modal">
             <div class="modal-content">
               <h5 class="lora z">What do you want others to see?</h5>
-              <form id="formEditSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/<%= savedEvents[0].id %>" class="margined row">
+              <form id="formEditSavedEvent" name="addSavedEvent" method="post" action="/api/savedEvents/<%= savedEvents.id %>" class="margined row">
                   <div class="form-group col s12 m5">
                     <p>Your Details</p>
                     <p>
-                      <input id="event_id"type="hidden" value="<%= event.id %>" name="event_id"/>
+                      <input id="event_id" type="hidden" value="<%= event.id %>" name="event_id"/>
                       <input id="e_name"  type="hidden" value="<%= event.name %>" name="e_name"/>
                       <input id="e_img"   type="hidden" value="<%= event.img_url %>" name="e_img"/>
-                      
-                      
+
+
                       <input type="checkbox" class="filled-in" id="u_name" checked="checked" value='namenamename'name="name"/>
                         <label for="u_name">Your name</label>
                         <br>
@@ -243,7 +243,7 @@
                         <br>
                         <br>
 
-                      <!-- <input id="dress_id"type="hidden" value="%= dresses[i]._id %>" name="dress_id"/> 
+                      <!-- <input id="dress_id"type="hidden" value="%= dresses[i]._id %>" name="dress_id"/>
                       <input id="d_name"  type="hidden" value="%= dresses[i].name %>" name="d_name"/>
                       <input id="d_img"   type="hidden" value="%= dresses[i].img_url %>" name="d_img"/>
                       <input id="brand"   type="hidden" value="%= dresses[i].brand %>" name="brand"/>
@@ -251,7 +251,7 @@
                       <input id="sTop"    type="hidden" value="%= dresses[i].sTop %>" name="sTop"/>
                       <input id="sBot"    type="hidden" value="%= dresses[i].sBot %>" name="sBot"/>
                       <input id="colour"  type="hidden" value="%= dresses[i].colour %>" name="colour"/> -->
-                    
+
                       <button id="btnSubmit" type="submit" class="btn-lg btn-primary btn-centre">Ok, save it!</button>
                     </p>
                   </div>
@@ -259,7 +259,7 @@
                     <p>Preview</p>
                     <div class="row">
                       <div class="col s5 card grey newDress lighten-2">
-                          
+
                       </div>
                       <div class="col s5">
                           <ul>
@@ -273,13 +273,13 @@
                     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat nocaps">Cancel</a>
                   </div>
                 </form>
-                
-            </div>
-            
-          </div>      
 
-  
-      
+            </div>
+
+          </div>
+
+
+
 
   <% include ../../partials/footer %>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

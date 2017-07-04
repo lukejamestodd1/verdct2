@@ -1,9 +1,9 @@
-var LocalStrategy = require('passport-local').Strategy;  
-var FacebookStrategy = require('passport-facebook').Strategy;   
-var Account = require('../models/account');  
-var configAuth = require('./auth'); 
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
+var Account = require('../models/account');
+var configAuth = require('./auth');
 
-passport.use(new FacebookStrategy({  
+passport.use(new FacebookStrategy({
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,
     callbackURL: configAuth.facebookAuth.callbackURL,
@@ -33,3 +33,28 @@ passport.use(new FacebookStrategy({
     });
   }));
 
+// Instagram Strategy
+passport.use(new InstagramStrategy({
+    clientID: configAuth.instagramAuth.clientID,
+    clientSecret: configAuth.instagramAuth.clientSecret,
+    redirectURI: configAuth.instagramAuth.redirectURI
+  },
+  function(token, refreshToken, profile, done) {
+    Account.findOne( { 'instagram.id': profile.id}, function(err, account) {
+      if (err)
+        return done(err);
+      if (account) {
+        return done(null, account);
+      } else {
+        var newAccount = new Account();
+        newAccount.instagram.id = profile.id;
+        newAccount.instagram.token = token;
+
+        newAccount.save(function(err) {
+          if (err)
+            throw err;
+          return done(null, newAccount);
+        });
+      }
+    });
+}));
