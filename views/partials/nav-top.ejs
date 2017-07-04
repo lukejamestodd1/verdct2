@@ -1,5 +1,7 @@
 <% if (typeof errorMessage !== 'undefined') { %>
+  <% if (errorMessage.length > 0) { %>
   <div class="error"><%= errorMessage %> </div>
+  <%  } %>
 <% } %>
 <% if (typeof user !== 'undefined') { %>
   <p> logged in </p>

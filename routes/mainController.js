@@ -114,6 +114,26 @@ router.post('/register', function(req, res) {
       }
       }
     );
+    // Check for existing username
+    Account.findOne(
+      // criteria
+      { username: signupUsername},
+
+      { username: 1},
+
+      (err, foundUser) => {
+        if (err) {
+          next(err);
+          return;
+        }
+      if (foundUser) {
+        res.render('register', {
+          errorMessage: 'Username already registered in the system!'
+        });
+        return;
+      }
+      }
+    );
     Account.register(new Account({
     	username : req.body.username,
     	email : req.body.email,
