@@ -163,15 +163,9 @@ router.post('/account', (req, res) => {
         actualPassword = req.body.password;
     if (confirmPassword && actualPassword && current) {
             if (confirmPassword === actualPassword) {
-                if (/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,32}$/.test(actualPassword) === true) {
-                    if (confirmPassword && actualPassword (current, req.user.password)) {
+                    if (confirmPassword && actualPassword) {
                         req.user.password = req.body.password;
                     }
-                } else {
-                    req.flash('error', `Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number:`);
-                    res.redirect('/account');
-                    return;
-                }
             } else {
                 req.flash('error', `Your New Password don't Match`);
                 res.redirect('/account');
