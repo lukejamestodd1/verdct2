@@ -3,6 +3,7 @@ var passport = require('passport');
 var Account = require('../models/account');
 var mongoose = require('mongoose');
 var nodemailer = require('nodemailer');
+var flash = require('connect-flash');
 var router = express.Router();
 
 // ============ MAIN GET ROUTES =============
@@ -31,7 +32,12 @@ router.get('/search', function(req, res, next) {
 });
 
 router.get('/account', function(req, res, next) {
-  res.render('account', { title: 'Account', user: req.user});
+  res.render('account', {
+    title: 'Account',
+    user: req.user,
+    successMessage: req.flash('success'),
+    failMessage: req.flash('error')
+   });
 });
 
 router.get('/newevent', function(req, res, next) {
@@ -151,37 +157,34 @@ router.post('/register', function(req, res) {
 
 
 //==============USER ACCOUNT UPDATE=============
-router.post('/profile/password', ensure.ensureLoggedIn('/home'), (req, res, next) => {
-    const current = req.body.inputCurrentPassword,
-        confirmPassword = req.body.inputConfirmPass,
-        actualPassword = req.body.inputPassword;
+router.post('/account', (req, res) => {
+    const current = req.body.currentPassword,
+        confirmPassword = req.body.passwordConf,
+        actualPassword = req.body.password;
     if (confirmPassword && actualPassword && current) {
-        if (bcrypt.compareSync(current, req.user.password)) {
             if (confirmPassword === actualPassword) {
                 if (/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,32}$/.test(actualPassword) === true) {
-                    if (confirmPassword && actualPassword && bcrypt.compareSync(current, req.user.password)) {
-                        const salt = bcrypt.genSaltSync(10);
-                        const hashPass = bcrypt.hashSync(req.body.inputPassword, salt);
-                        req.user.password = hashPass;
+                    if (confirmPassword && actualPassword (current, req.user.password)) {
+                        req.user.password = req.body.password;
                     }
                 } else {
                     req.flash('error', `Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number:`);
-                    res.redirect('/profile');
+                    res.redirect('/account');
                     return;
                 }
             } else {
                 req.flash('error', `Your New Password don't Match`);
-                res.redirect('/profile');
+                res.redirect('/account');
                 return;
             }
-        } else {
+
             req.flash('error', `Your Current Password Don't Match`);
-            res.redirect('/profile');
+            res.redirect('/account');
             return;
-        }
+
     } else {
-        req.flash('error', `Please fill in all the Blanks`);
-        res.redirect('/profile');
+        req.flash('error', `Please fill in all the fields`);
+        res.redirect('/account');
         return;
     }
     req.user.save((err) => {
@@ -190,7 +193,7 @@ router.post('/profile/password', ensure.ensureLoggedIn('/home'), (req, res, next
             return;
         }
         req.flash('success', 'You have Successfully Updated Your Password');
-        res.redirect('/profile');
+        res.redirect('/account');
     });
 
 });

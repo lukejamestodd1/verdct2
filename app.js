@@ -8,8 +8,9 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var InstagramStrategy = require('passport-instagram').Strategy; 
+var InstagramStrategy = require('passport-instagram').Strategy;
 var configAuth = require('./config/auth');
+var flash = require('connect-flash');
 var AWS = require('aws-sdk');
 
 //database and models
@@ -34,11 +35,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash());
 
 // passport config
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
-passport.use(new FacebookStrategy({  
+passport.use(new FacebookStrategy({
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,
     callbackURL: configAuth.facebookAuth.callbackURL,
