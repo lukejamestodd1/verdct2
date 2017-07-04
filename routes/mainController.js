@@ -158,9 +158,9 @@ router.post('/register', function(req, res) {
 
 //==============USER ACCOUNT UPDATE=============
 router.post('/account', (req, res) => {
-    const current = req.body.currentPassword,
-        confirmPassword = req.body.passwordConf,
-        actualPassword = req.body.password;
+    const current = req.body.currentPassword;
+    const actualPassword = req.body.password;
+    const confirmPassword = req.body.passwordConf;
     if (confirmPassword && actualPassword && current) {
             if (confirmPassword === actualPassword) {
                     if (confirmPassword && actualPassword) {
