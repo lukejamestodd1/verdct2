@@ -77,7 +77,7 @@ router.get('/auth/instagram/callback', passport.authenticate('instagram', {
 }));
 
 router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register', user: req.user });
+  res.render('register', { title: 'Register', user: req.user, errorMessage: '' });
 });
 
 router.post('/register', function(req, res) {

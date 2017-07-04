@@ -1,5 +1,7 @@
 <meta charset="UTF-8">
-    <title><%= title %></title>
+<% if (typeof title !== 'undefined') { %>
+      <title><%= title %></title>
+<% } %>
     <link rel="icon" type="image" href="/public/favicon.png">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

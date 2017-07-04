@@ -1,4 +1,4 @@
-<% if (user){ %>
+<% if (typeof user !== 'undefined') { %>
   <p> logged in </p>
   <% if (user.email == 'cake@pudding.com'){ %>
     ADMIN USER MENU
@@ -17,7 +17,7 @@
     <a href="/" class="brand-logo center"><img src="/images/logo.png" class="logo"></a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <% if (user){ %>
+      <% if (typeof user !== 'undefined'){ %>
         <li><a href="/search">Search for an event</a></li>
         <li><a href="/events">Your events</a></li>
         <li><a href="/account">Your account</a></li>
@@ -35,14 +35,14 @@
         </div>
       </li>
       <li><a href="/search">Search for an event</a></li>
-      <% if (user){ %>
+      <% if (typeof user !== 'undefined'){ %>
         <li><a href="/events">Your events</a></li>
         <li><a href="/account">Your account</a></li>
         <li><a href="/logout">Log out</a></li>
       <% } else { %>
         <li><a href="/login">Login</a></li>
         <li><a href="/register">Sign up</a></li>
-      <% } %>
+
       <div class="menu-gap">
         <div class="divider" id="menu-divider"></div>
       </div>
@@ -51,6 +51,7 @@
       <li><a href="/contact">Ask a question</a></li>
       <li><a href="/about">About Verdct</a></li>
       <li><a href="/contact">Advertise with us</a></li>
+      <% } %>
     </ul>
   </div>
 </nav>
