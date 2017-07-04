@@ -3,6 +3,9 @@
   <div class="error"><%= errorMessage %> </div>
   <%  } %>
 <% } %>
+<% if (typeof successMessage !== 'undefined' && successMessage.length > 0) { %>
+  <div class="success"> <%= successMessage %> </div>
+<% } %>
 <% if (typeof user !== 'undefined') { %>
   <p> logged in as username--> <%= user.username %> </p>
   <% if (user.email == 'cake@pudding.com'){ %>

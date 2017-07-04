@@ -36,7 +36,7 @@ router.get('/account', function(req, res, next) {
     title: 'Account',
     user: req.user,
     successMessage: req.flash('success'),
-    failMessage: req.flash('error')
+    errorMessage: req.flash('error')
    });
 });
 
