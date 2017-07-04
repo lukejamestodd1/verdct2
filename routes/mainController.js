@@ -86,21 +86,13 @@ router.post('/register', function(req, res) {
     const signupPassword = req.body.signupPassword;
     const signupEmail = req.body.email;
 
-    // Don't let users submit blank usernames or passwords
-      if (signupUsername === '' || signupPassword === '') {
+    // Don't let users submit blank usernames or passwords/e-mail
+      if (signupUsername === '' || signupPassword === '' || signupEmail === '') {
         res.render('register', {
-          errorMessage: 'Please provide both username and password'
+          errorMessage: 'Please provide email, username and password'
         });
         return;
       }
-
-    // Don't let users submit blank e-mail field
-    if (signupEmail === '') {
-      res.render('register', {
-        errorMessage: 'Please provide both username and password'
-      });
-      return;
-    }
 
     // Check for existing e-mail address
     Account.findOne(
