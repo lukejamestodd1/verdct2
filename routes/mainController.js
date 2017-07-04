@@ -149,6 +149,51 @@ router.post('/register', function(req, res) {
     });
 });
 
+
+//==============USER ACCOUNT UPDATE=============
+router.post('/profile/password', ensure.ensureLoggedIn('/home'), (req, res, next) => {
+    const current = req.body.inputCurrentPassword,
+        confirmPassword = req.body.inputConfirmPass,
+        actualPassword = req.body.inputPassword;
+    if (confirmPassword && actualPassword && current) {
+        if (bcrypt.compareSync(current, req.user.password)) {
+            if (confirmPassword === actualPassword) {
+                if (/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,32}$/.test(actualPassword) === true) {
+                    if (confirmPassword && actualPassword && bcrypt.compareSync(current, req.user.password)) {
+                        const salt = bcrypt.genSaltSync(10);
+                        const hashPass = bcrypt.hashSync(req.body.inputPassword, salt);
+                        req.user.password = hashPass;
+                    }
+                } else {
+                    req.flash('error', `Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number:`);
+                    res.redirect('/profile');
+                    return;
+                }
+            } else {
+                req.flash('error', `Your New Password don't Match`);
+                res.redirect('/profile');
+                return;
+            }
+        } else {
+            req.flash('error', `Your Current Password Don't Match`);
+            res.redirect('/profile');
+            return;
+        }
+    } else {
+        req.flash('error', `Please fill in all the Blanks`);
+        res.redirect('/profile');
+        return;
+    }
+    req.user.save((err) => {
+        if (err) {
+            next(err);
+            return;
+        }
+        req.flash('success', 'You have Successfully Updated Your Password');
+        res.redirect('/profile');
+    });
+
+});
 // ============= API/ BACK ROUTES ==============
 router.get('/home', function(req, res, next) {
   if (req.user) {
