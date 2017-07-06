@@ -1,7 +1,12 @@
-var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
-var Account = require('../models/account');
-var configAuth = require('./auth');
+var InstagramStrategy = require('passport-instagram').Strategy;
+var LocalStrategy     = require('passport-local').Strategy;
+var passport          = require('passport');
+var FacebookStrategy  = require('passport-facebook').Strategy;
+var Account           = require('../models/account');
+var configAuth        = require('./auth');
+
+
+passport.use(new LocalStrategy(Account.authenticate()));
 
 passport.use(new FacebookStrategy({
     clientID: configAuth.facebookAuth.clientID,
@@ -58,3 +63,6 @@ passport.use(new InstagramStrategy({
       }
     });
 }));
+
+
+module.exports = configAuth
