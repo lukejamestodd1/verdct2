@@ -30,6 +30,10 @@ var savedEventsController = require('./routes/api/savedEventsController');
 //app
 var app = express();
 
+// Tell node to run the code contained in this file
+// (this sets up passport and our strategies)
+require('./config/passport.js');
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -78,7 +82,6 @@ var Account = require('./models/account');
 //     );
 //   }
 // ));
-passport.use(new LocalStrategy(Account.authenticate()));
 passport.use(new FacebookStrategy({
     clientID: configAuth.facebookAuth.clientID,
     clientSecret: configAuth.facebookAuth.clientSecret,

@@ -158,13 +158,15 @@ router.post('/register', function(req, res) {
 
 //==============USER ACCOUNT UPDATE=============
 router.post('/account', (req, res) => {
+    const storedPassword = req.user.password;
+    console.log("STORED PASSWORD:"+req.user.password);
     const current = req.body.currentPassword;
-    const actualPassword = req.body.password;
+    const newPassword = req.body.password;
     const confirmPassword = req.body.passwordConf;
-    if (confirmPassword && actualPassword && current) {
-            if (confirmPassword === actualPassword) {
-                    if (confirmPassword && actualPassword) {
-                        req.user.password = req.body.password;
+    if (confirmPassword && newPassword && current) {
+            if (confirmPassword === newPassword) {
+                    if (confirmPassword && newPassword && current) {
+                        req.user.password = req.body.newPassword;
                     }
             } else {
                 req.flash('error', `Your New Password don't Match`);
